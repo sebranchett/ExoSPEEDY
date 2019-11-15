@@ -7,7 +7,11 @@ C--
 C--   Purpose : Initialization of land model
 C--   Initialized common blocks: LAND_MC
 C--	
-							
+C--IO h atparam.h, com_cplcon_land.h, cls_inland.h, atparam.h
+C--IO h com_cplcon_land.h, com_cplvar_land.h
+C--IO m ? depth_soil, depth_lice, tdland, flandmin in cls_inland.h
+C--IO m rhcapl, cdland in com_cplcon_land.h
+
       include "atparam.h"
 
       PARAMETER ( NLON=IX, NLAT=IL, NGP=NLON*NLAT )
@@ -84,7 +88,9 @@ C--
 C--   SUBROUTINE LAND_MODEL
 C--
 C--   Purpose : Integrate slab land-surface model for one day
-							
+C--IO h atparam.h, com_cplcon_land.h, com_cplvar_land.h
+C--IO m ? vland_output in com_cplvar_land.h
+
       include "atparam.h"
 
       PARAMETER ( NLON=IX, NLAT=IL, NGP=NLON*NLAT )

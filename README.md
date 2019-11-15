@@ -11,3 +11,11 @@ Please cite these publications when publishing your own work based on this softw
 
 ExoSPEEDY adapts the SPEEDY software for use in climate modeling of exoplanets.
 This work was done at Delft University of Technology under the guidance of Daphne Stam.
+
+The first step in adapting the code for exoplanets is to identify the flow of earth parameters.
+To this purpose, each subroutine is annotated with comment lines starting with the string 'C--IO x' where x is one of:
+- r - reads from a file
+- w - writes to a file
+- h - gets input from a .h file
+- m - sets or modifies value in a .h file
+- s - sets a value in the subroutine

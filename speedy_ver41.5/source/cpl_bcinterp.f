@@ -2,6 +2,7 @@
       SUBROUTINE FORINT (NGP,IMON,FMON,FOR12,FOR1)  
 
 C--   Aux. routine FORINT : linear interpolation of monthly-mean forcing
+C--IO s 12 months in a forcing cycle
 
       REAL FOR12(NGP,*), FOR1(NGP)
 
@@ -26,6 +27,7 @@ C--
 
 C--   Aux. routine FORIN5 : non-linear, mean-conserving interpolation 
 C--                         of monthly-mean forcing fields
+C--IO s 12 months in a forcing cycle
 
       real for12(ngp,12), for1(ngp)
 

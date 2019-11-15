@@ -46,6 +46,9 @@ C--
 C--   Perform atm. model integration for 1 day, 
 C--   post-proc. and I/O at selected times 
 C--
+C--IO h atparam.h comes from par_horres_?.h, user modified at runtime
+C--IO h atparam1.h comes from par_verres.h, user modified at runtime
+C--IO h com_tsteps.h, com_date.h
       include "atparam.h"
       include "atparam1.h"
 

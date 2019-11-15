@@ -3,6 +3,8 @@
 C--
 C--   SUBROUTINE INI_COUPLER (istart)
 C--
+C--IO h atparam.h, atparam1.h, com_cli_land.h, com_cli_sea.h
+C--IO h com_surfcon.h
       include "atparam.h"
       include "atparam1.h"
 

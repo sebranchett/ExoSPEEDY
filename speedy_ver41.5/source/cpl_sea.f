@@ -4,6 +4,8 @@ C--
 C--   SUBROUTINE INI_SEA (istart)
 C-- 
 C--   Input : istart = restart flag ( 0 = no, 1 = yes)
+C--IO h atparam.h, com_cpl_flags.h, com_cli_sea.h, com_var_sea.h
+C--IO m sst_om, tice_om, sice_om, wsst_ob in com_var_sea.h
 
       include "atparam.h"
 
@@ -46,6 +48,11 @@ C--   3. Compute additional sea/ice variables
 C--
 C--   SUBROUTINE ATM2SEA (jday)
 C-- 
+C--IO h atparam.h, com_date.h, com_cpl_flags.h, com_cli_sea.h
+C--IO h com_var_sea.h, com_flx_sea.h, com_cplvar_sea.h
+C--IO s sstfr for earth temperature
+C--IO m sicecl_ob, ticecl_ob, sstcl_ob in com_var_sea.h
+C--IO m vsea_input in com_cplvar_sea.h
       include "atparam.h"
 
       PARAMETER ( NLON=IX, NLAT=IL, NGP=NLON*NLAT )
@@ -145,6 +152,11 @@ C--   3. Call message-passing routines to send data (if needed)
 C--
 C--   SUBROUTINE SEA2ATM (jday)
 C-- 
+C--IO h atparam.h, com_cpl_flags.h, com_var_sea.h, com_cplvar_sea.h
+C--IO m sst_om, tice_om, sice_om in com_var_sea.h
+C--IO m sstan_am, sst_am in com_var_sea.h
+C--IO m sice_am, tice_am in com_var_sea.h
+C--IO m ssti_om in com_var_sea.h
       include "atparam.h"
 
       PARAMETER ( NLON=IX, NLAT=IL, NGP=NLON*NLAT )
@@ -235,8 +247,14 @@ C--
 C--   Purpose : read/write sea variables from/to a restart file
 C--   Input :   IMODE = 0 : read model variables from a restart file
 C--                   = 1 : write model variables  to a restart file
-
 C-- 
+C--IO h atparam.h, com_cpl_flags.h, com_var_sea.h
+C--IO r sst_om, tice_om, sice_om from (3) in com_var_sea.h
+C--IO s sstfr for earth temperature
+C--IO w sst_om to (10) from com_var_sea.h
+C--IO w sst_c to (10)
+C--IO w sice_om, tice_om, sice_am, tice_am to (10) from com_var_sea.h
+
       include "atparam.h"
 
       PARAMETER ( NLON=IX, NLAT=IL, NGP=NLON*NLAT )
@@ -286,6 +304,9 @@ C--
 C--   SUBROUTINE OBS_SSTA 
 C--
 C--   Purpose : update observed SST anomaly array
+C--IO h atparam.h, com_cli_sea.h
+C--IO m sstan3 from com_cli_sea.h
+C--IO r r4inp from (30)
  
       include "atparam.h"
 
