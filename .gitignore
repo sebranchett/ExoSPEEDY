@@ -30,3 +30,10 @@
 *.exe
 *.out
 *.app
+
+# Project specific
+data/
+hflux/
+input/
+output/
+tmp/
