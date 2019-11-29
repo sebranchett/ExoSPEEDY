@@ -4,6 +4,15 @@ C--   SUBROUTINE INI_ATM (cexp)
 C--
 C--   Purpose : Call initialization routines for all model common blocks 
 C--
+C--IO h atparam.h, atparam1.h
+C--IO h com_tsteps.h, com_date.h, par_tmean.h, com_dyncon1.h
+C--IO s 1440 = minutes in a day?
+C--IO w use SETCTL to write 'attm' to unit 12
+C--IO w use SETCTL to write 'atva' to unit 14
+C--IO w use SETCTL to write 'atdf' to unit 16
+C--IO w use SETCTL_D to write 'daytm' to unit 18
+C--IO w use SETGRD to write year to units 11, 13 and 15
+
       include "atparam.h"
       include "atparam1.h"
 
@@ -122,6 +131,7 @@ C--
 C--   FUNCTION PRLEV (SIGLEV)
 C--   Purpose : select the closest standard pressure level for post-proc.
 C--   Input :   SIGLEV = sigma level
+C--IO s PLEV = standard pressure level for post-proc.
 
       REAL PLEV(14)
 

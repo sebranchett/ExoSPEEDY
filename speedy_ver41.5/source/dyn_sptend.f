@@ -9,6 +9,8 @@ C--                  TDT   = temperature tendency (spec.)
 C--                  PSDT  = tendency of log_surf.pressure (spec.)
 C--                  J4    = time level index (1 or 2)
 C--
+C--IO h atparam.h, atparam1.h
+C--IO h com_dyncon1.h, com_dyncon2.h, com_dynvar.h
       include "atparam.h"
       include "atparam1.h"
 

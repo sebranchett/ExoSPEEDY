@@ -10,6 +10,20 @@ C--                              HDIFC1, HDIFC3,
 C--                              common blocks for spectral transforms 
 C--                              (through routine PARMTR) 
 C--
+C--IO h atparam.h, atparam1.h, com_tsteps.h, com_lflags.h
+C--IO h com_dyncon0.h, com_dyncon1.h, com_hdifcon.h, com_spectral.h
+C--IO h cls_indyns.h
+C--IO s 86400. = seconds in a day?
+C--IO s 3600. = minutes in a day?
+C--IO s Robert filter parameter = 0.05
+C--IO s Williams filter parameter = 0.53
+C--IO s REARTH = 6.371E+6
+C--IO s OMEGA  = 7.292E-05
+C--IO s GRAV   = 9.81
+C--IO s AKAP   = 2./7.
+C--IO s RGAS   = AKAP*1004.
+C--IO s Power of Laplacian in horizontal diffusion = NPOWHD = 4
+
       include "atparam.h"
       include "atparam1.h"
 

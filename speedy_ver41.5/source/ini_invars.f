@@ -10,6 +10,13 @@ C--                    = 1 : restart file
 C--   Initialized common blocks : DATE1, DYNSP1, DYNSP2 (PHIS only),
 C--                               SFCANOM, SFCFLUX
 C--
+C--IO h atparam.h, atparam1.h, com_date.h
+C--IO h com_tsteps.h, com_surfcon.h, com_dyncon0.h
+C--IO h com_dyncon1.h, com_dynvar.h
+C--IO s tropos:  T = 288 degK at z = 0, constant lapse rate TREF = 288.
+C--IO s stratos: T = 216 degK, lapse rate = 0 TTOP = 216.
+C--IO s p_ref = 1013 hPa at z = 0   
+C--IO s tropospheric spec. humidity in g/kg Qref = RHref * Qsat(288K, 1013hPa)
       include "atparam.h"
       include "atparam1.h"
 

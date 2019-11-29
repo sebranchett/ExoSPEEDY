@@ -7,6 +7,13 @@ C--             and correction terms for horiz. diffusion
 C--
 C--   Input : imode : 0 = initialization step, 1 = daily update
 
+C--IO h atparam.h, atparam1.h, com_tsteps.h, com_date.h
+C--IO h com_dyncon0.h, com_physcon.h, com_radcon.h, com_hdifcon.h
+C--IO h com_surfcon.h, com_cli_sea.h, com_cli_land.h
+C--IO h com_var_sea.h, com_var_land.h, com_lflags.h
+C--IO s IYEAR_ref = 1950, CO2 absorptivity
+C--IO s Del_CO2 = 0.005, CO2 absorptivity, rate of change per year
+
       include "atparam.h"
       include "atparam1.h"
 C
@@ -135,6 +142,8 @@ c     &               +FMASK_S(i,j)*SSTCL_OB(ij)
 
 C--   Aux. routine GAMLAT : compute reference lapse rate 
 C--                         as a function of latitude and date
+C--IO h atparam.h, atparam1.h, com_dyncon0.h, com_physcon.h
+C--IO s 1000. ?
 
       include "atparam.h"
       include "atparam1.h"
@@ -158,6 +167,8 @@ C--
       SUBROUTINE OUTEST (iunit,fout)
 
 C--   Aux. routine OUTEST : write one field on a test output file 
+C--IO h atparam.h
+C--IO w write a matrix to an output file
 
       include "atparam.h"
 

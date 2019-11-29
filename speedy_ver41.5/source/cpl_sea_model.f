@@ -7,7 +7,18 @@ C--
 C--   Purpose : Initialization of sea model
 C--   Initialized common blocks: SEA_MC
 C--	
-							
+C--IO h atparam.h, com_cplcon_sea.h, cls_insea.h
+C--IO s depth_ml for high-latitutde depth, dept0_ml for minimum depth
+C--IO s depth_ice for high-latitude depth, dept0_ice for minimum depth
+C--IO s tdsst for sea-surface dissipation, tdice for sea-ice dissipation
+C--IO s beta for heat flux coefficient
+C--IO s l_globe for global domain logical
+C--IO s l_northe, l_natlan, l_npacif for regional domain logicals
+C--IO s l_tropic, l_indian for regional domain logicals
+C--IO s heat capacity of mixed-l. = 4.18e+6 used for hcaps
+C--IO s heat capacity of sea-ice = 1.93e+6 used for hcapi
+C--IO s 86400 for reciprocal heat capacities = seconds in a day?
+
       include "atparam.h"
 
       PARAMETER ( NLON=IX, NLAT=IL, NGP=NLON*NLAT )
@@ -125,7 +136,10 @@ C--
 C--   SUBROUTINE SEA_MODEL
 C--
 C--   Purpose : Integrate slab ocean and sea-ice models for one day
-							
+C--IO h atparam.h, com_cplcon_sea.h, com_cplvar_sea.h
+C--IO s SST at freezing point = 273.2-1.8
+C--IO s anom0 = 20. for non-linear damping coefficient
+
       include "atparam.h"
 
       PARAMETER ( NLON=IX, NLAT=IL, NGP=NLON*NLAT )
@@ -225,7 +239,9 @@ C--   SUBROUTINE SEA_DOMAIN (cdomain,rlat,dmask)
 C--
 C--   Purpose : Definition of ocean domains
 C--	
-							
+C--IO h atparam.h
+C--IO s lat/lon masks set dependent on earth's sea domains
+
       include "atparam.h"
 
       PARAMETER ( NLON=IX, NLAT=IL )

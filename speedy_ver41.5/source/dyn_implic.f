@@ -7,6 +7,7 @@ C--   Input/output : DIVDT = divergence tendency
 C--                  TDT   = temperature tendency
 C--                  PSDT  = tendency of log(surf.pressure)
 C--
+C--IO h atparam.h, atparam1.h, com_dyncon1.h, com_dyncon2.h
       include "atparam.h"
       include "atparam1.h"
       PARAMETER (MXNXKX=MX*NX*KX)

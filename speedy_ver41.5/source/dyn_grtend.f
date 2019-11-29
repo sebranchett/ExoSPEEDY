@@ -17,6 +17,8 @@ C--           TDT   = spectral tendency of temperature
 C--           PSDT  = spectral tendency of log(p_s)
 C--           TRDT  = spectral tendency of tracers
 C--
+C--IO h atparam.h, atparam1.h
+C--IO h com_dyncon1.h, com_dyncon2.h, com_dynvar.h
 
       include "atparam.h"
       include "atparam1.h"

@@ -7,6 +7,7 @@ C--             and spectral topography PHIS, as in GFDL Climate Group GCM
 C--   Input :   JJ = time level index (1 or 2)
 C--   Modified common blocks : DYNSP2
 C--
+C--IO h atparam.h, atparam1.h, com_dyncon1.h, com_dynvar.h
       include "atparam.h"
       include "atparam1.h"
 

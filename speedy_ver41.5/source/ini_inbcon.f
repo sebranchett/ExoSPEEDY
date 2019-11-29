@@ -6,7 +6,22 @@ C--
 C--   Purpose : Read topography and climatological boundary conditions 
 C--   Input :   grav0  = gravity accel.
 C--             radlat = grid latitudes in radiants
- 									
+C--IO h atparam.h, com_tsteps.h, com_cpl_flags.h
+C--IO h com_surfcon.h, com_cli_land.h, com_cli_sea.h
+C--IO s 12 months in a year
+C--IO r read topographical fields from unit 20 - orography
+C--IO r read topographical fields from unit 20 - land-sea mask
+C--IO r read topographical fields from unit 20 - albedo
+C--IO r read land-surface temp. from unit 23
+C--IO r read snow depth from unit 24
+C--IO r read vegetation fraction from unit 25
+C--IO r read soil moisture from unit 26
+C--IO r read 'SST' (sea surface temperature?) from unit 21
+C--IO r read sea ice fraction from unit 22
+C--IO r read SST anomalies initial and prec./following months from unit 30
+C--IO r read Annual-mean heat flux into sea-surface from unit 31
+C--IO r read ocean model SST bias from unit 32
+
       include "atparam.h"
 
       PARAMETER ( NLON=IX, NLAT=IL )
@@ -167,7 +182,7 @@ c     read vegetation fraction (in %)
           do i = 1,ix
             swroot = idep2*swl2(i,j)
             soilw12(i,j,it) = min(1.,rsw*(swl1(i,j)+
-     &                        veg(i,j)*max(0.,swroot-swwil2)))		
+     &                        veg(i,j)*max(0.,swroot-swwil2)))
           enddo
         enddo
 
@@ -383,6 +398,7 @@ C--   and set undefined values to a constant (to avoid over/underflow)
       END
 
       SUBROUTINE FTLAND (STL,PHI0,PHIS0,FMASKL)
+C--IO h atparam.h, atparam1.h, com_dyncon0.h, com_dyncon1.h
 
       include "atparam.h"
       include "atparam1.h"
@@ -465,6 +481,7 @@ C--   Input   : ITR : spectral truncation (triangular)
 C--           : FG1 : original grid-point field
 C--   Output  : FG2 : filtered grid-point field
 
+C--IO h atparam.h
       include "atparam.h"
 
       REAL FG1 (IX,IL), FG2(IX,IL)

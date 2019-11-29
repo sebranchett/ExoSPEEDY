@@ -6,6 +6,7 @@ C--   Purpose : Initialize random diabatic forcing
 C--   Input :   INIRDF = index of forcing perturbation
 C--   Initialized common blocks: RANDF
 C--
+C--IO h atparam.h, atparam1.h, com_physcon.h, com_randfor.h
       include "atparam.h"
       include "atparam1.h"
 
@@ -24,7 +25,7 @@ C--
      &             36, 34, 32, 28, 24, 18, 12,  6,  1 /
 
 
-c     rms aplitude of (non-null) horizontal perturbation
+c     rms amplitude of (non-null) horizontal perturbation
       ampl = 0.5
 
 c     frequency of grid points with null perturbation

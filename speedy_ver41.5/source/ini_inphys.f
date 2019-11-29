@@ -11,6 +11,16 @@ C--                              CNVCON, LSCCON, RADCON, SFLCON, VDICON
 C--
 C     Resolution parameters
 C
+C--IO h atparam.h, atparam1.h, com_physcon.h, com_surfcon.h
+C--IO h com_cnvcon.h, com_lsccon.h, com_radcon.h, com_sflcon.h
+C--IO h com_vdicon.h, cls_inphys.h
+C--IO s P0 = 1.e+5
+C--IO s GG = 9.81
+C--IO s RD = 287.
+C--IO s CP = 1004.
+C--IO s ALHC = 2501.0
+C--IO s        Latent heat is in J/g for consistency with spec.hum. in g/Kg
+C--IO s SBC = 5.67e-8
       include "atparam.h"
       include "atparam1.h"
 C

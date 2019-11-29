@@ -11,6 +11,7 @@ c      include "atparam.h"
 c      include "atparam1.h"
 
 c      parameter ( NGP = IX*IL )
+C--IO h com_tsteps.h, com_date.h, com_lflags.h, com_cpl_flags.h
 
       include "com_tsteps.h"
       include "com_date.h"
@@ -32,6 +33,10 @@ C     Output:
 
 C--   1. Set run initial time, duration, time-stepping and coupling options
 
+C--IO h cls_instep.h
+C--IO r ISTART                ! restart flag: 0 = no, > 0 = yes
+C--IO r CEXP                  ! experiment identifier, CHARACTER*3
+C--IO s 12 months in a year
       if (inidate.le.0) then
          read (2,*) istart
          read (2,'(a3)') cexp
@@ -93,6 +98,10 @@ C--
 C--   subroutine NEWDATE (imode)
 C--   Purpose:   initilialize and update date variables 
 C--   Input :    imode = 0 for initialization, > 0 for update  
+C--IO h com_date.h, com_tsteps.h
+C--IO s 365 days in a year
+C--IO s 12 months in a year
+C--IO s days in each month: 31,28,31,30,31,30,31,31,30,31,30,31
 
       parameter ( NCAL=365 )
       
