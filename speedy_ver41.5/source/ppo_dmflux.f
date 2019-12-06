@@ -7,6 +7,11 @@ C--   Purpose: Add up fluxes to provide daily averages
 C--            used in sea/land models and daily/time-mean output
 C--   Input: IADD = 0 to initialize storage arrays to 0
 C--               > 0 to increment arrays with current flux values  
+C--IO h atparam.h, atparam1.h, par_tmean.h, com_tsteps.h
+C--IO h com_surfcon.h, com_physcon.h, com_physvar.h, com_radcon.h
+C--IO h com_flx_land.h, com_flx_sea.h, com_var_sea.h, com_tmean.h
+C--IO s 273.2-1.8 - freezing point in degrees Kelvin
+C--IO s 86.400 - parameter for surface water budget ?
 
       include "atparam.h"
       include "atparam1.h"

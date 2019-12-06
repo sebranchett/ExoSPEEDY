@@ -6,6 +6,10 @@ C--   Purpose : perform post-processing on pressure levels
 C--             and increment time-mean arrays
 C--   Modified common blocks : TMSAVE
 C--
+C--IO h atparam.h, atparam1.h, par_tmean.h, com_tmean.h
+C--IO h com_physcon.h, com_physvar.h, com_cli_sea.h, com_cli_land.h
+C--IO h com_var_sea.h, com_var_land.h, com_radcon.h, com_surfcon.h
+C--IO h com_lflags.h
 
 C     Resolution parameters
 

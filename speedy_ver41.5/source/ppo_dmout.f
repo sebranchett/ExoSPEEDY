@@ -7,6 +7,9 @@ C--   Input :   IMODE = 0 initialize daily-mean arrays to 0
 C--             IMODE > 0 write daily-means and reset arrays to 0
 C--   Modified common blocks : TMSAVE 
 C--
+C--IO h atparam.h, atparam1.h
+C--IO h par_tmean.h, com_tmean.h, com_tsteps.h
+C--IO w write daily mean to unit 17
 C     Resolution parameters
 
       include "atparam.h"

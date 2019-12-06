@@ -5,6 +5,7 @@
 C--
 C--   Aux. routine SETCTL : write descriptor (.ctl) output file 
 C--
+C--IO w write ASCII control file to unit IUNIT
       CHARACTER*80 LINE(10), LN3D(30), LN2D_1(20), LN2D_2(17)
       CHARACTER*4  LMON(12), NAME
       CHARACTER*3  NORUN
@@ -175,6 +176,7 @@ C
 C--
 C--   Aux. routine SETCTL_D : write descriptor (.ctl) output file 
 C--
+C--IO w write daily mean ASCII control file to IUNIT
 
       CHARACTER*80 LINE(10), LN2D_1(10), LN2D_2(10)
       CHARACTER*4  LMON(12)

@@ -7,6 +7,8 @@ C--
 C--   Input : ind = 0 for initialization, 1 otherwise
 C--         : norun = run identifier
 C--
+C--IO h com_date.h, com_tsteps.h
+C--IO ? (close and) open .grd files on units 11, 13, 15 and 17
 
       include "com_date.h"
       include "com_tsteps.h"

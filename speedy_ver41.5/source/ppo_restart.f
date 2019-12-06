@@ -8,6 +8,11 @@ C--   Input :   JDAY  = 0 : read model variables from a restart file
 C--                   > 0 : write model variables  to a restart file
 C--                         at selected dates and at the end of run 
 C--
+C--IO h atparam.h, atparam1.h
+C--IO h com_date.h, com_tsteps.h, com_dynvar.h
+C--IO r read restart data from unit 3
+C--IO w write restart data to unit 10
+C--IO s concept of years, months and days
       include "atparam.h"
       include "atparam1.h"
 
@@ -38,7 +43,7 @@ C--   1. Read the restart dataset corresponding to the specified initial date
            CALL REST_SEA (0)
 
          ELSE
-									
+
            print*, 'Skip restart dataset for year/month: ', IYEAR,IMONTH
            
            DO JREC=1,5

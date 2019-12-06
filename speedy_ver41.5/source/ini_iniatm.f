@@ -12,6 +12,8 @@ C--IO w use SETCTL to write 'atva' to unit 14
 C--IO w use SETCTL to write 'atdf' to unit 16
 C--IO w use SETCTL_D to write 'daytm' to unit 18
 C--IO w use SETGRD to write year to units 11, 13 and 15
+C--IO w use TMOUT to write time-means and variances to units 11, 13 and 15
+C--IO w use DMOUT to write daily-means to unit 17
 
       include "atparam.h"
       include "atparam1.h"
