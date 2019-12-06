@@ -1,4 +1,6 @@
 
+C--IO s soil depth, land-ice depth
+C--IO s dissipation time and fraction of land for anomalies
 C     soil layer depth (m)
       depth_soil = 1.0
 

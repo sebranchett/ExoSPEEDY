@@ -1,5 +1,7 @@
 C--
 C--   Length of the integration and time stepping constants (common ISTEPS)
+C--IO s Length of the integration and time stepping constants
+C--IO s Logical flags
 
       NMONTS = 3
       NDAYSL = 0

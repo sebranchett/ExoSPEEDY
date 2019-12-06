@@ -1,5 +1,8 @@
 C--
 C--   Constants for physical parametrization routines:
+C--IO s Constants for physical parametrization routines:
+C--IO s Soil moisture and snow, convection, large-scale condensation
+C--IO s radiation, surface fluxes, vertical diffusion and sh. conv.
 
 C--   Soil moisture and snow parameters (common SOILMP):
 
