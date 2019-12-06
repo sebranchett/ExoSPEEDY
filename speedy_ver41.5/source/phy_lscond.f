@@ -20,6 +20,8 @@ C--            PRECLS = large-scale precipitation [g/(m^2 s)]   (2-dim)
 C--            DTLSC  = temperature tendency from l.s. cond     (3-dim)
 C--            DQLSC  = hum. tendency [g/(kg s)] from l.s. cond (3-dim)
 C--
+C--IO h atparam.h, atparam1.h, com_physcon.h, com_lsccon.h
+C--IO s RTLSC scaled by 1/3600 - seconds in an hour?
 C     Resolution parameters
 C
       include "atparam.h"

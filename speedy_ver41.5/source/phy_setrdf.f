@@ -8,6 +8,7 @@ C--   Input: TT1, TT2 = diabatic heating fields
 C--          IVM      = index of vertical mode (1 or 2)
 C--   Modified common block: RANDF
 C--
+C--IO h atparam.h, atparam1.h, com_physcon.h, com_randfor.h
       include "atparam.h"
       include "atparam1.h"
 
@@ -72,6 +73,7 @@ C--
 C--   Purpose: compute 3-D pattern of random diabatic forcing
 C--   Output: TT_RDF = random diabatic forcing
 C--
+C--IO h atparam.h, atparam1.h, com_randfor.h
       include "atparam.h"
       include "atparam1.h"
 

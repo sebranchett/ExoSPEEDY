@@ -17,6 +17,14 @@ C--            QSAT   : saturation spec. hum. in g/kg
 C--   Output:  RH     : relative humidity         [if IMODE > 0] 
 C--            QA     : specific humidity in g/kg [if IMODE < 0]
 C--        
+C--IO s E0=  6.108E-3 - constant for Qsat - ?
+C--IO s C1= 17.269 - constant for Qsat - ?
+C--IO s C2= 21.875 - constant for Qsat - ?
+C--IO s    622. - constant for Qsat - ?
+C--IO s      0.378 - constant for Qsat - ?
+C--IO s T0=273.16 - temperature in degrees Kelvin
+C--IO s T1= 35.86 - temperature in degrees Kelvin
+C--IO s T2=  7.66 - temperature in degrees Kelvin
       REAL TA(NGP), PS(*), QA(NGP), RH(NGP), QSAT(NGP)
 C
 C---  1. Compute Qsat (g/kg) from T (degK) and normalized pres. P (= p/1000_hPa)

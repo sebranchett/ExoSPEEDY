@@ -20,6 +20,8 @@ C--            VTENVD = v-wind tendency                  (3-dim)
 C--            TTENVD = temperature tendency             (3-dim)
 C--            QTENVD = sp. humidity tendency [g/(kg s)] (3-dim)
 C--
+C--IO h atparam.h, atparam1.h, com_physcon.h, com_vdicon.h
+C--IO s 3600 - seconds in an hour?
 C     Resolution parameters
 
       include "atparam.h"
@@ -65,7 +67,7 @@ C          d_T/dt = d_F'(SE)/d_sigma,  d_Q/dt = d_F'(Q)/d_sigma
 
       DO K=1,NL1
         RSIG(K)=1./DSIG(K)
-	RSIG1(K)=1./(1.-SIGH(K))
+        RSIG1(K)=1./(1.-SIGH(K))
       ENDDO
       RSIG(NLEV)=1./DSIG(NLEV)
    

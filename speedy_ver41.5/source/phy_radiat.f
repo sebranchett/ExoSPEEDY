@@ -13,6 +13,11 @@ C--            ZENIT  = function of solar zenith angle
 C--   Input:   TYEAR  = time as fraction of year (0-1, 0 = 1jan.h00)
 C--   Updated common blocks: RADZON
 C--
+C--IO h atparam.h, atparam1.h, com_physcon.h, com_radcon.h
+C--IO s 365 days in a year
+C--IO s year phase ALPHA with winter solstice 22dec.h00 as 0
+C--IO s 23.45 - something to do with zenith?
+C--IO s ozone depth in upper and lower stratosphere
 C     Resolution parameters
 C
       include "atparam.h"
@@ -113,6 +118,12 @@ c for each day of the year, given the orbital parameters (see PMIP)
 c One year has 360 days.  Reference: A. Berger, JAS, 35, 2362-2367,1978
 c-----------------------------------------------------------------------
 c      implicit none
+C--IO s One year has 360 days
+C--IO s ecc - eccentricity
+C--IO s obl - obliquity
+C--IO s omweb - angle between Vernal Equinox and Perihelion
+C--IO s solarc - solar constant
+C--IO s NVE - day of Vernal Equinox
 
       integer i,j,l,NVE
 
@@ -301,6 +312,10 @@ C--            FMASK  = fractional land-sea mask                (2-dim)
 C--   Output:  ICLTOP = cloud top level (all clouds)            (2-dim)
 C--            CLOUDC = total cloud cover                       (2-dim)
 C--            CLSTR  = stratiform cloud cover                  (2-dim)
+C--IO h atparam.h, atparam1.h, com_physcon.h, com_radcon.h
+C--IO s CLFACT = 1.2 Stratiform clouds at the top of PBL
+C--IO s CLSMAX  = 0.3 Stratiform clouds at the top of PBL
+C--IO s CLSMINL = 0.1 Stratiform clouds at the top of PBL
 
 C     Resolution parameters
 C
@@ -381,6 +396,7 @@ c        CLSMAX  = 0.6
 c        CLSMINL = 0.15
 c        GSE_S0  = 0.25
 c        GSE_S1  = 0.40
+C--IO ? GSE_S0 and GSE_S1 used but not set?
 
         CLFACT = 1.2
         RGSE   = 1./(GSE_S1-GSE_S0)
@@ -433,6 +449,7 @@ C--            FSFC   = net (downw.) flux of sw rad. at the surface  (2-dim)
 C--            FTOP   = net (downw.) flux of sw rad. at the atm. top (2-dim)
 C--            DFABS  = flux of sw rad. absorbed by each atm. layer  (3-dim)
 C--
+C--IO h atparam.h, atparam1.h, com_physcon.h, com_radcon.h
 C     Resolution parameters
 C
       include "atparam.h"
@@ -573,7 +590,7 @@ C     3.3  Absorption and reflection in the troposphere
 
 C
 C---  4. Shortwave upward flux 
-	
+
 C     4.1  Absorption and reflection at the surface
 
       DO J=1,NGP
@@ -581,7 +598,7 @@ C     4.1  Absorption and reflection at the surface
         FLUX(J,1) = FLUX(J,1)*ALBSFC(J)
         FSFC(J)   = FSFCD(J)-FLUX(J,1)
       ENDDO
-	
+
 C     4.2  Absorption of upward flux
 
       DO K=NLEV,1,-1
@@ -684,6 +701,7 @@ C--            FSFC   = net upw. flux of lw rad. at the sfc. [if IMODE=0,1]
 C--            FTOP   = outgoing flux of lw rad. at the top  [if IMODE=0,1]
 C--            DFABS  = flux of lw rad. absorbed by each atm. layer (3-dim)
 C--
+C--IO h atparam.h, atparam1.h, com_physcon.h, com_radcon.h
 C     Resolution parameters
 C
       include "atparam.h"
@@ -716,7 +734,7 @@ C
       IF (IMODE.EQ.1) GO TO 410
 
 C---  1. Blackbody emission from atmospheric levels.
-C        The linearized gradient of the blakbody emission is computed
+C        The linearized gradient of the blackbody emission is computed
 C        from temperatures at layer boundaries, which are interpolated 
 C        assuming a linear dependence of T on log_sigma.
 C        Above the first (top) level, the atmosphere is assumed isothermal.
@@ -783,7 +801,7 @@ C---  3. Emission ad absorption of longwave downward flux.
 C        For downward emission, a correction term depending on the      
 C        local temperature gradient and on the layer transmissivity is  
 C        added to the average (full-level) emission of each layer. 
-	
+
 C     3.1  Stratosphere
 
       K=1
@@ -801,7 +819,7 @@ C     3.1  Stratosphere
          FLUX(J,JB)=0.
        ENDDO
       ENDDO
-	
+
 C     3.2  Troposphere
 
       DO JB=1,NBAND
@@ -839,7 +857,7 @@ C---  4. Emission ad absorption of longwave upward flux.
 C        For upward emission, a correction term depending on the      
 C        local temperature gradient and on the layer transmissivity is  
 C        subtracted from the average (full-level) emission of each layer. 
-	
+
 C     4.1  Surface
 
 C     Black-body (or grey-body) emission 
@@ -862,7 +880,7 @@ C     Entry point for upward-only mode (IMODE=1)
      &              +REFSFC*FLUX(J,JB)
        ENDDO
       ENDDO
-	
+
 C     4.2  Troposphere
 
 C     Correction for "black" band
@@ -881,7 +899,7 @@ C     Correction for "black" band
         ENDDO
        ENDDO
       ENDDO
-	
+
 C     4.3  Stratosphere
 
       K=1
@@ -925,6 +943,8 @@ C--
 C--   Purpose: compute energy fractions in LW bands
 C--            as a function of temperature
 C--   Initialized common blocks: RADFIX
+C--IO h atparam.h, atparam1.h, com_radcon.h
+C--IO s JTEMP between 200 and 320 - Kelvin?
 
 C     Resolution parameters
 

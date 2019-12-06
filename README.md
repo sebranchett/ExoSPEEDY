@@ -19,3 +19,4 @@ To this purpose, each subroutine is annotated with comment lines starting with t
 - h - gets input from a .h file
 - m - sets or modifies value in a .h file
 - s - sets a value in the subroutine
+- ? - unsure where value is set

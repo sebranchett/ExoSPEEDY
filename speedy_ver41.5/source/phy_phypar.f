@@ -18,6 +18,9 @@ C--                            TTEND  : temp. tendency (gp)
 C--                            QTEND  : spec. hum. tendency (gp)
 C--   Modified common blocks:  PHYGR1, PHYGR2, PHYGR3, PHYTEN, FLUXES
 C--
+C--IO h atparam.h, atparam1.h, com_physcon.h, com_physvar.h
+C--IO h com_surfcon.h, com_cli_sea.h, com_cli_land.h, com_var_sea.h
+C--IO h com_var_land.h, com_lflags.h, com_cpl_flags.h, com_date.h
 
 C     Resolution parameters
 

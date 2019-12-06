@@ -21,6 +21,8 @@ C--            PRECNV = convective precipitation [g/(m^2 s)]     (2-dim)
 C--            DFSE   = net flux of d.s.en. into each atm. layer (3-dim)
 C--            DFQA   = net flux of sp.hum. into each atm. layer (3-dim)
 C--
+C--IO h atparam.h, atparam1.h, com_physcon.h, com_cnvcon.h
+C--IO s FM0 scaled by 1/3600 - seconds in an hour?
 
 C     Resolution parameters
 

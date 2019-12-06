@@ -39,6 +39,10 @@ C--            V0     = near-surface v-wind             (2-dim)
 C--            T0     = near-surface air temperature    (2-dim)
 C--            Q0     = near-surface sp. humidity [g/kg](2-dim)
 C--
+C--IO h atparam.h, atparam1.h
+C--IO h com_physcon.h, com_sflcon.h, com_radcon.h
+C--IO ? CLAMBDA and CLAMBSN used, but not set?
+C--IO s 288. - temperature in degrees Kelvin
 C     Resolution parameters
 
       include "atparam.h"
@@ -64,7 +68,7 @@ C     Surface flux constants
       REAL USTR(NGP,3), VSTR(NGP,3), SHF(NGP,3), EVAP(NGP,3),
      &     SLRU(NGP,3), HFLUXN(NGP,2), TSFC(NGP), TSKIN(NGP),
      &     U0(NGP), V0(NGP), T0(NGP), Q0(NGP)
-									
+
       REAL T1(NGP,2), T2(NGP,2), Q1(NGP,2), QSAT0(NGP,2), 
      &     DENVVS(NGP,0:2), DSLR(NGP), DTSKIN(NGP), CLAMB(NGP)
 
@@ -156,7 +160,7 @@ C     2.1 Define effective skin temperature to compensate for
 C         non-linearity of heat/moisture fluxes during the daily cycle
 
       DO JLAT=1,NLAT
-	J0=NLON*(JLAT-1)
+        J0=NLON*(JLAT-1)
         SQCLAT=SQRT(CLAT(JLAT))
         DO J=J0+1,J0+NLON
           TSKIN(J)=TLAND(J)+CTDAY*SQCLAT*SSRD(J)*(1.-ALB_L(J))*PSA(J)
@@ -419,6 +423,7 @@ C--
 C--   Purpose: compute orographic factor for land surface drag
 C--   Input:   PHI0   = surface geopotential            (2-dim)
 C--            Initialized common blocks: SFLFIX
+C--IO h atparam.h, atparam1.h, com_physcon.h, com_sflcon.h
 
 C     Resolution parameters
 C
