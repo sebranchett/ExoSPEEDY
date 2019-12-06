@@ -32,6 +32,8 @@ c      w(m) = weights in gaussian quadrature (sum should equal 1.0)
       END
 ****************************************************************
       SUBROUTINE PARMTR(A)
+C--   SUBROUTINE PARMTR(A)
+C--IO h atparam.h, com_spectral.h
 
       include "atparam.h"
 c      include "param1spec.h"
@@ -163,6 +165,8 @@ c  polynomials and 'clones' stored in COMMON/POL1 (com_spectral.h)
       END
 ****************************************************************
       SUBROUTINE LGNDRE(J)
+C--   SUBROUTINE LGNDRE(J)
+C--IO h atparam.h, com_spectral.h
 c  follows Leith Holloways code 
 
       include "atparam.h"
@@ -201,6 +205,8 @@ c   pick off the required polynomials
       END
 ***************************************************************
       SUBROUTINE LAP(STRM,VORM)
+C--   SUBROUTINE LAP(STRM,VORM)
+C--IO h atparam.h, com_spectral.h
 
       include "atparam.h"
 c      include "param1spec.h"
@@ -216,6 +222,8 @@ c      include "param1spec.h"
       END
 *******************************************************************
       SUBROUTINE INVLAP(VORM,STRM)
+C--   SUBROUTINE INVLAP(VORM,STRM)
+C--IO h atparam.h, com_spectral.h
 
       include "atparam.h"
 c      include "param1spec.h"
@@ -233,6 +241,8 @@ c   1 CONTINUE
       END
 *********************************************************************
       SUBROUTINE GRAD(PSI,PSDX,PSDY)
+C--   SUBROUTINE GRAD(PSI,PSDX,PSDY)
+C--IO h atparam.h, com_spectral.h
 
       include "atparam.h"
 c      include "param1spec.h"
@@ -258,6 +268,8 @@ c      include "param1spec.h"
       END
 ******************************************************************
       SUBROUTINE VDS(UCOSM,VCOSM,VORM,DIVM)
+C--   SUBROUTINE VDS(UCOSM,VCOSM,VORM,DIVM)
+C--IO h atparam.h, com_spectral.h
 
       include "atparam.h"
 c      include "param1spec.h"
@@ -291,6 +303,8 @@ c      include "param1spec.h"
       END
 ******************************************************************
       SUBROUTINE UVSPEC(VORM,DIVM,UCOSM,VCOSM)
+C--   SUBROUTINE UVSPEC(VORM,DIVM,UCOSM,VCOSM)
+C--IO h atparam.h, com_spectral.h
 
       include "atparam.h"
 c      include "param1spec.h"
@@ -325,6 +339,8 @@ c     DO 1 M=1,MXNX
       END
 *******************************************************************
       SUBROUTINE GRID(VORM,VORG,KCOS)
+C--   SUBROUTINE GRID(VORM,VORG,KCOS)
+C--IO h atparam.h
 
       include "atparam.h"
 c      include "param1spec.h"
@@ -337,6 +353,8 @@ c      include "param1spec.h"
       END
 *********************************************************************
       SUBROUTINE SPEC(VORG,VORM)
+C--   SUBROUTINE SPEC(VORG,VORM)
+C--IO h atparam.h
 
       include "atparam.h"
 c      include "param1spec.h"
@@ -349,6 +367,8 @@ c      include "param1spec.h"
       END
 *********************************************************************
       SUBROUTINE VDSPEC(UG,VG,VORM,DIVM,KCOS)
+C--   SUBROUTINE VDSPEC(UG,VG,VORM,DIVM,KCOS)
+C--IO h atparam.h, com_spectral.h
 
       include "atparam.h"
 c      include "param1spec.h"
@@ -382,6 +402,8 @@ c      include "param1spec.h"
       END
 *********************************************************************
       SUBROUTINE GRIDY(V,VARM)
+C--   SUBROUTINE GRIDY(V,VARM)
+C--IO h atparam.h, com_spectral.h
 
       include "atparam.h"
 c      include "param1spec.h"
@@ -423,6 +445,8 @@ C        DO M=1,MX2
       END
 ******************************************************************
       SUBROUTINE SPECY(VARM,VORM)
+C--   SUBROUTINE SPECY(VARM,VORM)
+C--IO h atparam.h, com_spectral.h
 
       include "atparam.h"
 c      include "param1spec.h"
@@ -468,6 +492,8 @@ C        DO M=1,MX2
       END
 ******************************************************************
       SUBROUTINE TRUNCT(VOR)
+C--   SUBROUTINE TRUNCT(VOR)
+C--IO h atparam.h, com_spectral.h
 
       include "atparam.h"
 c      include "param1spec.h"

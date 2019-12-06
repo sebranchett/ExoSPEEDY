@@ -1,5 +1,7 @@
 ************************************************************
       SUBROUTINE LUDCMP(A,N,NP,INDX,D)
+C--   SUBROUTINE LUDCMP(A,N,NP,INDX,D)
+C--   Numerical Recipes - linear equation solution, LU decomposition
 
       PARAMETER (NMAX=100,TINY=1.0E-20)
 
@@ -73,6 +75,8 @@
       END
 ***************************************************************
       SUBROUTINE LUBKSB(A,N,NP,INDX,B)
+C--   SUBROUTINE LUBKSB(A,N,NP,INDX,B)
+C--   Numerical Recipes - linear equation solution, backsubstitution
 
       DIMENSION A(NP,NP),INDX(N),B(N)
 
@@ -106,6 +110,7 @@
       END
 ****************************************************************
       SUBROUTINE INV(A,Y,INDX,N)
+C--   SUBROUTINE INV(A,Y,INDX,N)
 
       DIMENSION A(N,N),Y(N,N),INDX(N) 
 
