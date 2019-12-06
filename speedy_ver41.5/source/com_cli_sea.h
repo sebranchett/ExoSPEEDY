@@ -1,4 +1,5 @@
 
+C--IO s 12 months in a year
 C--
 C--   /SMASKS/ Sea masks
       common /SMASKS/ fmask_s, bmask_s, deglat_s

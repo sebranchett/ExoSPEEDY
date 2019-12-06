@@ -1,3 +1,4 @@
+C--IO s input data parameters for t47 run
       PARAMETER (ISC=1)
 
       PARAMETER ( NTRUN=47, MTRUN=47, IX=144, IY=36 )   

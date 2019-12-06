@@ -1,4 +1,4 @@
-
+C--IO s t30/t47 independent model parameters
 
       PARAMETER (KX=8)
 

@@ -1,3 +1,4 @@
+C--IO s 12 months in a year
 C--
 C--   /LMASKS/ Land masks
       common /LMASKS/ fmask_l, bmask_l

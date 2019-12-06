@@ -13,6 +13,7 @@ C--:   ISEASC = Seasonal cycle flag (0=no, 1=yes)
 C--    ISTART = Start flag (0: from rest, 1: from restart file)
 C--:   IYEAR0 = Year of initial date (4-digit, eg 1900)
 C--:   IMONT0 = Month of initial date (1 to 12)
+C--IO s concept of years, months, days
 
       COMMON /ISTEPS/ NMONTS, NDAYSL, NSTEPS,
      &                NSTDIA, NSTPPR, NSTOUT, IDOUT, NMONRS,
