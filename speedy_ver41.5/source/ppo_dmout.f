@@ -9,7 +9,7 @@ C--   Modified common blocks : TMSAVE
 C--
 C--IO h atparam.h, atparam1.h
 C--IO h par_tmean.h, com_tmean.h, com_tsteps.h
-C--IO w write daily mean to unit 17
+C--IO w write daily mean and reset arrays to unit 17
 C     Resolution parameters
 
       include "atparam.h"

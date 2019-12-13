@@ -5,7 +5,6 @@ C--   SUBROUTINE INI_LAND (istart)
 C-- 
 C--   Input : istart = restart flag ( 0 = no, 1 = yes)
 C--IO h atparam.h, com_cpl_flags.h, com_cli_land.h, com_var_land.h
-C--IO m stl_lm in com_var_land.h
 
       include "atparam.h"
 
@@ -43,7 +42,6 @@ C--   SUBROUTINE ATM2LAND (jday)
 C-- 
 C--IO h atparam.h, com_date.h, com_cpl_flags.h, com_cli_land.h, com_var_land.h
 C--IO h com_flx_land.h, com_cplvar_land.h
-C--IO m VLAND_INPUT in com_cplvar_land.h
       include "atparam.h"
 
       PARAMETER ( NLON=IX, NLAT=IL, NGP=NLON*NLAT )
@@ -92,10 +90,6 @@ C--
 C--   SUBROUTINE LAND2ATM (jday)
 C-- 
 C--IO h atparam.h, com_cpl_flags.h, com_var_land.h, com_cplvar_land.h
-C--IO m stl_lm in com_var_land.h
-C--IO m stl_am in com_var_land.h
-C--IO m snowd_am in com_var_land.h
-C--IO m soilw_am in com_var_land.h
       include "atparam.h"
 
       PARAMETER ( NLON=IX, NLAT=IL, NGP=NLON*NLAT )
@@ -156,9 +150,9 @@ C--                   = 1 : write model variables  to a restart file
 
 C-- 
 C--IO h atparam.h, com_cpl_flags.h, com_var_land.h
-C--IO r stl_lm from (3) in com_var_land.h
-C--IO w stl_lm to (10)
-C--IO w stl_am to (10)
+C--IO r read stl_lm (Land sfc. temperature) from unit (3)
+C--IO w write stl_lm, land model variables, to unit (10)
+C--IO w write stl_am, atmospheric model fields, to unit (10)
       include "atparam.h"
 
       PARAMETER ( NLON=IX, NLAT=IL, NGP=NLON*NLAT )

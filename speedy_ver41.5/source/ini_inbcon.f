@@ -20,7 +20,8 @@ C--IO r read 'SST' (sea surface temperature?) from unit 21
 C--IO r read sea ice fraction from unit 22
 C--IO r read SST anomalies initial and prec./following months from unit 30
 C--IO r read Annual-mean heat flux into sea-surface from unit 31
-C--IO r read ocean model SST bias from unit 32
+C--IO r read ocean model SST bias from unit 32 - commented out
+C--IO w write correction for model-to-actual topography to unit 18
 
       include "atparam.h"
 

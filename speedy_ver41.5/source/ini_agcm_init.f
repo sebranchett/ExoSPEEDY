@@ -34,8 +34,8 @@ C     Output:
 C--   1. Set run initial time, duration, time-stepping and coupling options
 
 C--IO h cls_instep.h
-C--IO r ISTART                ! restart flag: 0 = no, > 0 = yes
-C--IO r CEXP                  ! experiment identifier, CHARACTER*3
+C--IO r read ISTART, restart flag: 0 = no, > 0 = yes, from unit 2
+C--IO r read CEXP, experiment identifier, from unit 2
 C--IO s 12 months in a year
       if (inidate.le.0) then
          read (2,*) istart

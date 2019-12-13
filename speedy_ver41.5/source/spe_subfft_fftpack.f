@@ -1,6 +1,6 @@
 
       SUBROUTINE INIFFT
-C--IO j atparam.h
+C--IO h atparam.h
 
 C     Initialize FFTs
 
@@ -17,7 +17,7 @@ C      CALL DFFTI (IX,WSAVE)
 *********************************************************************
 
       SUBROUTINE GRIDX(VARM,VORG,KCOS)
-C--IO j atparam.h, com_spectral.h
+C--IO h atparam.h, com_spectral.h
 
 C     From Fourier coefficients to grid-point data
 
@@ -73,7 +73,7 @@ C     Copy output into grid-point field, scaling by cos(lat) if needed
 ******************************************************************
 
       SUBROUTINE SPECX(VORG,VARM)
-C--IO j atparam.h
+C--IO h atparam.h
 
 C     From grid-point data to Fourier coefficients
 

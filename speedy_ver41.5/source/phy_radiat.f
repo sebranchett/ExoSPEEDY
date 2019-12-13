@@ -396,7 +396,6 @@ c        CLSMAX  = 0.6
 c        CLSMINL = 0.15
 c        GSE_S0  = 0.25
 c        GSE_S1  = 0.40
-C--IO ? GSE_S0 and GSE_S1 used but not set?
 
         CLFACT = 1.2
         RGSE   = 1./(GSE_S1-GSE_S0)

@@ -41,7 +41,6 @@ C--            Q0     = near-surface sp. humidity [g/kg](2-dim)
 C--
 C--IO h atparam.h, atparam1.h
 C--IO h com_physcon.h, com_sflcon.h, com_radcon.h
-C--IO ? CLAMBDA and CLAMBSN used, but not set?
 C--IO s 288. - temperature in degrees Kelvin
 C     Resolution parameters
 
