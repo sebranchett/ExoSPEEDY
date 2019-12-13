@@ -7,6 +7,7 @@ c      m    = number of gaussian latitudes between pole and equator
 c   output:
 c      x(m) = sin(gaussian latitude) 
 c      w(m) = weights in gaussian quadrature (sum should equal 1.0)
+C--IO s 3.141592654 = pi?
       DOUBLE PRECISION Z,Z1,P1,P2,P3,PP,EPS
       DIMENSION X(M),W(M)
       PARAMETER (EPS=3.D-14)

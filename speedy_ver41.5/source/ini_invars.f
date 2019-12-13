@@ -17,6 +17,7 @@ C--IO s tropos:  T = 288 degK at z = 0, constant lapse rate TREF = 288.
 C--IO s stratos: T = 216 degK, lapse rate = 0 TTOP = 216.
 C--IO s p_ref = 1013 hPa at z = 0   
 C--IO s tropospheric spec. humidity in g/kg Qref = RHref * Qsat(288K, 1013hPa)
+C--IO s ESREF=17. and QREF=REFRH2*0.622*ESREF, reference at surface
       include "atparam.h"
       include "atparam1.h"
 

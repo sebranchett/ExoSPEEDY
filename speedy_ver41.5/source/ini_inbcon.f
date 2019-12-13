@@ -9,6 +9,7 @@ C--             radlat = grid latitudes in radiants
 C--IO h atparam.h, com_tsteps.h, com_cpl_flags.h
 C--IO h com_surfcon.h, com_cli_land.h, com_cli_sea.h
 C--IO s 12 months in a year
+C--IO s sdep1 = 70. and idep2 = 3, soil depths?
 C--IO r read topographical fields from unit 20 - orography
 C--IO r read topographical fields from unit 20 - land-sea mask
 C--IO r read topographical fields from unit 20 - albedo

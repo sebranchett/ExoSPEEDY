@@ -12,6 +12,7 @@ c      include "atparam1.h"
 
 c      parameter ( NGP = IX*IL )
 C--IO h com_tsteps.h, com_date.h, com_lflags.h, com_cpl_flags.h
+C--IO s concept of months and days
 
       include "com_tsteps.h"
       include "com_date.h"

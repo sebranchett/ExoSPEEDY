@@ -316,6 +316,7 @@ C--IO h atparam.h, atparam1.h, com_physcon.h, com_radcon.h
 C--IO s CLFACT = 1.2 Stratiform clouds at the top of PBL
 C--IO s CLSMAX  = 0.3 Stratiform clouds at the top of PBL
 C--IO s CLSMINL = 0.1 Stratiform clouds at the top of PBL
+C--IO s 86.4 - related to cloud cover ?
 
 C     Resolution parameters
 C
@@ -944,6 +945,7 @@ C--            as a function of temperature
 C--   Initialized common blocks: RADFIX
 C--IO h atparam.h, atparam1.h, com_radcon.h
 C--IO s JTEMP between 200 and 320 - Kelvin?
+C--IO s parameters to determine FBAND, energy fractions in LW bands
 
 C     Resolution parameters
 

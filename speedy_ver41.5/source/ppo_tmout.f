@@ -12,6 +12,7 @@ C--IO h par_tmean.h, com_tmean.h, com_tsteps.h, com_physcon.h
 C--IO w write time-mean output to unit 11
 C--IO w write 2-nd order moments to unit 13
 C--IO w write diabatic forcing fields to unit 15
+C--IO s 86400 = seconds in a day
 C     Resolution parameters
 
       include "atparam.h"
