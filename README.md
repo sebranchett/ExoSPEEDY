@@ -18,3 +18,40 @@ To this purpose, each subroutine is annotated with comment lines starting with t
 - w - writes to a file
 - h - gets input from a .h file
 - s - sets a value in a .f or .h file
+
+The main script to run an experiment is speedy\_ver41.5/run/run\_exp.s.
+It works by copying input, .f, .h, .s and makefiles from various locations to a speedy\_ver41.5/tmp directory. The copy actions can overwrite previously copied files, so it is important to make any modifications in the correct location. Below is an overview of how the script works. Paths are relative to the speedy\_ver41.5 directory.
+
+**action** | **file** | **from** | **to**
+--- | --- | --- | ---
+user can edit in situ: | ver41.5.input/cls\_instep.h |  | 
+ | ver41.5.input/cls\_indyns.h |  | 
+ | ver41.5.input/cls\_inphys.h |  | 
+ | ver41.5.input/cls\_inland.h |  | 
+ | ver41.5.input/cls\_insea.h |  | 
+ | ver41.5.input/inpfiles.s |  | 
+model parameters written to: | input/exp\_$2/run\_setup |  | 
+force remove | * | tmp | 
+copy files | makefile, \*.f, \*.h, \*.s | source | tmp
+copy file |  | tmp/par\_horres\_$1.h | tmp/atparam.h
+copy file |  | tmp/par\_verres.h | tmp/atparam1.h
+copy files | \*.h, inpfiles.s | ver41.5.input | tmp
+copy files | \*.h, inpfiles.s | ver41.5.input | input/exp\_$2
+copy files | \*.f, \*.h, make\* | update | tmp
+copy files | \*.f, \*.h, make\* | update | input/exp\_$2
+experiment no. and restart file no. written to: | tmp/fort.2 |  | 
+output file fort.3 linked to: | output/exp\_$3/atgcm$3.rst |  | 
+run inpfiles.s to link fortran units |  |  | 
+run make to create: | tmp/imp.exe |  | 
+run tmp/imp.exe | |  | 
+move | out.lis | tmp | output/exp\_$2/atgcm$2.lis
+move | fort.10 | tmp | output/exp\_$2/atgcm$2.rst
+move | at\*$2.ctl, at\*$2\_\*.grd | tmp | output/exp\_$2
+move | day\*$2.ctl, day\*$2\_\*.grd | tmp | output/exp\_$2
+
+
+$1 = resolution (eg t21, t30)
+
+$2 = experiment no. (eg 111)
+
+$3 = experiment no. for restart file ( 0 = no restart )
