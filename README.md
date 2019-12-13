@@ -25,11 +25,11 @@ It works by copying input, .f, .h, .s and makefiles from various locations to a 
 **action** | **file** | **from** | **to**
 --- | --- | --- | ---
 user can edit in situ: | ver41.5.input/cls\_instep.h |  | 
- | ver41.5.input/cls\_indyns.h |  | 
- | ver41.5.input/cls\_inphys.h |  | 
- | ver41.5.input/cls\_inland.h |  | 
- | ver41.5.input/cls\_insea.h |  | 
- | ver41.5.input/inpfiles.s |  | 
+user can edit in situ: | ver41.5.input/cls\_indyns.h |  | 
+user can edit in situ: | ver41.5.input/cls\_inphys.h |  | 
+user can edit in situ: | ver41.5.input/cls\_inland.h |  | 
+user can edit in situ: | ver41.5.input/cls\_insea.h |  | 
+user can edit in situ: | ver41.5.input/inpfiles.s |  | 
 model parameters written to: | input/exp\_$2/run\_setup |  | 
 force remove | * | tmp | 
 copy files | makefile, \*.f, \*.h, \*.s | source | tmp
