@@ -7,8 +7,7 @@ C--
 C--   Purpose : Initialization of land model
 C--   Initialized common blocks: LAND_MC
 C--	
-C--IO h atparam.h, com_cplcon_land.h, cls_inland.h, atparam.h
-C--IO h com_cplcon_land.h, com_cplvar_land.h
+C--IO h atparam.h, com_cplcon_land.h, cls_inland.h
 C--IO s depth_soil, depth_lice, tdland, flandmin
 C--IO s 'reset' hcapl, hcapli, rhcapl - heat capacity ?
 

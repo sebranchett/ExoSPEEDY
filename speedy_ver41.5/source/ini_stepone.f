@@ -6,7 +6,7 @@ C--   Purpose : call initialization of semi-implicit scheme
 C--             and perform initial time step
 C--   Initialized common block : LFLAG2
 C--
-C--IO h com_tsteps.h, com_tsteps.h
+C--IO h com_tsteps.h, com_lflags.h
 
       include "com_tsteps.h"
       include "com_lflags.h"

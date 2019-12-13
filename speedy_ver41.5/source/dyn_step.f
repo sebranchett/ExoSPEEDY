@@ -177,6 +177,7 @@ C--   Aux. subr. TIMINT (J1,DT,EPS,WIL,NLEV,FIELD,FDT)
 C--   Purpose : Perform time integration of FIELD at NLEV levels
 C--             using tendency FDT
 C--
+C--IO h atparam.h
 C--IO s 3600 seconds in an hour?
       include "atparam.h"
 
