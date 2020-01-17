@@ -1,4 +1,4 @@
-#!/bin/ksh
+#!/bin/sh
 
 # $1 = resolution (eg t21, t30)
 # $2 = experiment no. (eg 111)
@@ -13,6 +13,18 @@ if [ $# -ne 3 ] ; then
     exit 1
 
 fi
+
+# if $MAKE is not defined, set it to make for this script
+if [ ! $MAKE ] ; then
+    MAKE=make
+fi
+echo '$MAKE is' $MAKE
+
+# if $EDITOR is not defined, set it to emacs for this script
+if [ ! $EDITOR ] ; then
+    EDITOR=emacs
+fi
+echo '$EDITOR is' $EDITOR
 
 UT=..	
 SA=$UT/source
@@ -29,37 +41,37 @@ CD=$UT/output/exp_$3
 echo "Do you want to modify the time-stepping parameters (y/n)?"
 read MODIFY
 if [ $MODIFY = 'y' ] ; then
-  emacs $UT/ver41.5.input/cls_instep.h $SA/doc_instep.txt
+  $EDITOR $UT/ver41.5.input/cls_instep.h $SA/doc_instep.txt
 fi
 
 echo "Do you want to modify the dynamics parameters (y/n)?"
 read MODIFY
 if [ $MODIFY = 'y' ] ; then
-  emacs $UT/ver41.5.input/cls_indyns.h  $SA/doc_indyns.txt
+  $EDITOR $UT/ver41.5.input/cls_indyns.h  $SA/doc_indyns.txt
 fi
 
 echo "Do you want to modify the physics parameters (y/n)?"
 read MODIFY
 if [ $MODIFY = 'y' ] ; then
-  emacs $UT/ver41.5.input/cls_inphys.h  $SA/doc_inphys.txt
+  $EDITOR $UT/ver41.5.input/cls_inphys.h  $SA/doc_inphys.txt
 fi
 
 echo "Do you want to modify the land model parameters (y/n)?"
 read MODIFY
 if [ $MODIFY = 'y' ] ; then
-  emacs $UT/ver41.5.input/cls_inland.h 
+  $EDITOR $UT/ver41.5.input/cls_inland.h 
 fi
 
 echo "Do you want to modify the sea/ice model parameters (y/n)?"
 read MODIFY
 if [ $MODIFY = 'y' ] ; then
-  emacs $UT/ver41.5.input/cls_insea.h
+  $EDITOR $UT/ver41.5.input/cls_insea.h
 fi
 	
 echo "Do you want to modify the input files (y/n)?"
 read MODIFY
 if [ $MODIFY = 'y' ] ; then
-  emacs $UT/ver41.5.input/inpfiles.s
+  $EDITOR $UT/ver41.5.input/inpfiles.s
 fi
 
 
@@ -126,13 +138,13 @@ fi
 
 echo 'link input files to fortran units'
 
-ksh inpfiles.s $1
+sh inpfiles.s $1
 
 ls -l fort.*
 
 echo ' compiling at_gcm - calling make'
 
-make imp.exe  
+$MAKE imp.exe  
 
 #
 # create and execute a batch job to run the model
@@ -167,6 +179,6 @@ chmod 644 at*$2.*
 EOF1
 
 
-ksh run.job &
+sh run.job &
 
 exit
