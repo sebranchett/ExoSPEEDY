@@ -73,6 +73,7 @@ echo "restart exp. no.: " $3  >> $UT/input/exp_$2/run_setup
 # Copy files from basic version directory
 
 echo "copying from $SA/source to $CA"
+touch $CA
 rm -f $CA/*
 
 cp $SA/makefile $CA/
