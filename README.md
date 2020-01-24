@@ -12,12 +12,20 @@ Please cite these publications when publishing your own work based on this softw
 ExoSPEEDY adapts the SPEEDY software for use in climate modeling of exoplanets.
 This work was done at Delft University of Technology under the guidance of Daphne Stam.
 
+## Installing and running ExoSPEEDY
+
+Please read speedy_ver41.5/doc_ver41.5.pdf.
+
+## Comments in the code
+
 The first step in adapting the code for exoplanets is to identify the flow of earth parameters.
 To this purpose, each subroutine is annotated with comment lines starting with the string 'C--IO x' where x is one of:
 - r - reads from a file
 - w - writes to a file
 - h - gets input from a .h file
 - s - sets a value in a .f or .h file
+
+## How the main script works
 
 The main script to run an experiment is speedy\_ver41.5/run/run\_exp.s.
 It works by copying input, .f, .h, .s and makefiles from various locations to a speedy\_ver41.5/tmp directory. The copy actions can overwrite previously copied files, so it is important to make any modifications in the correct location. Below is an overview of how the script works. Paths are relative to the speedy\_ver41.5 directory.
