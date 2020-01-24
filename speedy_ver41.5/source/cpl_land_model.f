@@ -13,8 +13,6 @@ C--IO s 'reset' hcapl, hcapli, rhcapl - heat capacity ?
 
       include "atparam.h"
 
-      PARAMETER ( NLON=IX, NLAT=IL, NGP=NLON*NLAT )
-
 C     Input variables
 
       real fmask_l(nlon,nlat)            ! land mask (fraction of land)
@@ -90,8 +88,6 @@ C--   Purpose : Integrate slab land-surface model for one day
 C--IO h atparam.h, com_cplcon_land.h, com_cplvar_land.h
 
       include "atparam.h"
-
-      PARAMETER ( NLON=IX, NLAT=IL, NGP=NLON*NLAT )
 
 c      real vland_input(nlon,nlat,3), vland_output(nlon,nlat,2)
 

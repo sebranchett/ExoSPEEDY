@@ -47,8 +47,6 @@ C     Resolution parameters
       include "atparam.h"
       include "atparam1.h"
 
-      PARAMETER ( NLON=IX, NLAT=IL, NLEV=KX, NGP=NLON*NLAT )
-
 C     Physical constants + functions of sigma and latitude
 
       include "com_physcon.h"
@@ -76,6 +74,9 @@ C     Surface flux constants
       LOGICAL LFLUXLAND
 
       SAVE T1, Q1, DENVVS
+
+      REAL FOROG0(NLON*NLAT)
+      EQUIVALENCE ( FOROG0, FOROG(1,1) )
 
       LSCASYM = .true.   ! true : use an asymmetric stability coefficient
       LSCDRAG = .true.   ! true : use stability coef. to compute drag over sea
@@ -196,9 +197,8 @@ cfk        DENVVS(J,1)=DENVVS(J,0)*(1.+DTHL*RDTH)
       ENDDO
 
 C     2.3 Wind stress 
-
       DO J=1,NGP
-        CDLDV     =  CDL*DENVVS(J,0)*FOROG(J)
+        CDLDV     =  CDL*DENVVS(J,0)*FOROG0(J)
         USTR(J,1) = -CDLDV*UA(J,NLEV)
         VSTR(J,1) = -CDLDV*VA(J,NLEV)
       ENDDO
@@ -429,20 +429,20 @@ C
       include "atparam.h"
       include "atparam1.h"
 
-      PARAMETER ( NLON=IX, NLAT=IL, NLEV=KX, NGP=NLON*NLAT )
-
 C     Physical constants + functions of sigma and latitude
       include "com_physcon.h"
 
 C     Surface flux constants
       include "com_sflcon.h"
 
-      REAL PHI0(NGP)
+      REAL PHI0(NLON,NLAT)
 
       RHDRAG = 1./(GG*HDRAG)
 
-      DO J=1,NGP
-        FOROG(J)=1.+FHDRAG*(1.-EXP(-MAX(PHI0(J),0.)*RHDRAG))
+      DO I=1,NLON
+        DO J=1,NLAT
+          FOROG(I,J)=1.+FHDRAG*(1.-EXP(-MAX(PHI0(I,J),0.)*RHDRAG))
+        ENDDO
       ENDDO
 
 C--

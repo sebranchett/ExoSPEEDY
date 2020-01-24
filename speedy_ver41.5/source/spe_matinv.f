@@ -14,7 +14,7 @@ C--   Numerical Recipes - linear equation solution, LU decomposition
         DO 11 J=1,N
           IF(ABS(A(I,J)).GT.AAMAX) AAMAX=ABS(A(I,J)) 
    11   CONTINUE
-        IF(AAMAX.EQ.0.) PAUSE 'singular'
+        IF(AAMAX.EQ.0.) STOP 'singular'
         VV(I)=1./AAMAX
    12 CONTINUE
 

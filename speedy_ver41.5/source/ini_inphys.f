@@ -24,8 +24,6 @@ C--IO s SBC = 5.67e-8
       include "atparam.h"
       include "atparam1.h"
 C
-      PARAMETER ( NLON=IX, NLAT=IL, NLEV=KX, NGP=NLON*NLAT )
-C
 C     Physical constants + functions of sigma and latitude
 C
       include "com_physcon.h"

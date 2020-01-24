@@ -26,8 +26,6 @@ C--IO w write correction for model-to-actual topography to unit 18
 
       include "atparam.h"
 
-      PARAMETER ( NLON=IX, NLAT=IL )
-
       include "com_tsteps.h" 
       include "com_cpl_flags.h"
  
@@ -404,8 +402,6 @@ C--IO h atparam.h, atparam1.h, com_dyncon0.h, com_dyncon1.h
 
       include "atparam.h"
       include "atparam1.h"
-
-      PARAMETER ( NLON=IX, NLAT=IL)
 
       include "com_dyncon0.h" 
       include "com_dyncon1.h" 

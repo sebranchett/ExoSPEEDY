@@ -158,7 +158,7 @@ pwd
 
 
 echo 'the executable file...'
-ls -l imp.exe
+ls -l ./imp.exe
 
  
 time ./imp.exe > out.lis

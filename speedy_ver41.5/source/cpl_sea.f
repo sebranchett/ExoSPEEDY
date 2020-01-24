@@ -8,8 +8,6 @@ C--IO h atparam.h, com_cpl_flags.h, com_cli_sea.h, com_var_sea.h
 
       include "atparam.h"
 
-      PARAMETER ( NLON=IX, NLAT=IL, NGP=NLON*NLAT )
-
       include "com_cpl_flags.h"
 
       include "com_cli_sea.h"
@@ -51,8 +49,6 @@ C--IO h atparam.h, com_date.h, com_cpl_flags.h, com_cli_sea.h
 C--IO h com_var_sea.h, com_flx_sea.h, com_cplvar_sea.h
 C--IO s sstfr for earth temperature
       include "atparam.h"
-
-      PARAMETER ( NLON=IX, NLAT=IL, NGP=NLON*NLAT )
 
       include "com_date.h"
       include "com_cpl_flags.h"
@@ -152,8 +148,6 @@ C--
 C--IO h atparam.h, com_cpl_flags.h, com_var_sea.h, com_cplvar_sea.h
       include "atparam.h"
 
-      PARAMETER ( NLON=IX, NLAT=IL, NGP=NLON*NLAT )
-
       include "com_cpl_flags.h"
 
       include "com_var_sea.h"
@@ -250,8 +244,6 @@ C--IO w sice_om, sea ice fraction, tice_om, sea ice temperature to unit (10)
 C--IO w sice_am, sea ice fraction, tice_am, sea ice temperature to unit (10)
 
       include "atparam.h"
-
-      PARAMETER ( NLON=IX, NLAT=IL, NGP=NLON*NLAT )
 
       include "com_cpl_flags.h"
 

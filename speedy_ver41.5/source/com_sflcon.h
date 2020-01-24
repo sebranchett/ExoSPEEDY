@@ -28,4 +28,4 @@ C--:   CLAMBSN = Heat conductivity in soil for snow cover = 1
 C--
 C--   /SFLFIX/: Time-invariant fields (initial. in SFLSET)
 
-      COMMON /SFLFIX/ FOROG(NGP)
+      COMMON /SFLFIX/ FOROG(NLON,NLAT)

@@ -21,8 +21,6 @@ C--IO s 86400 for reciprocal heat capacities = seconds in a day?
 
       include "atparam.h"
 
-      PARAMETER ( NLON=IX, NLAT=IL, NGP=NLON*NLAT )
-
 C     Input variables
 
       real fmask_s(nlon,nlat)            ! sea mask (fraction of sea)
@@ -142,8 +140,6 @@ C--IO s anom0 = 20. for non-linear damping coefficient
 
       include "atparam.h"
 
-      PARAMETER ( NLON=IX, NLAT=IL, NGP=NLON*NLAT )
-
 c      real vsea_input(nlon,nlat,8), vsea_output(nlon,nlat,3)
 
       include "com_cplcon_sea.h"
@@ -243,8 +239,6 @@ C--IO h atparam.h
 C--IO s lat/lon masks set dependent on earth's sea domains
 
       include "atparam.h"
-
-      PARAMETER ( NLON=IX, NLAT=IL )
 
 C     Input variables
 

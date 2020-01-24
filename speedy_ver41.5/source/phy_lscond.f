@@ -27,8 +27,6 @@ C
       include "atparam.h"
       include "atparam1.h"
 C
-      PARAMETER ( NLON=IX, NLAT=IL, NLEV=KX, NGP=NLON*NLAT )
-
 C     Physical constants + functions of sigma and latitude
 
       include "com_physcon.h"

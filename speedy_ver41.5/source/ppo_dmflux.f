@@ -16,8 +16,6 @@ C--IO s 86.400 - parameter for surface water budget ?
       include "atparam.h"
       include "atparam1.h"
 
-      PARAMETER ( NLON=IX, NLAT=IL, NLEV=KX, NGP=NLON*NLAT )
-
 C     Parameters for post-processing arrays
       include "par_tmean.h"
 

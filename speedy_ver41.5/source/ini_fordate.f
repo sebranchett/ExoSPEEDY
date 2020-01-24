@@ -20,8 +20,6 @@ C--IO w write CORH, Humidity correction term horiz. diffusion, to unit 19
       include "atparam.h"
       include "atparam1.h"
 C
-      PARAMETER ( NLON=IX, NLAT=IL, NLEV=KX, NGP=NLON*NLAT )
-
       include "com_tsteps.h"
       include "com_date.h"
 
@@ -151,8 +149,6 @@ C--IO s 1000. ?
       include "atparam.h"
       include "atparam1.h"
 C
-      PARAMETER ( NLON=IX, NLAT=IL, NLEV=KX, NGP=NLON*NLAT )
-
       include "com_dyncon0.h"
       include "com_physcon.h"
 
@@ -176,6 +172,7 @@ C--IO w write a matrix to an output file
       include "atparam.h"
 
       real*4 r4out(ix,il)
+      real fout(ix,il)
 
       do j=1,il
         do i=1,ix

@@ -8,8 +8,6 @@ C--IO h atparam.h, com_cpl_flags.h, com_cli_land.h, com_var_land.h
 
       include "atparam.h"
 
-      PARAMETER ( NLON=IX, NLAT=IL, NGP=NLON*NLAT )
-
       include "com_cpl_flags.h"
 
       include "com_cli_land.h"
@@ -43,8 +41,6 @@ C--
 C--IO h atparam.h, com_date.h, com_cpl_flags.h, com_cli_land.h, com_var_land.h
 C--IO h com_flx_land.h, com_cplvar_land.h
       include "atparam.h"
-
-      PARAMETER ( NLON=IX, NLAT=IL, NGP=NLON*NLAT )
 
       include "com_date.h"
       include "com_cpl_flags.h"
@@ -91,8 +87,6 @@ C--   SUBROUTINE LAND2ATM (jday)
 C-- 
 C--IO h atparam.h, com_cpl_flags.h, com_var_land.h, com_cplvar_land.h
       include "atparam.h"
-
-      PARAMETER ( NLON=IX, NLAT=IL, NGP=NLON*NLAT )
 
       include "com_cpl_flags.h"
 
@@ -154,8 +148,6 @@ C--IO r read stl_lm (Land sfc. temperature) from unit (3)
 C--IO w write stl_lm, land model variables, to unit (10)
 C--IO w write stl_am, atmospheric model fields, to unit (10)
       include "atparam.h"
-
-      PARAMETER ( NLON=IX, NLAT=IL, NGP=NLON*NLAT )
 
       include "com_cpl_flags.h"
 

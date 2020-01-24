@@ -11,8 +11,6 @@ C--IO w use TMOUT to write time-means and variances to units 11, 13 and 15
       include "atparam.h"
       include "atparam1.h"
 
-      PARAMETER ( NLON=IX, NLAT=IL, NLEV=KX, NGP=NLON*NLAT )
-
       include "com_tsteps.h"
 
       include "com_dynvar.h"

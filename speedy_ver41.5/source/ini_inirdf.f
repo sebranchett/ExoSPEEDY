@@ -10,8 +10,6 @@ C--IO h atparam.h, atparam1.h, com_physcon.h, com_randfor.h
       include "atparam.h"
       include "atparam1.h"
 
-      PARAMETER ( NLON=IX, NLAT=IL, NLEV=KX, NGP=NLON*NLAT )
-
       include "com_physcon.h"
 
       include "com_randfor.h"

@@ -27,8 +27,6 @@ C     Resolution parameters
       include "atparam.h"
       include "atparam1.h"
 
-      PARAMETER ( NLON=IX, NLAT=IL, NLEV=KX, NGP=NLON*NLAT )
-
 C     Constants + functions of sigma and latitude
       include "com_physcon.h"
 
