@@ -6,10 +6,10 @@ C     Initialize FFTs
 
       include "atparam.h"
 
-      COMMON /FFTCOM/ WSAVE(2*IX+15)
+      COMMON /FFTCOM/ CH(IX),WA(IX),IFAC(IX)
 
-      CALL RFFTI (IX,WSAVE)
-C      CALL DFFTI (IX,WSAVE)
+      CALL RFFTI (IX,WA,IFAC)
+C      CALL RFFTI (IX,A,IFAC)
 
       RETURN
       END
@@ -25,7 +25,7 @@ C     From Fourier coefficients to grid-point data
 
       include "com_spectral.h"
 
-      COMMON /FFTCOM/ WSAVE(2*IX+15)
+      COMMON /FFTCOM/ CH(IX),WA(IX),IFAC(IX)
 
       REAL VORG(IX,IL), VARM(MX2,IL)
       REAL FVAR(IX)
@@ -46,8 +46,8 @@ C     Copy Fourier coefficients into working array
 
 C     Inverse FFT
 
-      CALL RFFTB (IX,FVAR,WSAVE)
-C      CALL DFFTB (IX,FVAR,WSAVE)
+        CALL RFFTB (IX,FVAR,CH,WA,IFAC)
+C      CALL RFFTB (IX,FVAR,CH,WA,IFAC)
 
 C     Copy output into grid-point field, scaling by cos(lat) if needed
 
@@ -79,7 +79,7 @@ C     From grid-point data to Fourier coefficients
 
       include "atparam.h"
 
-      COMMON /FFTCOM/ WSAVE(2*IX+15)
+      COMMON /FFTCOM/ CH(IX),WA(IX),IFAC(IX)
 
       REAL VORG(IX,IL), VARM(MX2,IL)
       REAL FVAR(IX)
@@ -94,8 +94,8 @@ C     Copy grid-point data into working array
 
 C     Direct FFT
 
-      CALL RFFTF (IX,FVAR,WSAVE)
-C      CALL DFFTF (IX,FVAR,WSAVE)
+        CALL RFFTF (IX,FVAR,CH,WA,IFAC)
+C      CALL RFFTF (IX,FVAR,CH,WA,IFAC)
 
 C     Copy output into spectral field, dividing by no. of long.
 

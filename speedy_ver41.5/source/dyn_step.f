@@ -115,12 +115,12 @@ C     3.4 Diffusion of tracers
 
       CALL HORDIF (KX,CTMP,TRDT,DMPD,DMP1D)
 
-      IF (NTR.GT.1) THEN
-        DO ITR=2,NTR
+      DO ITR=1,NTR
+        IF (NTR.GT.1) THEN
           CALL HORDIF (KX,TR(1,1,1,1,ITR),TRDT(1,1,1,ITR),
      &                 DMP,DMP1)
-        ENDDO
-      ENDIF
+        ENDIF
+      ENDDO
 
 C--   4. Time integration with Robert filter
 
