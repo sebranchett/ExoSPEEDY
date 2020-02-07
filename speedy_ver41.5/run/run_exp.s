@@ -110,18 +110,12 @@ echo "update new files ..."
 ls $UT/update
 
 echo "copying modified model files from $UT/update"
-if [ -e '$UT/update/*.f' ] ; then
-  cp $UT/update/*.f   $CA/
-  cp $UT/update/*.f   $UT/input/exp_$2
-fi
-if [ -e '$UT/update/*.h' ] ; then
-  cp $UT/update/*.h   $CA/
-  cp $UT/update/*.h   $UT/input/exp_$2
-fi
-if [ -e '$UT/update/make*' ] ; then
-  cp $UT/update/make* $CA/	
-  cp $UT/update/make* $UT/input/exp_$2
-fi
+cp $UT/update/*.f   $CA/ 2>/dev/null
+cp $UT/update/*.f   $UT/input/exp_$2 2>/dev/null
+cp $UT/update/*.h   $CA/ 2>/dev/null
+cp $UT/update/*.h   $UT/input/exp_$2 2>/dev/null
+cp $UT/update/make* $CA/ 2>/dev/null
+cp $UT/update/make* $UT/input/exp_$2 2>/dev/null
 			
 # Set input files
 
@@ -169,25 +163,13 @@ time ./imp.exe > out.lis
 mv out.lis $CB/atgcm$2.lis
 mv fort.10 $CB/atgcm$2.rst
 
-if [ -e 'at*$2.ctl' ] ; then
-  mv at*$2.ctl   $CB
-fi
-if [ -e 'at*$2_*.grd' ] ; then
-  mv at*$2_*.grd $CB
-fi
-if [ -e 'at*$2_*.txt' ] ; then
-  mv at*$2_*.txt $CB
-fi
+mv at*$2.ctl   $CB 2>/dev/null
+mv at*$2_*.grd $CB 2>/dev/null
+mv at*$2_*.txt $CB 2>/dev/null
 
-if [ -e 'day*$2.ctl' ] ; then
-  mv day*$2.ctl   $CB
-fi
-if [ -e 'day*$2_*.grd' ] ; then
-  mv day*$2_*.grd $CB
-fi
-if [ -e 'day*$2_*.txt' ] ; then
-  mv day*$2_*.txt $CB
-fi
+mv day*$2.ctl   $CB 2>/dev/null
+mv day*$2_*.grd $CB 2>/dev/null
+mv day*$2_*.txt $CB 2>/dev/null
 
 cd $CB
 
