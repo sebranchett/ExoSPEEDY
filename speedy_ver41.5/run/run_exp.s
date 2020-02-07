@@ -28,12 +28,9 @@ echo '$EDITOR is' $EDITOR
 
 UT=..	
 SA=$UT/source
-#mkdir $UT/tmp_$2	
-#CA=$UT/tmp_$2
 CA=$UT/tmp
-mkdir $UT/output/exp_$2	
+mkdir -p $UT/output/exp_$2	
 CB=$UT/output/exp_$2
-CC=$UT/ver41.input
 CD=$UT/output/exp_$3	
 
 # Edit input files if needed and store them with exp code
@@ -75,7 +72,7 @@ if [ $MODIFY = 'y' ] ; then
 fi
 
 
-mkdir $UT/input/exp_$2
+mkdir -p $UT/input/exp_$2
 
 echo "model version   :   41"  > $UT/input/exp_$2/run_setup
 echo "hor. resolution : " $1  >> $UT/input/exp_$2/run_setup
@@ -84,8 +81,8 @@ echo "restart exp. no.: " $3  >> $UT/input/exp_$2/run_setup
 	
 # Copy files from basic version directory
 
-echo "copying from $SA/source to $CA"
-mkdir $CA
+echo "copying from $SA to $CA"
+mkdir -p $CA
 rm -f $CA/*
 
 cp $SA/makefile $CA/
@@ -98,10 +95,10 @@ cp $CA/par_verres.h      $CA/atparam1.h
 
 # Copy parameter and namelist files from user's .input directory
 
-echo "ver41.input new files ..."
-ls $UT/ver41.input
+echo "ver41.5.input new files ..."
+ls $UT/ver41.5.input
 
-echo "copying parameter and namelist files from $UT/ver41.input "
+echo "copying parameter and namelist files from $UT/ver41.5.input "
 cp $UT/ver41.5.input/cls_*.h     $CA/
 cp $UT/ver41.5.input/inpfiles.s  $CA/
 cp $UT/ver41.5.input/cls_*.h     $UT/input/exp_$2
@@ -113,12 +110,18 @@ echo "update new files ..."
 ls $UT/update
 
 echo "copying modified model files from $UT/update"
-cp $UT/update/*.f   $CA/
-cp $UT/update/*.h   $CA/
-cp $UT/update/make* $CA/	
-cp $UT/update/*.f   $UT/input/exp_$2
-cp $UT/update/*.h   $UT/input/exp_$2
-cp $UT/update/make* $UT/input/exp_$2
+if [ -e '$UT/update/*.f' ] ; then
+  cp $UT/update/*.f   $CA/
+  cp $UT/update/*.f   $UT/input/exp_$2
+fi
+if [ -e '$UT/update/*.h' ] ; then
+  cp $UT/update/*.h   $CA/
+  cp $UT/update/*.h   $UT/input/exp_$2
+fi
+if [ -e '$UT/update/make*' ] ; then
+  cp $UT/update/make* $CA/	
+  cp $UT/update/make* $UT/input/exp_$2
+fi
 			
 # Set input files
 
@@ -166,11 +169,25 @@ time ./imp.exe > out.lis
 mv out.lis $CB/atgcm$2.lis
 mv fort.10 $CB/atgcm$2.rst
 
-mv at*$2.ctl   $CB
-mv at*$2_*.grd $CB
+if [ -e 'at*$2.ctl' ] ; then
+  mv at*$2.ctl   $CB
+fi
+if [ -e 'at*$2_*.grd' ] ; then
+  mv at*$2_*.grd $CB
+fi
+if [ -e 'at*$2_*.txt' ] ; then
+  mv at*$2_*.txt $CB
+fi
 
-mv day*$2.ctl   $CB
-mv day*$2_*.grd $CB
+if [ -e 'day*$2.ctl' ] ; then
+  mv day*$2.ctl   $CB
+fi
+if [ -e 'day*$2_*.grd' ] ; then
+  mv day*$2_*.grd $CB
+fi
+if [ -e 'day*$2_*.txt' ] ; then
+  mv day*$2_*.txt $CB
+fi
 
 cd $CB
 
