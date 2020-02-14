@@ -33,3 +33,24 @@ jobs:
       working-directory: speedy_ver41.5/run
       run: |
         ./compare.s
+
+    - uses: actions/download-artifact@v1
+      shell: bash
+      working-directory: speedy_ver41.5/output/exp_201
+      with:
+        name: my-artifact
+        path: atdf201_1979.txt
+
+    - uses: actions/download-artifact@v1
+      shell: bash
+      working-directory: speedy_ver41.5/output/exp_201
+      with:
+        name: my-artifact
+        path: attm201_1979.txt
+
+    - uses: actions/download-artifact@v1
+      shell: bash
+      working-directory: speedy_ver41.5/output/exp_201
+      with:
+        name: my-artifact
+        path: atva201_1979.txt
