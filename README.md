@@ -14,7 +14,7 @@ This work was done at Delft University of Technology under the guidance of Daphn
 
 ## Installing and running ExoSPEEDY
 
-Please read speedy_ver41.5/doc_ver41.5.pdf.
+Please read doc_ver41.5.pdf.
 
 ## Comments in the code
 

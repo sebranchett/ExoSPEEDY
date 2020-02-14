@@ -39,13 +39,13 @@ jobs:
 
     - name: build and run
       shell: bash
-      working-directory: speedy_ver41.5/run
+      working-directory: run
       run: |
         bash run_exp.s t30 201 0 < modify.txt
         ls ../output
 
     - name: compare output
       shell: bash
-      working-directory: speedy_ver41.5/run
+      working-directory: run
       run: |
         bash compare.s
