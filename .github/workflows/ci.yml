@@ -28,11 +28,11 @@ jobs:
         CC: gcc
         CXX: g++
 
-    - name: compare output
-      shell: bash
-      working-directory: speedy_ver41.5/run
-      run: |
-        ./compare.s
+#    - name: compare output
+#      shell: bash
+#      working-directory: speedy_ver41.5/run
+#      run: |
+#        ./compare.s
 
     - uses: actions/download-artifact@v1
       with:
