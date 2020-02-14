@@ -178,6 +178,6 @@ chmod 644 at*$2.*
 EOF1
 
 
-sh run.job &
+sh run.job
 
 exit
