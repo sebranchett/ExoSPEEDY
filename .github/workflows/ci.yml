@@ -17,7 +17,7 @@ jobs:
 
     - name: build and run
       shell: bash
-      working-directory: ${{runner.workspace}}
+      working-directory: ${{runner.workspace}}/speedy_ver41.5
 
       run: |
         pwd
