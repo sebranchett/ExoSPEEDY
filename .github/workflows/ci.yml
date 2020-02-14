@@ -19,7 +19,8 @@ jobs:
       shell: bash
       working-directory: ${{runner.workspace}}/speedy_ver41.5/run
       run: ./run_exp.s t30 201 0 < modify.txt
-                                                                                      env:
+
+      env:
         FC: gfortran
         CC: gcc
         CXX: g++
