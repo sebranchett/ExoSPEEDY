@@ -16,6 +16,12 @@ C--IO s .grd file unit numbers 11(attm), 13(atva), 15(atdf) and 17(daytm)
       character*3  norun
       character*16 ofile11, ofile13, ofile15
       character*17 ofile17
+CSEBv      
+      character*16 ofile91, ofile93, ofile95
+      character*17 ofile97
+
+      save ofile91, ofile93, ofile95, ofile97
+CSEB^
 
       save ofile11, ofile13, ofile15, ofile17
 
@@ -41,6 +47,17 @@ C--IO s .grd file unit numbers 11(attm), 13(atva), 15(atdf) and 17(daytm)
       write (ofile15(9:12),'(i4)') iyear
 
       if (IDOUT.gt.0) write (ofile17(10:13),'(i4)') iyear
+CSEBv
+      ofile91 = ofile11
+      ofile93 = ofile13
+      ofile95 = ofile15
+      ofile97 = ofile17
+
+      write (ofile91(14:16),'(a)') 'txt'
+      write (ofile93(14:16),'(a)') 'txt'
+      write (ofile95(14:16),'(a)') 'txt'
+      if (IDOUT.gt.0) write (ofile97(15:17),'(a)') iyear
+CSEB^
 
       if (ind.ne.0) then
 
@@ -49,6 +66,14 @@ C--IO s .grd file unit numbers 11(attm), 13(atva), 15(atdf) and 17(daytm)
          close( unit=15 )
 
          if (IDOUT.gt.0) close( unit=17 )
+
+CSEBv
+         close( unit=91 )
+         close( unit=93 )
+         close( unit=95 )
+
+         if (IDOUT.gt.0) close( unit=97 )
+CSEB^
 
       endif
       
@@ -63,6 +88,16 @@ C--IO s .grd file unit numbers 11(attm), 13(atva), 15(atdf) and 17(daytm)
          open ( unit=17, file=ofile17,
      &          status='new', form='unformatted', access='sequential' )
       endif
+
+CSEBv      
+      open ( unit=91, file=ofile91, form='formatted' )
+      open ( unit=93, file=ofile93, form='formatted' )
+      open ( unit=95, file=ofile95, form='formatted' )
+
+      if (IDOUT.gt.0) then
+         open ( unit=97, file=ofile97, form='formatted' )
+      endif
+CSEB^      
 
       return
       end

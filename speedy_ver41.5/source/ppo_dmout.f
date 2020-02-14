@@ -60,11 +60,18 @@ C--   2. Write daily-mean output file
       do n=1,nout_d1
         R4OUT(:) = SAVE2D_D1(:,n)
         write (17) R4OUT
+CSEBv
+        write (97,1000) R4OUT
+CSEB^
       enddo
   
       do n=1,nout_d2
         R4OUT(:) = SAVE2D_D2(:,n)
         write (17) R4OUT
+CSEBv
+        write (97,1000) R4OUT
+CSEB^
+
       enddo
 
 C     ----------------------------------------------------------------
@@ -81,6 +88,9 @@ C--   3. Reset arrays to zero for the next daily-mean
 
 C--
       if (iitest.eq.1) print *, 'end of DMOUT'
+CSEBv
+ 1000 FORMAT(8E10.3)
+CSEB^
 
       RETURN
       END

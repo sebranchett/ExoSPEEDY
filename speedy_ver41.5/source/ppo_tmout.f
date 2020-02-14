@@ -103,17 +103,26 @@ C--   3. Write time-mean output file including 3-d and 2-d fields
         do k=kx,1,-1
           R4OUT(:) = SAVE3D(:,k,n)
           write (11) R4OUT
+CSEBv
+          write (91,1000) R4OUT
+CSEB^
         enddo
       enddo
 
       do n=1,ns2d_1
         R4OUT(:) = SAVE2D_1(:,n)
         write (11) R4OUT
+CSEBv
+        write (91,1000) R4OUT
+CSEB^
       enddo
   
       do n=1,ns2d_2
         R4OUT(:) = SAVE2D_2(:,n)
         write (11) R4OUT
+CSEBv
+        write (91,1000) R4OUT
+CSEB^
       enddo
 
 C     ----------------------------------------------------------------
@@ -139,6 +148,9 @@ C--   5. Write 2-nd order moments
           do k=kx,1,-1
             R4OUT(:) = SAVE3D(:,k,n)
             write (13) R4OUT
+CSEBv
+            write (93,1000) R4OUT
+CSEB^
           enddo
         enddo
 
@@ -154,6 +166,9 @@ C--   6. Write diabatic forcing fields (in degK/day)
           do k=kx,1,-1
             R4OUT(:) = SAVE3D(:,k,n)*86400.
             write (15) R4OUT
+CSEBv
+            write (95,1000) R4OUT
+CSEB^
           enddo
         enddo
 
@@ -182,6 +197,9 @@ cfk
 
 C--
       if (iitest.eq.1) print *, 'end of TMOUT'
+CSEBv
+ 1000 FORMAT(8E10.3)
+CSEB^
 
       RETURN
       END
