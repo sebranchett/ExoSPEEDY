@@ -49,21 +49,3 @@ jobs:
       working-directory: speedy_ver41.5/run
       run: |
         bash compare.s
-
-#     - uses: actions/upload-artifact@v1
-#       if: failure()
-#       with:
-#         name: atdf201_1979.txt
-#         path: speedy_ver41.5/output/exp_201/atdf201_1979.txt
-# 
-#     - uses: actions/upload-artifact@v1
-#       if: failure()
-#       with:
-#         name: attm201_1979.txt
-#         path: speedy_ver41.5/output/exp_201/attm201_1979.txt
-# 
-#     - uses: actions/upload-artifact@v1
-#       if: failure()
-#       with:
-#         name: atva201_1979.txt
-#         path: speedy_ver41.5/output/exp_201/atva201_1979.txt
