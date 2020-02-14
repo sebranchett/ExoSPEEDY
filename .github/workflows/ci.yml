@@ -20,9 +20,8 @@ jobs:
       working-directory: speedy_ver41.5/run
 
       run: |
-        pwd
-        ls *
         ./run_exp.s t30 201 0 < modify.txt
+        ls ../output
 
       env:
         FC: gfortran
@@ -31,4 +30,6 @@ jobs:
 
     - name: compare output
       shell: bash
-      run: ./compare.s
+      working-directory: speedy_ver41.5/run
+      run: |
+        ./compare.s
