@@ -34,14 +34,17 @@ jobs:
 #      run: |
 #        ./compare.s
 
-    - uses: actions/download-artifact@v1
+    - uses: actions/upload-artifact@v1
       with:
-        name: speedy_ver41.5/output/exp_201/atdf201_1979.txt
+        name: atdf201_1979.txt
+        path: speedy_ver41.5/output/exp_201/atdf201_1979.txt
 
-    - uses: actions/download-artifact@v1
+    - uses: actions/upload-artifact@v1
       with:
-        name: speedy_ver41.5/output/exp_201/attm201_1979.txt
+        name: attm201_1979.txt
+        path: speedy_ver41.5/output/exp_201/attm201_1979.txt
 
-    - uses: actions/download-artifact@v1
+    - uses: actions/upload-artifact@v1
       with:
-        name: speedy_ver41.5/output/exp_201/atva201_1979.txt
+        name: atva201_1979.txt
+        path: speedy_ver41.5/output/exp_201/atva201_1979.txt
