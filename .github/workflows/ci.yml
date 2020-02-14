@@ -17,10 +17,11 @@ jobs:
 
     - name: build and run
       shell: bash
-      run: pwd
-      run: ls *
-      working-directory: ${{runner.workspace}}/speedy_ver41.5/run
-      run: ./run_exp.s t30 201 0 < modify.txt
+      # working-directory: ${{runner.workspace}}/speedy_ver41.5/run
+      run: |
+        pwd
+        ls *
+        ./run_exp.s t30 201 0 < modify.txt
 
       env:
         FC: gfortran
