@@ -41,7 +41,7 @@ jobs:
       shell: bash
       working-directory: speedy_ver41.5/run
       run: |
-        ./run_exp.s t30 201 0 < modify.txt
+        bash run_exp.s t30 201 0 < modify.txt
         ls ../output
 
 
