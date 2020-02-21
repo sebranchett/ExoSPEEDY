@@ -22,7 +22,7 @@ jobs:
         os: [windows-latest, ubuntu-latest, macos-latest]
     env:
       FC: gfortran
-      GCC_V: 9
+      GCC_V: 8
       # CC: gcc
       # CXX: g++
 
@@ -50,6 +50,7 @@ jobs:
       shell: bash
       working-directory: run
       run: |
+        gcc --version
         bash run_exp.s t30 201 0 < modify.txt
         ls ../output
 
