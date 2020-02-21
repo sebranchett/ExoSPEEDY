@@ -22,7 +22,7 @@ jobs:
         os: [windows-latest, ubuntu-latest, macos-latest]
     env:
       FC: gfortran
-      GCC_V: 8
+      GCC_V: 7
       # CC: gcc
       # CXX: g++
 
