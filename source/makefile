@@ -2,7 +2,7 @@
 ###COMPILE=pgf90 
 
 COMPILE=gfortran
-COMOTT1= -O3 -fdefault-real-8 -fconvert=big-endian -frecord-marker=4 -fdefault-integer-4 -freal-4-real-8 -finit-local-zero
+COMOTT1= -O3 -fdefault-real-8 -fconvert=big-endian -frecord-marker=4 -fdefault-integer-8 -freal-4-real-8 -finit-local-zero
 #COMOTT1=   -fdefault-real-8 -fconvert=big-endian -frecord-marker=4
 
 
