@@ -19,7 +19,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [windows-latest]
+        os: [ubuntu-latest]
         #SEB os: [windows-latest, ubuntu-latest, macos-latest]
 
     steps:
