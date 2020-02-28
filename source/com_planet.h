@@ -1,0 +1,14 @@
+C--:  /TIMEC0/: Time constants for planet (initial. in INTIME)
+C--:   WINTER = Difference between day 0 and day of year number of
+C--:            winter solstice - +10. days for earth
+C--:   MONTHS = Number of months in a year - maximum number 32
+C--:   DAYSYR = Number of days in a year
+C--:   MINSDY = Number of minutes in a day
+C--:   SECSDY = Number of seconds in a day
+C--:   SECSHR = Number of seconds in an hour
+C--:   NVE    = Day of year number of Vernal Equinox
+C--:   DAYRAD = Days in a year for phy_radiat.f
+C--:   DAYSMN = Number of days in each month (common DAYSMN)
+
+      COMMON /TIMEC0/ WINTER, MONTHS, DAYSYR, MINSDY,
+     &                SECSDY, SECSHR, NVE, DAYRAD, DAYSMN

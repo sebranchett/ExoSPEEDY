@@ -8,7 +8,9 @@ C--   Input/output : ISTEP = time step index
 C--   Updated common block : LFLAG2
 C-- 
 C--IO h com_tsteps.h, com_date.h, com_lflags.h
+C--IO h planetparam.h
 
+      include "planetparam.h"
       include "com_tsteps.h"
       include "com_date.h"
       include "com_lflags.h"

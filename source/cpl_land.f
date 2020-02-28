@@ -40,7 +40,9 @@ C--   SUBROUTINE ATM2LAND (jday)
 C-- 
 C--IO h atparam.h, com_date.h, com_cpl_flags.h, com_cli_land.h, com_var_land.h
 C--IO h com_flx_land.h, com_cplvar_land.h
+C--IO h planetparam.h
       include "atparam.h"
+      include "planetparam.h"
 
       include "com_date.h"
       include "com_cpl_flags.h"

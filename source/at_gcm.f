@@ -49,8 +49,10 @@ C--
 C--IO h atparam.h comes from par_horres_?.h, user modified at runtime
 C--IO h atparam1.h comes from par_verres.h, user modified at runtime
 C--IO h com_tsteps.h, com_date.h
+C--IO h planetparam.h
       include "atparam.h"
       include "atparam1.h"
+      include "planetparam.h"
 
       include "com_tsteps.h"
       include "com_date.h"

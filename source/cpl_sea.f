@@ -47,8 +47,10 @@ C--   SUBROUTINE ATM2SEA (jday)
 C-- 
 C--IO h atparam.h, com_date.h, com_cpl_flags.h, com_cli_sea.h
 C--IO h com_var_sea.h, com_flx_sea.h, com_cplvar_sea.h
+C--IO h planetparam.h
 C--IO s sstfr for earth temperature
       include "atparam.h"
+      include "planetparam.h"
 
       include "com_date.h"
       include "com_cpl_flags.h"

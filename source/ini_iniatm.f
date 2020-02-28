@@ -6,6 +6,7 @@ C--   Purpose : Call initialization routines for all model common blocks
 C--
 C--IO h atparam.h, atparam1.h
 C--IO h com_tsteps.h, com_date.h, par_tmean.h, com_dyncon1.h
+C--IO h planetparam.h
 C--IO s 1440 = minutes in a day?
 C--IO w use SETCTL to write 'attm' to unit 12
 C--IO w use SETCTL to write 'atva' to unit 14
@@ -17,6 +18,7 @@ C--IO w use DMOUT to write daily-means to unit 17
 
       include "atparam.h"
       include "atparam1.h"
+      include "planetparam.h"
 
       include "com_tsteps.h"
       include "com_date.h"

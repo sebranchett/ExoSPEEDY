@@ -13,8 +13,10 @@ C--IO h com_date.h, com_tsteps.h, com_dynvar.h
 C--IO r read restart data from unit 3
 C--IO w write date and model variables to the restart file on unit 10
 C--IO s concept of years, months and days
+C--IO h planetparam.h
       include "atparam.h"
       include "atparam1.h"
+      include "planetparam.h"
 
       include "com_date.h"
       include "com_tsteps.h"

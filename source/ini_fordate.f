@@ -11,6 +11,7 @@ C--IO h atparam.h, atparam1.h, com_tsteps.h, com_date.h
 C--IO h com_dyncon0.h, com_physcon.h, com_radcon.h, com_hdifcon.h
 C--IO h com_surfcon.h, com_cli_sea.h, com_cli_land.h
 C--IO h com_var_sea.h, com_var_land.h, com_lflags.h
+C--IO h planetparam.h
 C--IO s IYEAR_ref = 1950, CO2 absorptivity
 C--IO s Del_CO2 = 0.005, CO2 absorptivity, rate of change per year
 C--IO w write PHIS0, surface geopotential, to unit 19
@@ -19,6 +20,7 @@ C--IO w write CORH, Humidity correction term horiz. diffusion, to unit 19
 
       include "atparam.h"
       include "atparam1.h"
+      include "planetparam.h"
 C
       include "com_tsteps.h"
       include "com_date.h"
