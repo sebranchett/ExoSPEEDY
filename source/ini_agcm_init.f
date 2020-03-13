@@ -41,7 +41,7 @@ C--IO h cls_instep.h
 C--IO h cls_inplanet.h
 C--IO r read ISTART, restart flag: 0 = no, > 0 = yes, from unit 2
 C--IO r read CEXP, experiment identifier, from unit 2
-C--IO s 12 months in a year
+C--IO sx 12 months in a year
       if (inidate.le.0) then
          read (2,*) istart
          read (2,'(a3)') cexp
@@ -51,8 +51,8 @@ C--IO s 12 months in a year
 
       if (istart.ne.0) istart = 1
 
-      include "cls_instep.h"
       include "cls_inplanet.h"
+      include "cls_instep.h"
 
       if (inidate.gt.0) then
 

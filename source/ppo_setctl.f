@@ -5,9 +5,14 @@
 C--
 C--   Aux. routine SETCTL : write descriptor (.ctl) output file 
 C--
+C--IO h planetparam.h, com_planet.h
 C--IO w write ASCII control file to unit IUNIT
+C--IO sx concept of months and years
+      include "planetparam.h"
+      include "com_planet.h"
+
       CHARACTER*80 LINE(10), LN3D(30), LN2D_1(20), LN2D_2(17)
-      CHARACTER*4  LMON(12), NAME
+      CHARACTER*4  NAME
       CHARACTER*3  NORUN
       CHARACTER*11 CTLNAME
       INTEGER ILEV(30)
@@ -15,9 +20,6 @@ C--IO w write ASCII control file to unit IUNIT
 C
 C *** 1. Initialization
 C
-      DATA LMON /'1jan','1feb','1mar','1apr','1may','1jun',
-     &           '1jul','1aug','1sep','1oct','1nov','1dec'/
-
       DATA LN3D/
      &     'GH         n  99  geopotential height               [m]',
      &     'TEMP       n  99  abs. temperature               [degK]',
@@ -114,7 +116,7 @@ C
       write (LINE(7)(10:12),'(I3)') NLEV
 
       write (LINE(8) (7:12),'(I6)') NTM
-             LINE(8)(23:26) =       LMON(IMONT0)(1:4)
+             LINE(8)(23:26) =       LBLMON(IMONT0)(1:4)
       write (LINE(8)(27:30),'(I4)') IYEAR0
 
       if (NDTM.lt.0) then
@@ -176,10 +178,13 @@ C
 C--
 C--   Aux. routine SETCTL_D : write descriptor (.ctl) output file 
 C--
+C--IO h planetparam.h, com_planet.h
 C--IO w write daily mean ASCII control file to IUNIT
+C--IO sx concept of months and years
+      include "planetparam.h"
+      include "com_planet.h"
 
       CHARACTER*80 LINE(10), LN2D_1(10), LN2D_2(10)
-      CHARACTER*4  LMON(12)
       CHARACTER*5  NAME
       CHARACTER*3  NORUN
       CHARACTER*12 CTLNAME
@@ -188,9 +193,6 @@ C--IO w write daily mean ASCII control file to IUNIT
 C
 C *** 1. Initialization
 C
-      DATA LMON /'1jan','1feb','1mar','1apr','1may','1jun',
-     &           '1jul','1aug','1sep','1oct','1nov','1dec'/
-
       DATA LN2D_1/
      &     'MSLP       0  99  mean-sea-level pressure         [hPa]',
      &     'TEMP0      0  99  near-surface air temperature   [degK]',
@@ -244,7 +246,7 @@ C
       write (LINE(7)(10:12),'(I3)') NLEV
 
       write (LINE(8) (7:12),'(I6)') NTM
-             LINE(8)(23:26) =       LMON(IMONT0)(1:4)
+             LINE(8)(23:26) =       LBLMON(IMONT0)(1:4)
       write (LINE(8)(27:30),'(I4)') IYEAR0
       write (LINE(8)(37:38),'(I2)') NDTM
              LINE(8)(39:40) =       'dy'

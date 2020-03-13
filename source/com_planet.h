@@ -9,6 +9,15 @@ C--:   SECSHR = Number of seconds in an hour
 C--:   NVE    = Day of year number of Vernal Equinox
 C--:   DAYRAD = Days in a year for phy_radiat.f
 C--:   DAYSMN = Number of days in each month (common DAYSMN)
+C--:   LBLMON = Labels of 4 characters for each month
 
       COMMON /TIMEC0/ WINTER, MONTHS, DAYSYR, MINSDY,
-     &                SECSDY, SECSHR, NVE, DAYRAD, DAYSMN
+     &                SECSDY, SECSHR, NVE, DAYRAD, DAYSMN, LBLMON
+C
+C--:  /PLNTPH/: Physical parameters associated with a planet
+C--:   ECC    = Eccentricity (radians)
+C--:   OBLIQ  = Obliquity (degrees)
+C--:   OMDEG  = Angle between Vernal Equinox and Perihelion (degrees)
+C--:   DECLIN = Declination (degrees)
+
+      COMMON /PLNTPH/ ECC, OBLIQ, OMDEG, DECLIN

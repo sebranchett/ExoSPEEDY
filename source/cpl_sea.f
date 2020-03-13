@@ -5,8 +5,10 @@ C--   SUBROUTINE INI_SEA (istart)
 C-- 
 C--   Input : istart = restart flag ( 0 = no, 1 = yes)
 C--IO h atparam.h, com_cpl_flags.h, com_cli_sea.h, com_var_sea.h
+C--IO h planetparam.h
 
       include "atparam.h"
+      include "planetparam.h"
 
       include "com_cpl_flags.h"
 
@@ -47,11 +49,12 @@ C--   SUBROUTINE ATM2SEA (jday)
 C-- 
 C--IO h atparam.h, com_date.h, com_cpl_flags.h, com_cli_sea.h
 C--IO h com_var_sea.h, com_flx_sea.h, com_cplvar_sea.h
-C--IO h planetparam.h
+C--IO h planetparam.h, com_planet.h
 C--IO s sstfr for earth temperature
       include "atparam.h"
       include "planetparam.h"
 
+      include "com_planet.h"
       include "com_date.h"
       include "com_cpl_flags.h"
 
@@ -72,20 +75,20 @@ C--   1. Interpolate climatological fields and obs. SST anomaly
 C--      to actual date
 
 C     Climatological SST
-      call FORIN5 (ngp,imont1,tmonth,sst12,sstcl_ob)
+      call FORIN5 (ngp,imont1,tmonth,sstmnth,sstcl_ob,months)
 
 C     Climatological sea ice fraction
-      call FORINT (ngp,imont1,tmonth,sice12,sicecl_ob)
+      call FORINT (ngp,imont1,tmonth,sicemnth,sicecl_ob,months)
 
 C     SST anomaly
       if (isstan.gt.0) then 
          if (iday.eq.1.and.jday.gt.0) call OBS_SSTA
-         call FORINT (ngp,2,tmonth,sstan3,sstan_ob)
+         call FORINT (ngp,2,tmonth,sstan3,sstan_ob,months)
       endif
 
 C     Ocean model climatological SST
       if (icsea.ge.3) then
-         call FORIN5 (ngp,imont1,tmonth,sstom12,sstcl_om)
+         call FORIN5 (ngp,imont1,tmonth,sstommnth,sstcl_om,months)
       endif
 
 C     Adjust climatological fields over sea ice
@@ -294,8 +297,10 @@ C--
 C--   Purpose : update observed SST anomaly array
 C--IO h atparam.h, com_cli_sea.h
 C--IO r read observed SST anomoly array from unit (30)
+C--IO h planetparam.h
  
       include "atparam.h"
+      include "planetparam.h"
 
       include "com_cli_sea.h"
 

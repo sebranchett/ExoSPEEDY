@@ -8,7 +8,8 @@ C--   Input :   grav0  = gravity accel.
 C--             radlat = grid latitudes in radiants
 C--IO h atparam.h, com_tsteps.h, com_cpl_flags.h
 C--IO h com_surfcon.h, com_cli_land.h, com_cli_sea.h
-C--IO s 12 months in a year
+C--IO h com_planet.h
+C--IO sx 12 months in a year
 C--IO s sdep1 = 70. and idep2 = 3, soil depths?
 C--IO r read topographical fields from unit 20 - orography
 C--IO r read topographical fields from unit 20 - land-sea mask
@@ -25,7 +26,9 @@ C--IO r read ocean model SST bias from unit 32 - commented out
 C--IO w write correction for model-to-actual topography to unit 18
 
       include "atparam.h"
+      include "planetparam.h"
 
+      include "com_planet.h"
       include "com_tsteps.h" 
       include "com_cpl_flags.h"
  
@@ -105,28 +108,28 @@ C--   2.3 Land-surface temp.
 
       if (iitest.ge.1) print*,' reading land-surface temp.'
   
-      do it = 1,12
+      do it = 1,months
         read (23) ((r4inp(i,j),i=1,ix),j=il,1,-1)
         do j = 1,il
           do i = 1,ix
-            stl12(i,j,it) = r4inp(i,j)
+            stlmnth(i,j,it) = r4inp(i,j)
           enddo
         enddo
       enddo
 
       if (iitest.eq.1) print*,' checking land-surface temp.'
 
-      CALL FORCHK (bmask_l,stl12,ix*il,12,0.,400.,273.)
+      CALL FORCHK (bmask_l,stlmnth,ix*il,months,0.,400.,273.)
 
 C     Correction for model-to-actual topography
-      do it = 1,12
+      do it = 1,months
 
-        call ftland (stl12(1,1,it),phi0,phis0,bmask_l)
+        call ftland (stlmnth(1,1,it),phi0,phis0,bmask_l)
 
         if (iitest.gt.1) then
           do j = 1,il
             do i = 1,ix
-              r4inp(i,j) = stl12(i,j,it)
+              r4inp(i,j) = stlmnth(i,j,it)
             enddo
           enddo
           write (18) ((r4inp(i,j),i=1,ix),j=il,1,-1)
@@ -138,18 +141,18 @@ C--   2.4 Snow depth
 
       if (iitest.ge.1) print*,' reading snow depth'  
 
-      do it = 1,12
+      do it = 1,months
         read (24) ((r4inp(i,j),i=1,ix),j=il,1,-1)
         do j = 1,il
           do i = 1,ix
-            snowd12(i,j,it) = r4inp(i,j)
+            snowdmnth(i,j,it) = r4inp(i,j)
           enddo
         enddo
       enddo
 
       if (iitest.ge.1) print*,' checking snow depth'
 
-      CALL FORCHK (bmask_l,snowd12,ix*il,12,0.,20000.,0.)
+      CALL FORCHK (bmask_l,snowdmnth,ix*il,months,0.,20000.,0.)
 
 C--  2.5 Read soil moisture and compute soil water availability 
 C--      using vegetation fraction
@@ -172,7 +175,7 @@ c     read vegetation fraction (in %)
       swwil2= sdep2*swwil
       rsw   = 1./(sdep1*swcap+sdep2*(swcap-swwil))
 
-      do it = 1,12
+      do it = 1,months
 
         read (26) ((swl1(i,j),i=1,ix),j=il,1,-1)
         read (26) ((swl2(i,j),i=1,ix),j=il,1,-1)
@@ -181,7 +184,7 @@ c     read vegetation fraction (in %)
         do j = 1,il
           do i = 1,ix
             swroot = idep2*swl2(i,j)
-            soilw12(i,j,it) = min(1.,rsw*(swl1(i,j)+
+            soilwmnth(i,j,it) = min(1.,rsw*(swl1(i,j)+
      &                        veg(i,j)*max(0.,swroot-swwil2)))
           enddo
         enddo
@@ -190,7 +193,7 @@ c     read vegetation fraction (in %)
 
       if (iitest.ge.1) print*,' checking soil moisture'
 
-      CALL FORCHK (bmask_l,soilw12,ix*il,12,0.,10.,0.)
+      CALL FORCHK (bmask_l,soilwmnth,ix*il,months,0.,10.,0.)
 
 
 C--   3. Initialize sea-sfc boundary conditions
@@ -223,35 +226,35 @@ C--   3.2 SST
 
       if (iitest.ge.1) print*,' reading sst' 
 
-      do it = 1,12
+      do it = 1,months
         read (21) ((r4inp(i,j),i=1,ix),j=il,1,-1)
         do j = 1,il
           do i = 1,ix
-            sst12(i,j,it) = r4inp(i,j)
+            sstmnth(i,j,it) = r4inp(i,j)
           enddo
         enddo
       enddo
 
       if (iitest.ge.1) print*,' checking sst'
 
-      CALL FORCHK (bmask_s,sst12,ix*il,12,100.,400.,273.)
+      CALL FORCHK (bmask_s,sstmnth,ix*il,months,100.,400.,273.)
 
 c     3.2 Sea ice fraction
 
       if (iitest.ge.1) print*,' reading sea ice'  
 
-      do it = 1,12
+      do it = 1,months
         read (22) ((r4inp(i,j),i=1,ix),j=il,1,-1)
         do j = 1,il
           do i = 1,ix
-            sice12(i,j,it) = r4inp(i,j)
+            sicemnth(i,j,it) = r4inp(i,j)
           enddo
         enddo
       enddo
 
       if (iitest.ge.1) print*,' checking sea ice'
 
-      CALL FORCHK (bmask_s,sice12,ix*il,12,0.,1.,0.)
+      CALL FORCHK (bmask_s,sicemnth,ix*il,months,0.,1.,0.)
 
 C--   3.3 SST anomalies for initial and prec./following months
 
@@ -301,7 +304,7 @@ C--   3.4. Annual-mean heat flux into sea-surface
         open ( unit=31, file='fort.31', status='old', 
      &         form='unformatted', access='direct', recl=irecl )
 
-        do it = 1,12
+        do it = 1,months
 
           irec=irec+2
           read (31,rec=irec) r4inp
@@ -317,7 +320,7 @@ C--   3.4. Annual-mean heat flux into sea-surface
         do j = 1,il
           do i = 1,ix
             if (bmask_s(i,j).gt.0.) then
-                hfseacl(i,j) = hfseacl(i,j)/(12.*fmask_s(i,j))
+                hfseacl(i,j) = hfseacl(i,j)/(1.*months*fmask_s(i,j))
             else
                 hfseacl(i,j) = 0.
             endif
@@ -344,7 +347,7 @@ c        irec = 0
 c        open ( unit=32, file='fort.32', status='old', 
 c     &         form='unformatted', access='direct', recl=irecl )
 
-        do it = 1,12
+        do it = 1,months
 
 c          irec=irec+1
 c          read (32,rec=irec) r4inp
@@ -352,8 +355,8 @@ cfk           read (32) r4inp
 
           do j = 1,il
             do i = 1,ix
-cfk              sstom12(i,j,it) = sst12(i,j,it)+r4inp(i,j)
-              sstom12(i,j,it) = sst12(i,j,it)
+cfk              sstommnth(i,j,it) = sstmnth(i,j,it)+r4inp(i,j)
+              sstommnth(i,j,it) = sstmnth(i,j,it)
             enddo
           enddo  
 
@@ -361,7 +364,7 @@ cfk              sstom12(i,j,it) = sst12(i,j,it)+r4inp(i,j)
 
         if (iitest.ge.1) print*,' checking ocean model SST'
 
-        CALL FORCHK (bmask_s,sstom12,ix*il,12,100.,400.,273.)
+        CALL FORCHK (bmask_s,sstommnth,ix*il,months,100.,400.,273.)
 
       endif
 C--

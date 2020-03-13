@@ -10,6 +10,7 @@ C--IO h atparam.h, atparam1.h, par_tmean.h, com_tmean.h
 C--IO h com_physcon.h, com_physvar.h, com_cli_sea.h, com_cli_land.h
 C--IO h com_var_sea.h, com_var_land.h, com_radcon.h, com_surfcon.h
 C--IO h com_lflags.h
+C--IO h planetparam.h
 C--IO s daily-mean upper-air fields, 3, 5 and 7?
 C--IO s gam0 = 0.006/gg
 C--IO s mean-sea-level pressure uses 255 and 295 (degrees Kelvin?)
@@ -19,6 +20,7 @@ C     Resolution parameters
 
       include "atparam.h"
       include "atparam1.h"
+      include "planetparam.h"
 C
 C     Parameters for post-processing arrays
       include "par_tmean.h"

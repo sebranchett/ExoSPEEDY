@@ -14,14 +14,18 @@ C--   Input:   TYEAR  = time as fraction of year (0-1, 0 = 1jan.h00)
 C--   Updated common blocks: RADZON
 C--
 C--IO h atparam.h, atparam1.h, com_physcon.h, com_radcon.h
-C--IO s 365 days in a year
-C--IO s year phase ALPHA with winter solstice 22dec.h00 as 0
-C--IO s 23.45 - something to do with zenith?
+C--IO sx 365 days in a year
+C--IO sx year phase ALPHA with winter solstice 22dec.h00 as 0
+C--IO sx 23.45 - earth's declination
 C--IO s ozone depth in upper and lower stratosphere
 C     Resolution parameters
 C
       include "atparam.h"
       include "atparam1.h"
+C
+C     Planetary constants
+      include "planetparam.h"
+      include "com_planet.h"
 C
 C     Constants + functions of sigma and latitude
       include "com_physcon.h"
@@ -35,7 +39,7 @@ cfk      real topsr(nlat)
       real*4  R4OUT(ngp)
 
 C     ALPHA = year phase ( 0 - 2pi, 0 = winter solstice = 22dec.h00 )
-      ALPHA=4.*ASIN(1.)*(TYEAR+10./365.)
+      ALPHA=4.*ASIN(1.)*(TYEAR+REAL(WINTER)/REAL(DAYSYR))
       DALPHA=0.
 c      DALPHA=ASIN(0.5)
 
@@ -45,7 +49,7 @@ C
       AZEN=1.0
       NZEN=2
 
-      RZEN=-COS(ALPHA)*23.45*ASIN(1.)/90.
+      RZEN=-COS(ALPHA)*DECLIN*ASIN(1.)/90.
       CZEN=COS(RZEN)
       SZEN=SIN(RZEN)
 
@@ -116,14 +120,17 @@ c for each day of the year, given the orbital parameters (see PMIP)
 c One year has 360 days.  Reference: A. Berger, JAS, 35, 2362-2367,1978
 c-----------------------------------------------------------------------
 c      implicit none
-C--IO s One year has 360 days
-C--IO s ecc - eccentricity
-C--IO s obl - obliquity
-C--IO s omweb - angle between Vernal Equinox and Perihelion
-C--IO s solarc - solar constant
-C--IO s NVE - day of Vernal Equinox
+C--IO sx One year has 360 days
+C--IO sx ecc - eccentricity
+C--IO sx obl - obliquity
+C--IO sx omweb - angle between Vernal Equinox and Perihelion
+C--IO sx NVE - day of Vernal Equinox
 
-      integer i,j,l,NVE
+C     Planetary constants
+      include "planetparam.h"
+      include "com_planet.h"
+
+      integer i,j,l
 
       real beta,alam,alam0,ala,ala0
       real fac1,fac2,fac3,ro
@@ -141,25 +148,10 @@ c Present-day orbital parameters: eccentricity ecc, obliquity obl and
 c angle om between Vernal Equinox and Perihelion (angles all given
 c in degrees and converted to radians). Solarc is the solar constant.
 c NVE is day of the Vernal Equinox, set at 21 MARCH
-c Implementatie van Nanne
+c Implementation by Nanne
 
-cmbp_s
-      ecc=0.016724
-c      ecc=0.016724*3.
-cmbp_e
-      obl=23.446*deg2rad
-cmbp_s
-      omweb=(102.04+180.00)*deg2rad
-c      omweb=(102.04+180.00-180.0)*deg2rad
-cmbp_e
-c      solarc=1365.
-      NVE=30+30+21
-c
-c In old SW-routine of ECBilt-model values were as follows:
-c
-c      ecc=0.0
-c      solarc=1353.
-c      NVE=90
+      obl=OBLIQ*deg2rad
+      omweb=OMDEG*deg2rad
 c
 c At 6000 years BP (Before Present) values were as follows:
 c
@@ -184,10 +176,9 @@ c
       fac3=0.125*ecc**3.*(1./3.+beta)*sin(3.*(ala0-omweb))
       alam0=ala0-2.*(fac1-fac2+fac3)
 
-c      l=(imonth-1)*30+iday-NVE
-      l=tyear*360-NVE
+      l=tyear*DAYRAD-NVE
 
-      if (l.lt.0) l=l+360
+      if (l.lt.0) l=l+DAYRAD
       alam=alam0+l*1.0*2.*asin(1.)/180.
 
       fac1=(2.*ecc-0.25*ecc**3.)*sin(alam-omweb)
@@ -201,10 +192,10 @@ c      l=(imonth-1)*30+iday-NVE
       cosdl=cos(deltal)
       tandl=tan(deltal)
 
-c factor voor variable afstand Aarde-Zon (Berger, p.2367; Velds, p. 99)
+c factor for variable distance Earth-Son (Berger, p.2367; Velds, p. 99)
       solard=1./ro**2.
       solarcf=solarc
-c beide effecten samen
+c both effects together
       solarf=solarcf*solard
 
       do i=1,nlon

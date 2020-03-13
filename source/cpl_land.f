@@ -5,8 +5,10 @@ C--   SUBROUTINE INI_LAND (istart)
 C-- 
 C--   Input : istart = restart flag ( 0 = no, 1 = yes)
 C--IO h atparam.h, com_cpl_flags.h, com_cli_land.h, com_var_land.h
+C--IO h planetparam.h
 
       include "atparam.h"
+      include "planetparam.h"
 
       include "com_cpl_flags.h"
 
@@ -40,13 +42,14 @@ C--   SUBROUTINE ATM2LAND (jday)
 C-- 
 C--IO h atparam.h, com_date.h, com_cpl_flags.h, com_cli_land.h, com_var_land.h
 C--IO h com_flx_land.h, com_cplvar_land.h
-C--IO h planetparam.h
+C--IO h planetparam.h, com_planet.h
       include "atparam.h"
       include "planetparam.h"
 
       include "com_date.h"
       include "com_cpl_flags.h"
 
+      include "com_planet.h"
       include "com_cli_land.h" 
       include "com_var_land.h"
       include "com_flx_land.h"
@@ -57,13 +60,13 @@ C--IO h planetparam.h
 C--   1. Interpolate climatological fields to actual date
 
 C     Climatological land sfc. temperature
-      call FORIN5 (ngp,imont1,tmonth,stl12,stlcl_ob)
+      call FORIN5 (ngp,imont1,tmonth,stlmnth,stlcl_ob,months)
 
 C     Climatological snow depth
-      call FORINT (ngp,imont1,tmonth,snowd12,snowdcl_ob)
+      call FORINT (ngp,imont1,tmonth,snowdmnth,snowdcl_ob,months)
 
 C     Climatological soil water availability
-      call FORINT (ngp,imont1,tmonth,soilw12,soilwcl_ob)
+      call FORINT (ngp,imont1,tmonth,soilwmnth,soilwcl_ob,months)
 
       if (jday.le.0) RETURN
 

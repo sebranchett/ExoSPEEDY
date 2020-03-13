@@ -13,7 +13,7 @@ C--:            3 = as 2 + evap, ustr, vstr, olr, lshf, sshf
 C--:   NMONRS = Frequency (no. of months) of restart file update
 C--:   ISEASC = Seasonal cycle flag (0=no, 1=yes)
 C--:   IYEAR0 = Year of initial date (4-digit, eg 1900)
-C--:   IMONT0 = Month of initial date (1 to 12)
+C--:   IMONT0 = Month of initial date (1 to MONTHS)
 
 C--:   NSTRAD = Frequency (no. of steps) of shortwave radiation comp. 
 C--:   NSTRDF = Duration of random diabatic forcing ( 0 : no forcing, 

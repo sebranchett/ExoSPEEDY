@@ -2,6 +2,7 @@ C--
 C--   Length of the integration and time stepping constants (common ISTEPS)
 C--IO s Length of the integration and time stepping constants
 C--IO s Logical flags
+C--IO sx 12 months in a year
 
       NMONTS = 3
       NDAYSL = 0
@@ -27,7 +28,7 @@ C--IO s Logical flags
       ISSTAN = 1
 
       ISSTY0 = 1854
-      ISST0  = (IYEAR0-ISSTY0)*12+IMONT0
+      ISST0  = (IYEAR0-ISSTY0)*MONTHS+IMONT0
 
 C--
 C--   Logical flags (common LFLAG1)
