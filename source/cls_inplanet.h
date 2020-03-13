@@ -36,5 +36,5 @@ C     Obliquity (degrees)
       OBLIQ  = 23.446
 C     Angle between Vernal Equinox and Perihelion (degrees)
       OMDEG  = 282.04
-C     Declination (degrees) same as Obliquity?
-      DECLIN = 23.45
+C     Less accurate obliquity (degrees)
+      OBLIQ2 = 23.45

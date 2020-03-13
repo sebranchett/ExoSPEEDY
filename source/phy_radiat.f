@@ -16,7 +16,7 @@ C--
 C--IO h atparam.h, atparam1.h, com_physcon.h, com_radcon.h
 C--IO sx 365 days in a year
 C--IO sx year phase ALPHA with winter solstice 22dec.h00 as 0
-C--IO sx 23.45 - earth's declination
+C--IO sx 23.45 - earth's obliquity, but less accurate
 C--IO s ozone depth in upper and lower stratosphere
 C     Resolution parameters
 C
@@ -49,7 +49,7 @@ C
       AZEN=1.0
       NZEN=2
 
-      RZEN=-COS(ALPHA)*DECLIN*ASIN(1.)/90.
+      RZEN=-COS(ALPHA)*OBLIQ2*ASIN(1.)/90.
       CZEN=COS(RZEN)
       SZEN=SIN(RZEN)
 

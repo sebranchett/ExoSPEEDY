@@ -18,6 +18,6 @@ C--:  /PLNTPH/: Physical parameters associated with a planet
 C--:   ECC    = Eccentricity (radians)
 C--:   OBLIQ  = Obliquity (degrees)
 C--:   OMDEG  = Angle between Vernal Equinox and Perihelion (degrees)
-C--:   DECLIN = Declination (degrees)
+C--:   OBLIQ2 = Less accurate Obliquity (degrees)
 
-      COMMON /PLNTPH/ ECC, OBLIQ, OMDEG, DECLIN
+      COMMON /PLNTPH/ ECC, OBLIQ, OMDEG, OBLIQ2

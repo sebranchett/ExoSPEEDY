@@ -6,4 +6,4 @@ C--IO planet parameters and variable type declarations
      &            SECSDY, SECSHR, NVE, DAYRAD
       INTEGER     DAYSMN(MAXMON)
       CHARACTER*4 LBLMON(MAXMON)
-      REAL        ECC, OBLIQ, OMDEG, DECLIN
+      REAL        ECC, OBLIQ, OMDEG, OBLIQ2
