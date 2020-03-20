@@ -34,18 +34,21 @@ C--:   ABSCL1 = abs. of clouds       (visible band, maximum value)
 C--:            longwave absorptivities (per dp = 10^5 Pa) :
 C--:   ABLWIN = abs. of air in "window" band
 C--:   ABLCO2 = abs. of air in CO2 band
+C--:   RYRCO2 = Linear trend CO2 absorptivity: reference year
+C--:   DELCO2 = Linear trend CO2 absorptivity: rate of change per year
 C--:   ABLWV1 = abs. of water vapour in H2O band 1 (weak),   for dq = 1 g/kg
 C--:   ABLWV2 = abs. of water vapour in H2O band 2 (strong), for dq = 1 g/kg
 C--:   ABLCL1 = abs. of "thick" clouds in window band (below cloud top) 
 C--:   ABLCL2 = abs. of "thin" upper clouds in window and H2O bands
 C--
+      INTEGER RYRCO2
       COMMON /RADCON/ SOLC,   ALBSEA, ALBICE, ALBSN,
      &                RHCL1,  RHCL2,  QACL,   WPCL,   PMAXCL,
      &                CLSMAX, CLSMINL,GSE_S0, GSE_S1,
      &                ALBCL,  ALBCLS, EPSSW,  EPSLW,  EMISFC, 
      &                ABSDRY, ABSAER, ABSWV1, ABSWV2, ABSCL1, ABSCL2, 
-     &                ABLWIN, ABLCO2, ABLCO2_ref,     ABLWV1, ABLWV2, 
-     &                ABLCL1, ABLCL2
+     &                ABLWIN, ABLCO2, ABLCO2_ref,     ABLWV1, ABLWV2,
+     &                ABLCL1, ABLCL2, DELCO2, RYRCO2
 
 								
 C--   /RADFIX/: Time-invariant fields (initial. in RADSET)

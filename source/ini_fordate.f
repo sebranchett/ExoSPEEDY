@@ -12,8 +12,8 @@ C--IO h com_dyncon0.h, com_physcon.h, com_radcon.h, com_hdifcon.h
 C--IO h com_surfcon.h, com_cli_sea.h, com_cli_land.h
 C--IO h com_var_sea.h, com_var_land.h, com_lflags.h
 C--IO h planetparam.h
-C--IO s IYEAR_ref = 1950, CO2 absorptivity
-C--IO s Del_CO2 = 0.005, CO2 absorptivity, rate of change per year
+C--IO sx RYRCO2 = 1950, CO2 absorptivity
+C--IO sx DELCO2 = 0.005, CO2 absorptivity, rate of change per year
 C--IO w write PHIS0, surface geopotential, to unit 19
 C--IO w write CORH, temperature correction term horiz. diffusion, to unit 19
 C--IO w write CORH, Humidity correction term horiz. diffusion, to unit 19
@@ -79,14 +79,12 @@ C     Total surface albedo
          ALBSFC(j) = ALB_S(j)+FLAND(j)*(ALB_L(j)-ALB_S(j))
       enddo
 
-C     Linear trend of CO2 absorptivity (Del_CO2: rate of change per year)
-
-      IYEAR_ref = 1950
-      Del_CO2   = 0.005
-C     Del_CO2   = 0.0033
+C     Linear trend of CO2 absorptivity
+C     RYRCO2 = reference year
+C     DELCO2 = rate of change per year
 
       IF (LCO2) THEN
-         ABLCO2 = ABLCO2_ref*EXP(Del_CO2*(IYEAR+TYEAR-IYEAR_ref))
+         ABLCO2 = ABLCO2_ref*EXP(DELCO2*(IYEAR+TYEAR-RYRCO2))
       ENDIF
 
 C--   3. Temperature correction term for horizontal diffusion
