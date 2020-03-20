@@ -1,4 +1,4 @@
-C--IO s MAXMON months in a year
+C--IO sx MAXMON months in a year
 C--
 C--   /LMASKS/ Land masks
       common /LMASKS/ fmask_l, bmask_l

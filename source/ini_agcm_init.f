@@ -136,7 +136,7 @@ C        Total no. of integration days
          do jm=1,nmonts
             ndaytot = ndaytot+ndaycal(im,1)
             im = im+1
-            if (im.eq.13) im=1
+            if (im.eq.(months+1)) im=1
          enddo
 
 C        Initial date
