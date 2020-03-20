@@ -28,8 +28,8 @@ C     Day number of Vernal Equinox, for earth 21 March (30+30+21)
       NVE    = 81
 C--
 C--   Physical parameters associated with a planet
-C--IO s Eccentricity, obliquity, angle between Vernal Equinox and Perihelion
-C--IO s (common PLNTPH)
+C--IO sx Eccentricity, obliquity, angle between Vernal Equinox and Perihelion
+C--IO sx (common PLNTPH)
 C     Eccentricity (radians)
       ECC    = 0.016724
 C     Obliquity (degrees)
@@ -38,3 +38,5 @@ C     Angle between Vernal Equinox and Perihelion (degrees)
       OMDEG  = 282.04
 C     Less accurate obliquity (degrees)
       OBLIQ2 = 23.45
+C     Eddy Kinetic energy growth rate maximum
+      GRMAX = 0.2/(86400.*2.)

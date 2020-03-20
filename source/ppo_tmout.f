@@ -8,15 +8,18 @@ C--             IMODE > 0 write time-means and reset arrays to 0
 C--   Modified common blocks : TMSAVE 
 C--
 C--IO h atparam.h, atparam1.h
+C--IO h planetparam.h, com_planet.h
 C--IO h par_tmean.h, com_tmean.h, com_tsteps.h, com_physcon.h
 C--IO w write time-mean output to unit 11
 C--IO w write 2-nd order moments to unit 13
 C--IO w write diabatic forcing fields to unit 15
-C--IO s 86400 = seconds in a day
+C--IO sx 86400 = seconds in a day
 C     Resolution parameters
 
       include "atparam.h"
       include "atparam1.h"
+      include "planetparam.h"
+      include "com_planet.h"
 C
 C     Parameters for post-processing arrays
       include "par_tmean.h"
@@ -164,7 +167,7 @@ C--   6. Write diabatic forcing fields (in degK/day)
 
         do n=ns3d1+ns3d2+1,ns3d
           do k=kx,1,-1
-            R4OUT(:) = SAVE3D(:,k,n)*86400.
+            R4OUT(:) = SAVE3D(:,k,n)*REAL(SECSDY)
             write (15) R4OUT
 CSEBv
             write (95,1000) R4OUT

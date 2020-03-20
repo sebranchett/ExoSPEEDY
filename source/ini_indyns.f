@@ -13,8 +13,9 @@ C--
 C--IO h atparam.h, atparam1.h, com_tsteps.h, com_lflags.h
 C--IO h com_dyncon0.h, com_dyncon1.h, com_hdifcon.h, com_spectral.h
 C--IO h cls_indyns.h
-C--IO s 86400. = seconds in a day?
-C--IO s 3600. = minutes in a day?
+C--IO h planetparam.h, com_planet.h
+C--IO sx 86400. = seconds in a day?
+C--IO s 3600. = secondns in an hour?
 C--IO s Robert filter parameter = 0.05
 C--IO s Williams filter parameter = 0.53
 C--IO s REARTH = 6.371E+6
@@ -26,7 +27,9 @@ C--IO s Power of Laplacian in horizontal diffusion = NPOWHD = 4
 
       include "atparam.h"
       include "atparam1.h"
+      include "planetparam.h"
 
+      include "com_planet.h"
       include "com_tsteps.h"
       include "com_lflags.h"
 
@@ -38,7 +41,7 @@ C--IO s Power of Laplacian in horizontal diffusion = NPOWHD = 4
 C--   1. Definition of constants
  
       IF (MOD(NSTEPS,2).NE.0) STOP ' Invalid no. of time steps'
-      DELT=86400./NSTEPS
+      DELT=REAL(SECSDY)/NSTEPS
       DELT2=2.*DELT
 
 c     ROB = Robert filter parameter

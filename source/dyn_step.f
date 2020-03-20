@@ -178,7 +178,6 @@ C--   Purpose : Perform time integration of FIELD at NLEV levels
 C--             using tendency FDT
 C--
 C--IO h atparam.h
-C--IO s 3600 seconds in an hour?
       include "atparam.h"
 
       COMPLEX FIELD(MXNX,NLEV,2), FDT(MXNX,NLEV), FNEW(MXNX)
@@ -220,14 +219,15 @@ C--            VORDT  = time derivative of VOR
 C--            DIVDT  = time derivative of DIV
 C--
 C--IO h atparam.h, atparam1.h
-C--IO s Eddy Kinetic energy growth rate max GRMAX = 0.2/(86400.*2.)
+C--IO h planetparam.h, com_planet.h
+C--IO sx Eddy Kinetic energy growth rate max GRMAX = 0.2/(86400.*2.)
       include "atparam.h"
       include "atparam1.h"
+      include "planetparam.h"
+      include "com_planet.h"
 
       COMPLEX VOR(MX,NX,KX), VORDT(MX,NX,KX), 
      &        DIV(MX,NX,KX), DIVDT(MX,NX,KX), TEMP(MX,NX)
-
-      GRMAX=0.2/(86400.*2.)
 
       CDAMP=0.
 

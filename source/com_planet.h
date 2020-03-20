@@ -11,13 +11,16 @@ C--:   DAYRAD = Days in a year for phy_radiat.f
 C--:   DAYSMN = Number of days in each month (common DAYSMN)
 C--:   LBLMON = Labels of 4 characters for each month
 
-      COMMON /TIMEC0/ WINTER, MONTHS, DAYSYR, MINSDY,
-     &                SECSDY, SECSHR, NVE, DAYRAD, DAYSMN, LBLMON
+      COMMON /TIMEC0/ WINTER, MONTHS
+      COMMON /TIMEC1/ DAYSYR, MINSDY
+      COMMON /TIMEC2/ SECSDY, SECSHR, NVE
+      COMMON /TIMEC3/ DAYRAD, DAYSMN, LBLMON
 C
 C--:  /PLNTPH/: Physical parameters associated with a planet
 C--:   ECC    = Eccentricity (radians)
 C--:   OBLIQ  = Obliquity (degrees)
 C--:   OMDEG  = Angle between Vernal Equinox and Perihelion (degrees)
 C--:   OBLIQ2 = Less accurate Obliquity (degrees)
+C--:   GRMAX  = Eddy Kinetic energy growth rate maximum
 
-      COMMON /PLNTPH/ ECC, OBLIQ, OMDEG, OBLIQ2
+      COMMON /PLNTPH/ ECC, OBLIQ, OMDEG, OBLIQ2, GRMAX

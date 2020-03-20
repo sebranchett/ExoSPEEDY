@@ -8,10 +8,13 @@ C--   Purpose : Initialization of land model
 C--   Initialized common blocks: LAND_MC
 C--	
 C--IO h atparam.h, com_cplcon_land.h, cls_inland.h
+C--IO h planetparam.h, com_planet.h
 C--IO s depth_soil, depth_lice, tdland, flandmin
 C--IO s 'reset' hcapl, hcapli, rhcapl - heat capacity ?
 
       include "atparam.h"
+      include "planetparam.h"
+      include "com_planet.h"
 
 C     Input variables
 
@@ -68,9 +71,9 @@ C     Set time_step/heat_capacity and dissipation fields
       do j=1,nlat
         do i=1,nlon
            if (alb0(i,j).lt.0.4) then
-              rhcapl(i,j) = 86400./hcapl
+              rhcapl(i,j) = REAL(SECSDY)/hcapl
            else
-              rhcapl(i,j) = 86400./hcapli
+              rhcapl(i,j) = REAL(SECSDY)/hcapli
            endif
         enddo
       enddo
