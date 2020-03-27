@@ -21,11 +21,14 @@ C--            TTENVD = temperature tendency             (3-dim)
 C--            QTENVD = sp. humidity tendency [g/(kg s)] (3-dim)
 C--
 C--IO h atparam.h, atparam1.h, com_physcon.h, com_vdicon.h
-C--IO s 3600 - seconds in an hour?
+C--IO h planetparam.h, com_planet.h
+C--IO sx 3600 - seconds in an hour?
 C     Resolution parameters
 
       include "atparam.h"
       include "atparam1.h"
+      include "planetparam.h"
+      include "com_planet.h"
 
 C     Physical constants + functions of sigma and latitude
 
@@ -54,8 +57,8 @@ C          are scaled in such a way that:
 C          d_T/dt = d_F'(SE)/d_sigma,  d_Q/dt = d_F'(Q)/d_sigma
 
       NL1  = NLEV-1
-      CSHC = DSIG(NLEV)/3600.
-      CVDI = (SIGH(NL1)-SIGH(1))/((NL1-1)*3600.)
+      CSHC = DSIG(NLEV)/REAL(SECSHR)
+      CVDI = (SIGH(NL1)-SIGH(1))/((NL1-1)*REAL(SECSHR))
 
       FSHCQ  = CSHC/TRSHC
       FSHCSE = CSHC/(TRSHC*CP)

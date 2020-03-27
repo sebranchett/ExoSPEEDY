@@ -22,12 +22,15 @@ C--            DFSE   = net flux of d.s.en. into each atm. layer (3-dim)
 C--            DFQA   = net flux of sp.hum. into each atm. layer (3-dim)
 C--
 C--IO h atparam.h, atparam1.h, com_physcon.h, com_cnvcon.h
-C--IO s FM0 scaled by 1/3600 - seconds in an hour?
+C--IO h planetparam.h, com_planet.h
+C--IO sx FM0 scaled by 1/3600 - seconds in an hour?
 
 C     Resolution parameters
 
       include "atparam.h"
       include "atparam1.h"
+      include "planetparam.h"
+      include "com_planet.h"
 
 C     Physical constants + functions of sigma and latitude
 
@@ -55,7 +58,7 @@ C
       NLP=NLEV+1
       FQMAX=5.
  
-      FM0=P0*DSIG(NLEV)/(GG*TRCNV*3600)
+      FM0=P0*DSIG(NLEV)/(GG*TRCNV*SECSHR)
       RDPS=2./(1.-PSMIN)
 
 C      Used in exp 566 to 604:

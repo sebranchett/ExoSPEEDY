@@ -21,11 +21,13 @@ C--            DTLSC  = temperature tendency from l.s. cond     (3-dim)
 C--            DQLSC  = hum. tendency [g/(kg s)] from l.s. cond (3-dim)
 C--
 C--IO h atparam.h, atparam1.h, com_physcon.h, com_lsccon.h
-C--IO s RTLSC scaled by 1/3600 - seconds in an hour?
+C--IO sx RTLSC scaled by 1/3600 - seconds in an hour?
 C     Resolution parameters
 C
       include "atparam.h"
       include "atparam1.h"
+      include "planetparam.h"
+      include "com_planet.h"
 C
 C     Physical constants + functions of sigma and latitude
 
@@ -49,7 +51,7 @@ C--   1. Initialization
 
       QSMAX = 10.
 
-      RTLSC = 1./(TRLSC*3600.)
+      RTLSC = 1./(TRLSC*REAL(SECSHR))
       TFACT = ALHC/CP
 cfk#if defined(KNMI)
 cfk      TFACTS= ALHS/CP

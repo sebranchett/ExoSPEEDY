@@ -24,11 +24,14 @@ C--
 C--   Modified common blocks : DYNSP1, DYNSP2
 C--
 C--IO h atparam.h, atparam1.h
+C--IO h planetparam.h, com_planet.h
 C--IO h com_dyncon0.h, com_hdifcon.h, com_dynvar.h
-C--IO s 3600 seconds in an hour?
+C--IO sx 3600 seconds in an hour?
       include "atparam.h"
       include "atparam1.h"
+      include "planetparam.h"
 
+      include "com_planet.h"
       include "com_dyncon0.h"
       include "com_hdifcon.h"
 
@@ -88,7 +91,7 @@ C     3.1 Diffusion of wind and temperature
 
 C     3.2 Stratospheric diffusion and zonal wind damping
 
-      SDRAG=1./(TDRS*3600.)
+      SDRAG=1./(TDRS*REAL(SECSHR))
       DO N=1,NX
         VORDT(1,N,1)=VORDT(1,N,1)-SDRAG*VOR(1,N,1,1)
         DIVDT(1,N,1)=DIVDT(1,N,1)-SDRAG*DIV(1,N,1,1)

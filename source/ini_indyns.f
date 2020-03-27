@@ -15,7 +15,7 @@ C--IO h com_dyncon0.h, com_dyncon1.h, com_hdifcon.h, com_spectral.h
 C--IO h cls_indyns.h
 C--IO h planetparam.h, com_planet.h
 C--IO sx 86400. = seconds in a day?
-C--IO s 3600. = secondns in an hour?
+C--IO sx 3600. = seconds in an hour?
 C--IO s Robert filter parameter = 0.05
 C--IO s Williams filter parameter = 0.53
 C--IO s REARTH = 6.371E+6
@@ -165,9 +165,9 @@ C--   5. Coefficients for horizontal diffusion
 
 C     5.1 Spectral damping coefficients
 
-      HDIFF = 1./(THD *3600.)
-      HDIFD = 1./(THDD*3600.)
-      HDIFS = 1./(THDS*3600.)
+      HDIFF = 1./(THD *REAL(SECSHR))
+      HDIFD = 1./(THDD*REAL(SECSHR))
+      HDIFS = 1./(THDS*REAL(SECSHR))
       RLAP  = 1./FLOAT(MTRUN*(MTRUN+1))
 
       DO N=1,NX
