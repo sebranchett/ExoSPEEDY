@@ -15,6 +15,7 @@ C--IO sx (common TIMEC0)
      &             '----','----','----','----','----','----',
      &             '----','----'/
       MINSDY = 1440
+      MINSHR = 60
       SECSDY = 86400
       SECSHR = 3600
       WINTER = 10.

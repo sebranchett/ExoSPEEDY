@@ -122,11 +122,11 @@ C
       if (NDTM.lt.0) then
         write (LINE(8)(35:38),'(I4)') -NDTM
                LINE(8)(39:40) =       'mo'
-      else if (mod(NDTM,1440).eq.0) then
-        write (LINE(8)(35:38),'(I4)') NDTM/1440
+      else if (mod(NDTM,MINSDY).eq.0) then
+        write (LINE(8)(35:38),'(I4)') NDTM/MINSDY
                LINE(8)(39:40) =       'dy'
-      else if (mod(NDTM,60).eq.0) then
-        write (LINE(8)(35:38),'(I4)') NDTM/60 
+      else if (mod(NDTM,MINSHR).eq.0) then
+        write (LINE(8)(35:38),'(I4)') NDTM/MINSHR 
                LINE(8)(39:40) =       'hr'
       else 
         write (LINE(8)(35:38),'(I4)') NDTM 
