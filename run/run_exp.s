@@ -88,7 +88,7 @@ rm -f $CA/*
 cp $SA/makefile $CA/
 cp $SA/*.f      $CA/
 cp $SA/*.h      $CA/
-cp $SA/*.s      $CA/
+cp $SA/*.s      $CA/ 2>/dev/null
 
 cp $CA/par_horres_$1.h   $CA/atparam.h
 cp $CA/par_verres.h      $CA/atparam1.h 
