@@ -60,7 +60,7 @@ c     reference atmosphere, function of sigma only
 c     Other constants 
 
       XI=DT*ALPH
-      XXI = XI/(A*A)
+      XXI = XI/(REARTH*REARTH)
 
       DO 201 K=1,KX
         DHSX(K)=XI*DHS(K)
@@ -144,7 +144,7 @@ c      P(K)=YE(K)+XE(K,K')*D(K')
    10 CONTINUE
 
       DO 11 L=1,LMAX
-        XXX=(FLOAT(L)*FLOAT(L+1))/(A*A)
+        XXX=(FLOAT(L)*FLOAT(L+1))/(REARTH*REARTH)
         DO 12 K=1,KX
         DO 12 K1=1,KX
           XF(K,K1,L)=XI*XI*XXX*(RGAS*TREF(K)*DHS(K1)-XE(K,K1))
