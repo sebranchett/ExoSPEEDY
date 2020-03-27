@@ -1,9 +1,10 @@
 C--
-C--   /PHYCON/: Physical constants (initial. in INPHYS)
+C--   /PHYCON/: Physical constants (initial. in cls_inphys.h)
 C--    P0   = reference pressure
 C--    GG   = gravity accel.
 C--    RD   = gas constant for dry air
 C--    CP   = specific heat at constant pressure
+C             Latent heat is in J/g for consistency with spec.hum. in g/Kg
 C--    ALHC = latent heat of condensation
 C--    ALHS = latent heat of sublimation
 C--    SBC  = Stefan-Boltzmann constant

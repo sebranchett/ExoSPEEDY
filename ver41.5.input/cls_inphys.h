@@ -4,6 +4,16 @@ C--IO sx Constants for physical parametrization routines:
 C--IO sx Soil moisture and snow, convection, large-scale condensation
 C--IO sx radiation, surface fluxes, vertical diffusion and sh. conv.
 
+C--   Planet physical constants (common PHYCON)
+
+      P0 = 1.e+5
+      GG = 9.81
+      RD = 287.
+      CP = 1004.
+      ALHC = 2501.0
+cfk      ALHS = 2801.0
+      SBC = 5.67e-8
+
 C--   Soil moisture and snow parameters (common SOILMP):
 
       SWCAP = 0.30

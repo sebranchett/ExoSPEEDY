@@ -14,13 +14,13 @@ C
 C--IO h atparam.h, atparam1.h, com_physcon.h, com_surfcon.h
 C--IO h com_cnvcon.h, com_lsccon.h, com_radcon.h, com_sflcon.h
 C--IO h com_vdicon.h, cls_inphys.h
-C--IO s P0 = 1.e+5
-C--IO s GG = 9.81
-C--IO s RD = 287.
-C--IO s CP = 1004.
-C--IO s ALHC = 2501.0
-C--IO s        Latent heat is in J/g for consistency with spec.hum. in g/Kg
-C--IO s SBC = 5.67e-8
+C--IO sx P0 = 1.e+5
+C--IO sx GG = 9.81
+C--IO sx RD = 287.
+C--IO sx CP = 1004.
+C--IO sx ALHC = 2501.0
+C--IO sx        Latent heat is in J/g for consistency with spec.hum. in g/Kg
+C--IO sx SBC = 5.67e-8
       include "atparam.h"
       include "atparam1.h"
 C
@@ -41,23 +41,16 @@ C
       include "com_vdicon.h"
 C
       REAL HSG(0:NLEV), PPL(NLEV), RLAT(NLAT)  
+
+C--   1. Constants for physical parametrization routines:
+
+      include "cls_inphys.h"
 C
-C---  1. Time independent parameters and arrays
+C---  2. Time independent parameters and arrays
 C
-C     1.1 Physical constants
+C     2.1 Planet physical constants defined in cls_physcon.h
 C
-      P0 = 1.e+5
-      GG = 9.81
-      RD = 287.
-      CP = 1004.
-C     Latent heat is in J/g for consistency with spec.hum. in g/Kg
-      ALHC = 2501.0
-cfk#if defined(KNMI)
-cfk      ALHS = 2801.0
-cfk#endif
-      SBC = 5.67e-8
-C
-C     1.2 Functions of sigma and latitude
+C     2.2 Functions of sigma and latitude
 C
       SIGH(0)=HSG(0)
 C
@@ -88,10 +81,6 @@ C
        SLAT(J)=SIN(RLAT(J))
        CLAT(J)=COS(RLAT(J))
       ENDDO
-
-C--   2. Constants for physical parametrization routines:
-
-      include "cls_inphys.h"
 
 C---
       RETURN

@@ -1,3 +1,13 @@
+C--:  /PHYCON/: Planet physical constants
+C--:   P0   = reference pressure
+C--:   GG   = gravity accel.
+C--:   RD   = gas constant for dry air
+C--:   CP   = specific heat at constant pressure
+C             Latent heat is in J/g for consistency with spec.hum. in g/Kg
+C--:   ALHC = latent heat of condensation
+C--:   ALHS = latent heat of sublimation
+C--:   SBC  = Stefan-Boltzmann constant
+
 C--:  /SOILMP/: Soil moisture parameters
 C--:   SWCAP  = Soil wetness at field capacity (volume fraction)
 C--:   SWWIL  = Soil wetness at wilting point  (volume fraction)
