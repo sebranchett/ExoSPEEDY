@@ -1,6 +1,5 @@
 C--:  /PHYCON/: Planet physical constants
 C--:   P0   = reference pressure
-C--:   GG   = gravity accel.
 C--:   RD   = gas constant for dry air
 C--:   CP   = specific heat at constant pressure
 C             Latent heat is in J/g for consistency with spec.hum. in g/Kg

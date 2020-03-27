@@ -16,6 +16,7 @@ C--:   LBLMON = Labels of 4 characters for each month
      &                SECSDY, SECSHR, NVE, DAYRAD, DAYSMN, LBLMON
 C
 C--:  /PLNTPH/: Physical parameters associated with a planet
+C--:   GRAVIT = Acceleration due to gravity (m per s^2)
 C--:   ECC    = Eccentricity (radians)
 C--:   OBLIQ  = Obliquity (degrees)
 C--:   OMDEG  = Angle between Vernal Equinox and Perihelion (degrees)
@@ -25,5 +26,5 @@ C--:   HCAPSO = Heat capacity of soil per m^2
 C--:   HCAPIC = Heat capacity of ice per m^2
 C--:   HCAPSE = Heat capacity of sea (mixed layer) per m^2
 
-      COMMON /PLNTPH/ ECC, OBLIQ, OMDEG, OBLIQ2, GRMAX,
+      COMMON /PLNTPH/ GRAVIT, ECC, OBLIQ, OMDEG, OBLIQ2, GRMAX,
      $                HCAPSO, HCAPIC, HCAPSE

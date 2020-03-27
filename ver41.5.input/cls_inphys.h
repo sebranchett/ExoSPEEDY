@@ -7,7 +7,6 @@ C--IO sx radiation, surface fluxes, vertical diffusion and sh. conv.
 C--   Planet physical constants (common PHYCON)
 
       P0 = 1.e+5
-      GG = 9.81
       RD = 287.
       CP = 1004.
       ALHC = 2501.0

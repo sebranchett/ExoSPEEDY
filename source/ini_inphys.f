@@ -14,6 +14,7 @@ C
 C--IO h atparam.h, atparam1.h, com_physcon.h, com_surfcon.h
 C--IO h com_cnvcon.h, com_lsccon.h, com_radcon.h, com_sflcon.h
 C--IO h com_vdicon.h, cls_inphys.h
+C--IO h planetparam.h, com_planet.h
 C--IO sx P0 = 1.e+5
 C--IO sx GG = 9.81
 C--IO sx RD = 287.
@@ -23,6 +24,8 @@ C--IO sx        Latent heat is in J/g for consistency with spec.hum. in g/Kg
 C--IO sx SBC = 5.67e-8
       include "atparam.h"
       include "atparam1.h"
+      include "planetparam.h"
+      include "com_planet.h"
 C
 C     Physical constants + functions of sigma and latitude
 C
@@ -45,6 +48,7 @@ C
 C--   1. Constants for physical parametrization routines:
 
       include "cls_inphys.h"
+      GG = GRAVIT
 C
 C---  2. Time independent parameters and arrays
 C
