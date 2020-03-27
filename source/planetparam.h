@@ -7,3 +7,4 @@ C--IO planet parameters and variable type declarations
       INTEGER     DAYSMN(MAXMON)
       CHARACTER*4 LBLMON(MAXMON)
       REAL        ECC, OBLIQ, OMDEG, OBLIQ2, GRMAX
+      REAL        HCAPSO, HCAPIC, HCAPSE

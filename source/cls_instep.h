@@ -1,7 +1,7 @@
 C--
 C--   Length of the integration and time stepping constants (common ISTEPS)
-C--IO s Length of the integration and time stepping constants
-C--IO s Logical flags
+C--IO sx Length of the integration and time stepping constants
+C--IO sx Logical flags
 C--IO sx 12 months in a year
 
       NMONTS = 3

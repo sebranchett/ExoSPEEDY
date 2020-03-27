@@ -1,8 +1,8 @@
 C--
 C--   Reference vertical profiles of temperature and humidity
 C--   and horizontal diffusion constants (common DYNC0)
-C--IO s Reference vertical profiles of temperature and humidity
-C--IO s and horizontal diffusion constants (common DYNC0)
+C--IO sx Reference vertical profiles of temperature and humidity
+C--IO sx and horizontal diffusion constants (common DYNC0)
 
       GAMMA  = 6.
       HSCALE = 7.5

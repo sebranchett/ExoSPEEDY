@@ -41,3 +41,9 @@ C     Less accurate obliquity (degrees)
       OBLIQ2 = 23.45
 C     Eddy Kinetic energy growth rate maximum
       GRMAX = 0.2/(86400.*2.)
+C     Heat capacity of soil per m^2
+      HCAPSO = 2.50e+6
+C     Heat capacity of ice per m^2
+      HCAPIC = 1.93e+6
+C     Heat capacity of sea (mixed layer) per m^2
+      HCAPSE = 4.18e+6

@@ -9,8 +9,8 @@ C--   Initialized common blocks: LAND_MC
 C--	
 C--IO h atparam.h, com_cplcon_land.h, cls_inland.h
 C--IO h planetparam.h, com_planet.h
-C--IO s depth_soil, depth_lice, tdland, flandmin
-C--IO s 'reset' hcapl, hcapli, rhcapl - heat capacity ?
+C--IO sx depth_soil, depth_lice, tdland, flandmin
+C--IO sx hcapl, hcapli - heat capacity ?
 
       include "atparam.h"
       include "planetparam.h"
@@ -31,27 +31,12 @@ C--
 C--   1. Set heat capacities and dissipation times for 
 C--      soil and ice-sheet layers 
 
-C     Model parameters (default values)
-
-C     soil layer depth (m)
-      depth_soil = 1.0
-
-C     land-ice depth (m)
-      depth_lice = 5.0
-
-C     Dissipation time (days) for land-surface temp. anomalies
-      tdland  = 40.
-
-C     Minimum fraction of land for the definition of anomalies
-      flandmin = 1./3.
-
-C     Reset model parameters
 
       include "cls_inland.h"
 
 C     Heat capacities per m^2 (depth*heat_cap/m^3)
-      hcapl  = depth_soil*2.50e+6
-      hcapli = depth_lice*1.93e+6
+      hcapl  = depth_soil*HCAPSO
+      hcapli = depth_lice*HCAPIC
 
 C--
 C--   2. Compute constant fields

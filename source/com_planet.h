@@ -21,5 +21,9 @@ C--:   OBLIQ  = Obliquity (degrees)
 C--:   OMDEG  = Angle between Vernal Equinox and Perihelion (degrees)
 C--:   OBLIQ2 = Less accurate Obliquity (degrees)
 C--:   GRMAX  = Eddy Kinetic energy growth rate maximum
+C--:   HCAPSO = Heat capacity of soil per m^2
+C--:   HCAPIC = Heat capacity of ice per m^2
+C--:   HCAPSE = Heat capacity of sea (mixed layer) per m^2
 
-      COMMON /PLNTPH/ ECC, OBLIQ, OMDEG, OBLIQ2, GRMAX
+      COMMON /PLNTPH/ ECC, OBLIQ, OMDEG, OBLIQ2, GRMAX,
+     $                HCAPSO, HCAPIC, HCAPSE

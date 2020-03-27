@@ -16,8 +16,8 @@ C--IO s beta for heat flux coefficient
 C--IO s l_globe for global domain logical
 C--IO s l_northe, l_natlan, l_npacif for regional domain logicals
 C--IO s l_tropic, l_indian for regional domain logicals
-C--IO s heat capacity of mixed-l. = 4.18e+6 used for hcaps
-C--IO s heat capacity of sea-ice = 1.93e+6 used for hcapi
+C--IO sx heat capacity of mixed-l. = 4.18e+6 used for hcaps
+C--IO sx heat capacity of sea-ice = 1.93e+6 used for hcapi
 C--IO sx 86400 for reciprocal heat capacities = seconds in a day?
 
       include "atparam.h"
@@ -86,8 +86,8 @@ C     Heat capacities per m^2 (depth*heat_cap/m^3)
       crad=asin(1.)/90.
       do j=1,nlat
         coslat   = cos(crad*rlat(j))
-        hcaps(j) = 4.18e+6*(depth_ml +(dept0_ml -depth_ml) *coslat**3)
-        hcapi(j) = 1.93e+6*(depth_ice+(dept0_ice-depth_ice)*coslat**2)
+        hcaps(j) = HCAPSE*(depth_ml +(dept0_ml -depth_ml) *coslat**3)
+        hcapi(j) = HCAPIC*(depth_ice+(dept0_ice-depth_ice)*coslat**2)
       enddo
 C--
 C--   3. Compute constant parameters and fields
