@@ -58,7 +58,7 @@ C--   4. Initialize constants for physical parametrization
 C--   5. Initialize forcing fields (boundary cond. + random forcing)
 
       if (iitest.eq.1) print*, 'calling INBCON'
-      CALL INBCON (grav,RADANG)
+      CALL INBCON (GRAVIT,RADANG)
 
       if (iitest.eq.1) print*, 'calling INIRDF'
       CALL INIRDF (indrdf)

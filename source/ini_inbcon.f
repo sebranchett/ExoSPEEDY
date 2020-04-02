@@ -402,10 +402,13 @@ C--   and set undefined values to a constant (to avoid over/underflow)
 
       SUBROUTINE FTLAND (STL,PHI0,PHIS0,FMASKL)
 C--IO h atparam.h, atparam1.h, com_dyncon0.h, com_dyncon1.h
+C--IO h planetparam.h, com_planet.h
 
       include "atparam.h"
       include "atparam1.h"
+      include "planetparam.h"
 
+      include "com_planet.h"
       include "com_dyncon0.h" 
       include "com_dyncon1.h" 
 
@@ -415,7 +418,7 @@ C--IO h atparam.h, atparam1.h, com_dyncon0.h, com_dyncon1.h
       REAL STL2(NLON,NLAT)
 
       NL8 = NLAT/8
-      GAM = 0.001*GAMMA/GRAV
+      GAM = 0.001*GAMMA/GRAVIT
 
       NLAT1 = 1
       NLAT2 = NL8

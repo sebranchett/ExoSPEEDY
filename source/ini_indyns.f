@@ -18,11 +18,11 @@ C--IO sx 86400. = seconds in a day?
 C--IO sx 3600. = seconds in an hour?
 C--IO s Robert filter parameter = 0.05
 C--IO s Williams filter parameter = 0.53
-C--IO s REARTH = 6.371E+6
-C--IO s OMEGA  = 7.292E-05
+C--IO sx REARTH = 6.371E+6
+C--IO sx OMEGA  = 7.292E-05
 C--IO sx GRAV   = 9.81
-C--IO s AKAP   = 2./7.
-C--IO s RGAS   = AKAP*1004.
+C--IO sx AKAP   = 2./7.
+C--IO sx RGAS   = AKAP*1004.
 C--IO s Power of Laplacian in horizontal diffusion = NPOWHD = 4
 
       include "atparam.h"
@@ -58,11 +58,7 @@ c     ALPH = 0.5 -- centered implicit -----------------
 
 C     1.2 Physical constants required by the dynamical core
 
-      REARTH = 6.371E+6
-      OMEGA  = 7.292E-05
       GRAV   = GRAVIT
-      AKAP   = 2./7.
-      RGAS   = AKAP*1004.
 
 C     1.3 Reference vertical profiles of temperature and humidity
 C         and horizontal diffusion constants

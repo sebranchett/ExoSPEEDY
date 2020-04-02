@@ -33,6 +33,14 @@ C--IO sx Eccentricity, obliquity, angle between Vernal Equinox and Perihelion
 C--IO sx (common PLNTPH)
 C     Acceleration due to gravity (m per s^2)
       GRAVIT = 9.81
+C     Radius of planet
+      REARTH = 6.371E+6
+C     pressure vertical velocity [Pa/s]
+      OMEGA  = 7.292E-05
+C     SEB Physical constant required by the dynamical core
+      AKAP   = 2./7.
+C     SEB Physical constant required by the dynamical core
+      RGAS   = AKAP*1004.
 C     Eccentricity (radians)
       ECC    = 0.016724
 C     Obliquity (degrees)

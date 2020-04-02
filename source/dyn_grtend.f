@@ -19,10 +19,13 @@ C--           TRDT  = spectral tendency of tracers
 C--
 C--IO h atparam.h, atparam1.h
 C--IO h com_dyncon1.h, com_dyncon2.h, com_dynvar.h
+C--IO h planetparam.h, com_planet.h
 
       include "atparam.h"
       include "atparam1.h"
+      include "planetparam.h"
 
+      include "com_planet.h"
       include "com_dyncon1.h"
       include "com_dyncon2.h"
       include "com_dynvar.h"

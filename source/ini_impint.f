@@ -25,7 +25,9 @@ C--IO s 288. Constant for implicit gravity wave computation ?
 
       include "atparam.h"
       include "atparam1.h"
+      include "planetparam.h"
 
+      include "com_planet.h"
       include "com_dyncon0.h"
       include "com_dyncon1.h"
       include "com_dyncon2.h"
@@ -47,7 +49,7 @@ C--   1. Constants for implicit gravity wave computation
 
 c     reference atmosphere, function of sigma only
 
-      RGAM = RGAS*GAMMA/(1000.*GRAV)
+      RGAM = RGAS*GAMMA/(1000.*GRAVIT)
 
       DO 101 K=1,KX
         TREF(K)=288.*MAX(0.2,FSG(K))**RGAM
