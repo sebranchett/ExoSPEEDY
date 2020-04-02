@@ -40,3 +40,4 @@ C--:            on pressure levels (.false. for model level p.p.)
 C--:   LCO2   = Flag to include exponential CO2 absorbtivity increase 
 C--:            (.false.= no CO2 increase,
 C--:              .true.= exponential CO2 absorbtivity increase)
+C--:   LTXTO  = Flag for output in .txt format in addition to .grd

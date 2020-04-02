@@ -8,7 +8,7 @@ C--             IMODE > 0 write daily-means and reset arrays to 0
 C--   Modified common blocks : TMSAVE 
 C--
 C--IO h atparam.h, atparam1.h
-C--IO h par_tmean.h, com_tmean.h, com_tsteps.h
+C--IO h par_tmean.h, com_tmean.h, com_tsteps.h, com_lflags.h
 C--IO w write daily mean and reset arrays to unit 17
 C     Resolution parameters
 
@@ -23,6 +23,9 @@ C     Post-processing arrays (time means)
 
 C     Time stepping constants
       include "com_tsteps.h"
+
+C     Logical flags
+      include "com_lflags.h"
 
       real*4  R4OUT(ngp)
 
@@ -60,17 +63,17 @@ C--   2. Write daily-mean output file
       do n=1,nout_d1
         R4OUT(:) = SAVE2D_D1(:,n)
         write (17) R4OUT
-CSEBv
-        write (97,1000) R4OUT
-CSEB^
+        if (LTXTO) then
+          write (97,1000) R4OUT
+        endif
       enddo
   
       do n=1,nout_d2
         R4OUT(:) = SAVE2D_D2(:,n)
         write (17) R4OUT
-CSEBv
-        write (97,1000) R4OUT
-CSEB^
+        if (LTXTO) then
+          write (97,1000) R4OUT
+        endif
 
       enddo
 
@@ -88,9 +91,7 @@ C--   3. Reset arrays to zero for the next daily-mean
 
 C--
       if (iitest.eq.1) print *, 'end of DMOUT'
-CSEBv
  1000 FORMAT(8E10.3)
-CSEB^
 
       RETURN
       END

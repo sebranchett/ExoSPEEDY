@@ -8,7 +8,7 @@ C--             IMODE > 0 write time-means and reset arrays to 0
 C--   Modified common blocks : TMSAVE 
 C--
 C--IO h atparam.h, atparam1.h
-C--IO h planetparam.h, com_planet.h
+C--IO h planetparam.h, com_planet.h, com_lflags.h
 C--IO h par_tmean.h, com_tmean.h, com_tsteps.h, com_physcon.h
 C--IO w write time-mean output to unit 11
 C--IO w write 2-nd order moments to unit 13
@@ -33,6 +33,9 @@ C     Time stepping constants
 
 C     Physical constants
       include "com_physcon.h"
+
+C     Logical flags
+            include "com_lflags.h"
 
 C     Fields used to compute omega, psi and chi
       complex VORSP(mx,nx), DIVSP(mx,nx), PSISP(mx,nx), CHISP(mx,nx)
@@ -106,26 +109,26 @@ C--   3. Write time-mean output file including 3-d and 2-d fields
         do k=kx,1,-1
           R4OUT(:) = SAVE3D(:,k,n)
           write (11) R4OUT
-CSEBv
-          write (91,1000) R4OUT
-CSEB^
+          if (LTXTO) then
+            write (91,1000) R4OUT
+           endif
         enddo
       enddo
 
       do n=1,ns2d_1
         R4OUT(:) = SAVE2D_1(:,n)
         write (11) R4OUT
-CSEBv
-        write (91,1000) R4OUT
-CSEB^
+        if (LTXTO) then
+          write (91,1000) R4OUT
+        endif
       enddo
   
       do n=1,ns2d_2
         R4OUT(:) = SAVE2D_2(:,n)
         write (11) R4OUT
-CSEBv
-        write (91,1000) R4OUT
-CSEB^
+        if (LTXTO) then
+          write (91,1000) R4OUT
+        endif
       enddo
 
 C     ----------------------------------------------------------------
@@ -151,9 +154,9 @@ C--   5. Write 2-nd order moments
           do k=kx,1,-1
             R4OUT(:) = SAVE3D(:,k,n)
             write (13) R4OUT
-CSEBv
-            write (93,1000) R4OUT
-CSEB^
+            if (LTXTO) then
+              write (93,1000) R4OUT
+            endif
           enddo
         enddo
 
@@ -169,9 +172,9 @@ C--   6. Write diabatic forcing fields (in degK/day)
           do k=kx,1,-1
             R4OUT(:) = SAVE3D(:,k,n)*REAL(SECSDY)
             write (15) R4OUT
-CSEBv
-            write (95,1000) R4OUT
-CSEB^
+            if (LTXTO) then
+              write (95,1000) R4OUT
+            endif
           enddo
         enddo
 
@@ -200,9 +203,7 @@ cfk
 
 C--
       if (iitest.eq.1) print *, 'end of TMOUT'
-CSEBv
  1000 FORMAT(8E10.3)
-CSEB^
 
       RETURN
       END
