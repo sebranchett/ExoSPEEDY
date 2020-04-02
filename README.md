@@ -32,7 +32,7 @@ The standard version of Speedy has a vertical slab ocean model, whereby the wate
 These changes were made by Frank Selten of the KNMI (www.knmi.nl) for a lecture series ‘Water in the Atmosphere’, in a collaboration with Pier Sibesma and Stephan de Roode from the Delft University of Technology (www.tudelft.nl).
 
 
-To use this model, copy the content of the ‘ocean_modle’ folder to the ‘update’ folder before running a calculation. The run_exp.s script will then use the contents of the ‘update’ folder for run.
+To use this model, copy the content of the ‘ocean_modle’ folder to the ‘update’ folder before running a calculation. The run_exp.s script will then use the contents of the ‘update’ folder for the run.
 
 
 These ocean model changes may be used freely and are provided ‘as is’, without warranty of any kind.
