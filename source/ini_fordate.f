@@ -144,7 +144,7 @@ c     &               +FMASK_S(i,j)*SSTCL_OB(ij)
 C--   Aux. routine GAMLAT : compute reference lapse rate 
 C--                         as a function of latitude and date
 C--IO h atparam.h, atparam1.h, com_dyncon0.h, com_physcon.h
-C--IO s 1000. ?
+C--IO sx 1000. conversion from km to meters
 
       include "atparam.h"
       include "atparam1.h"
