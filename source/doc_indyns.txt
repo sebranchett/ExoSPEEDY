@@ -11,3 +11,8 @@ C--:   THDS   = Max damping time (in seconds) for extra diffusion (del^2)
 C--:            in the stratosphere 
 C--:   TDRS   = Damping time (in seconds) for drag on zonal-mean wind
 C--:            in the stratosphere 
+
+C--:   ROB    = Damping factor in Robert time filter
+C--:   WIL    = Parameter of Williams filter
+C--:   ALPH   = Step for gravity wave terms
+C--:            0 - forward, 1 - backward, 0.5 - centered

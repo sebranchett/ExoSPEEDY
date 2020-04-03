@@ -16,8 +16,8 @@ C--IO h cls_indyns.h
 C--IO h planetparam.h, com_planet.h
 C--IO sx 86400. = seconds in a day?
 C--IO sx 3600. = seconds in an hour?
-C--IO s Robert filter parameter = 0.05
-C--IO s Williams filter parameter = 0.53
+C--IO sx Robert filter parameter = 0.05
+C--IO sx Williams filter parameter = 0.53
 C--IO sx REARTH = 6.371E+6
 C--IO sx OMEGA  = 7.292E-05
 C--IO sx GRAV   = 9.81
@@ -44,19 +44,7 @@ C--   1. Definition of constants
       DELT=REAL(SECSDY)/NSTEPS
       DELT2=2.*DELT
 
-c     ROB = Robert filter parameter
-      ROB  = 0.05
-
-c     WIL = Williams filter parameter
-c      WIL = 1.0
-      WIL = 0.53
-
-c     ALPH = 0 ---- forward step for gravity wave terms
-c     ALPH = 1 ---- backward implicit -----------------
-c     ALPH = 0.5 -- centered implicit -----------------
-      ALPH = 0.5 
-
-C     1.2 Physical constants required by the dynamical core
+C     1.2 Reference physical constants required by the dynamical core
 
       GRAV   = GRAVIT
 
