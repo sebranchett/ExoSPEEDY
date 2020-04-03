@@ -9,7 +9,6 @@ C     ocean mixed layer depth: d + (d0-d)*(cos_lat)^3
       dept0_ml = 40.               ! Minimum depth (tropics)
 
 C     sea-ice depth : d + (d0-d)*(cos_lat)^2
-c      depth_ice = 1.8
       depth_ice = 2.5              ! High-latitude depth
       dept0_ice = 1.5              ! Minimum depth 
 
@@ -17,7 +16,6 @@ C     Dissipation time (days) for sea-surface temp. anomalies
       tdsst  = 90.
 
 C     Dissipation time (days) for sea-ice temp. anomalies
-c      tdice = 20.
       tdice = 30.
 
 C     Heat flux coefficient at sea/ice interface [(W/m^2)/deg]

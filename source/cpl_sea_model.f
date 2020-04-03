@@ -9,13 +9,13 @@ C--   Initialized common blocks: SEA_MC
 C--	
 C--IO h atparam.h, com_cplcon_sea.h, cls_insea.h
 C--IO h planetparam.h, com_planet.h
-C--IO s depth_ml for high-latitutde depth, dept0_ml for minimum depth
-C--IO s depth_ice for high-latitude depth, dept0_ice for minimum depth
-C--IO s tdsst for sea-surface dissipation, tdice for sea-ice dissipation
-C--IO s beta for heat flux coefficient
-C--IO s l_globe for global domain logical
-C--IO s l_northe, l_natlan, l_npacif for regional domain logicals
-C--IO s l_tropic, l_indian for regional domain logicals
+C--IO sx depth_ml for high-latitutde depth, dept0_ml for minimum depth
+C--IO sx depth_ice for high-latitude depth, dept0_ice for minimum depth
+C--IO sx tdsst for sea-surface dissipation, tdice for sea-ice dissipation
+C--IO sx beta for heat flux coefficient
+C--IO sx l_globe for global domain logical
+C--IO sx l_northe, l_natlan, l_npacif for regional domain logicals
+C--IO sx l_tropic, l_indian for regional domain logicals
 C--IO sx heat capacity of mixed-l. = 4.18e+6 used for hcaps
 C--IO sx heat capacity of sea-ice = 1.93e+6 used for hcapi
 C--IO sx 86400 for reciprocal heat capacities = seconds in a day?
@@ -44,40 +44,6 @@ C     Auxiliary variables
 C--  
 C--   1. Set geographical domain, heat capacities and dissipation times
 C--      for sea (mixed layer) and sea-ice 
-
-C     Model parameters (default values)
-
-C     ocean mixed layer depth: d + (d0-d)*(cos_lat)^3
-      depth_ml = 60.               ! High-latitude depth
-      dept0_ml = 40.               ! Minimum depth (tropics)
-
-C     sea-ice depth : d + (d0-d)*(cos_lat)^2
-      depth_ice = 2.5              ! High-latitude depth
-      dept0_ice = 1.5              ! Minimum depth 
-
-C     Dissipation time (days) for sea-surface temp. anomalies
-      tdsst  = 90.
-
-C     Dissipation time (days) for sea-ice temp. anomalies
-      tdice = 30.
-
-C     Heat flux coefficient at sea/ice interface [(W/m^2)/deg]
-      beta = 1.
-
-C     Minimum fraction of sea for the definition of anomalies
-      fseamin = 1./3.
-
-C     Geographical domain
-C     note : more than one regional domain may be set .true.
-
-      l_globe  =  .true.         ! global domain
-      l_northe = .false.         ! Northern hem. oceans (lat > 20N)
-      l_natlan = .false.         ! N. Atlantic (lat 20-80N, lon 100W-45E)
-      l_npacif = .false.         ! N. Pacific  (lat 20-80N, lon 100E-100W)
-      l_tropic = .false.         ! Tropics (lat 30S-30N)
-      l_indian = .false.         ! Indian Ocean (lat 30S-30N, lon 30-120E)
-
-C     Reset model parameters
 
       include "cls_insea.h"
 

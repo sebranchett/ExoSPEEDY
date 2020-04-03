@@ -1,7 +1,7 @@
 
       SUBROUTINE XS_RDF (TT1,TT2,IVM)
 C--
-c--   SUBROUTINE XS_RDF (TT1,TT2,IVM)
+C--   SUBROUTINE XS_RDF (TT1,TT2,IVM)
 C--
 C--   Purpose: compute zonal-mean cross-sec. of random diabatic forcing
 C--   Input: TT1, TT2 = diabatic heating fields
@@ -66,7 +66,7 @@ C--   2. Perform smoothing in latitude
 
       SUBROUTINE SETRDF (TT_RDF)
 C--
-c--   SUBROUTINE SETRDF (TT_RDF)
+C--   SUBROUTINE SETRDF (TT_RDF)
 C--
 C--   Purpose: compute 3-D pattern of random diabatic forcing
 C--   Output: TT_RDF = random diabatic forcing
