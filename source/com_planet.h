@@ -29,6 +29,11 @@ C--:   GRMAX  = Eddy Kinetic energy growth rate maximum
 C--:   HCAPSO = Heat capacity of soil per m^2
 C--:   HCAPIC = Heat capacity of ice per m^2
 C--:   HCAPSE = Heat capacity of sea (mixed layer) per m^2
+C--:   SSTFR  = Freezing point of 'water' (K) in cpl_sea(_model).f, ppo_dmflux
+C--:   FRWTR1 = Freezing point of 'water' (K) in ini_inbcon.f
+C--:   FRWTR2 = Freezing point of 'water' (K) in phy_convmf.f, phy_lscond.f
+C--:   FRWTR3 = Freezing point of 'water' (K) in phy_shtorh
 
       COMMON /PLNTPH/ GRAVIT, REARTH, OMEGA, AKAP, RGAS, ECC, OBLIQ,
-     $                OMDEG, OBLIQ2, GRMAX, HCAPSO, HCAPIC, HCAPSE
+     $                OMDEG, OBLIQ2, GRMAX, HCAPSO, HCAPIC, HCAPSE,
+     $                SSTFR, FRWTR1, FRWTR2, FRWTR3

@@ -10,13 +10,16 @@ C--               > 0 to increment arrays with current flux values
 C--IO h atparam.h, atparam1.h, par_tmean.h, com_tsteps.h
 C--IO h com_surfcon.h, com_physcon.h, com_physvar.h, com_radcon.h
 C--IO h com_flx_land.h, com_flx_sea.h, com_var_sea.h, com_tmean.h
-C--IO s 273.2-1.8 - freezing point in degrees Kelvin
+C--IO h planetparam.h, com_planet.h
+C--IO sx 273.2-1.8 - freezing point in degrees Kelvin
 C--IO s 86.400 - parameter for surface water budget ?
 
       include "atparam.h"
       include "atparam1.h"
+      include "planetparam.h"
 
 C     Parameters for post-processing arrays
+      include "com_planet.h"
       include "par_tmean.h"
 
       include "com_tsteps.h"
@@ -73,9 +76,6 @@ C       by subroutines TMOUT and DMOUT after write-up
       rstep1 = rsteps*0.001
       rstep2 = rsteps*alhc
       rst = real(nsteps)
-
-C     SST at freezing point
-      sstfr  = 273.2-1.8
 
       sstfr4 = sstfr**4
       esbc   = emisfc*sbc

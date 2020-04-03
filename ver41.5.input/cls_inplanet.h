@@ -57,3 +57,12 @@ C     Heat capacity of ice per m^2
       HCAPIC = 1.93e+6
 C     Heat capacity of sea (mixed layer) per m^2
       HCAPSE = 4.18e+6
+
+C     SSTFR  = Sea surface freezing temperature (K)
+C              in cpl_sea(_model).f, ppo_dmflux
+C     FRWTR1 = Freezing point of 'water' (K) in ini_inbcon.f
+C     FRWTR2 = Freezing point of 'water' (K) in phy_convmf.f, phy_lscond.f
+C     FRWTR3 = Freezing point of 'water' (K) in phy_shtorh
+      SSTFR  = 273.2-1.8
+      FRWTR1 = 273.
+      FRWTR2 = 273.16

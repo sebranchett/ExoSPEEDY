@@ -84,15 +84,7 @@ C            grid-point-storm instability
           IF (DQA.LT.0.0) THEN
             ITOP(J)    = MIN(K,ITOP(J))
             DQLSC(J,K) = DQA*RTLSC
-cfk#if !defined(KNMI)
             DTLSC(J,K) = TFACT*MIN(-DQLSC(J,K),DQMAX*PSA2(J))
-cfk#else
-cfk            IF (TS(J).GT.273.15) THEN
-cfk              DTLSC(J,K) = TFACT*MIN(-DQLSC(J,K),DQMAX*PSA2(J))
-cfk            ELSE
-cfk              DTLSC(J,K) = TFACTS*MIN(-DQLSC(J,K),DQMAX*PSA2(J))
-cfk            ENDIF
-cfk#endif
           ELSE
             DQLSC(J,K) = 0.
             DTLSC(J,K) = 0.
@@ -107,11 +99,6 @@ C--   3. Large-scale precipitation
         PFACT = DSIG(K)*PRG
         DO J=1,NGP
           PRECLS(J) = PRECLS(J)-PFACT*DQLSC(J,K)
-cfk#if defined(KNMI)
-cfk          IF (TS(J).LT.273.15) THEN
-cfk             SNOWLS(J) = SNOWLS(J)-PFACT*DQLSC(J,K)
-cfk          ENDIF
-cfk#endif
         ENDDO
       ENDDO
 

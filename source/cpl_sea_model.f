@@ -138,13 +138,16 @@ C--   SUBROUTINE SEA_MODEL
 C--
 C--   Purpose : Integrate slab ocean and sea-ice models for one day
 C--IO h atparam.h, com_cplcon_sea.h, com_cplvar_sea.h
-C--IO s SST at freezing point = 273.2-1.8
+C--IO h planetparam.h, com_planet.h
+C--IO sx SST at freezing point = 273.2-1.8
 C--IO s anom0 = 20. for non-linear damping coefficient
 
       include "atparam.h"
+      include "planetparam.h"
 
 c      real vsea_input(nlon,nlat,8), vsea_output(nlon,nlat,3)
 
+      include "com_planet.h"
       include "com_cplcon_sea.h"
 
       include "com_cplvar_sea.h"
@@ -185,8 +188,6 @@ C     Auxiliary variables
       real hflux(nlon,nlat)   ! net sfc. heat flux
       real tanom(nlon,nlat)   ! sfc. temperature anomaly
       real  cdis(nlon,nlat)   ! dissipation ceofficient
-
-      sstfr = 273.2-1.8       ! SST at freezing point
 
 c      beta = 1.               ! heat flux coef. at sea-ice bottom
 C--

@@ -83,15 +83,7 @@ cfk#endif
 C     Saturation moist static energy
       DO K=2,NLEV
         DO J=1,NGP
-cfk#if !defined(KNMI)
           MSS(J,K)=SE(J,K)+ALHC*QSAT(J,K)
-cfk#else
-cfk          IF (TS(J).GT.273.15) THEN
-cfk            MSS(J,K)=SE(J,K)+ALHC*QSAT(J,K)
-cfk          ELSE
-cfk            MSS(J,K)=SE(J,K)+ALHS*QSAT(J,K)
-cfk          ENDIF
-cfk#endif
         ENDDO
       ENDDO
 
@@ -253,20 +245,6 @@ cfk#if !defined(KNMI)
 C       Net flux of dry static energy and moisture
         DFSE(J,K)=FUS-FDS+ALHC*PRECNV(J)
         DFQA(J,K)=FUQ-FDQ-PRECNV(J)
-cfk#else
-cfk        IF (TS(J).GT.273.15) THEN
-cfk           PRECNV(J)=MAX(FUQ-FMASS*QSATB,0.0)
-cfkC          Net flux of dry static energy and moisture
-cfk           DFSE(J,K)=FUS-FDS+ALHC*PRECNV(J)
-cfk           DFQA(J,K)=FUQ-FDQ-PRECNV(J)
-cfk        ELSE
-cfk           SNOWCV(J)=MAX(FUQ-FMASS*QSATB,0.0)
-cfk           PRECNV(J)=SNOWCV(J)
-cfkC          Net flux of dry static energy and moisture
-cfk           DFSE(J,K)=FUS-FDS+ALHS*SNOWCV(J)
-cfk           DFQA(J,K)=FUQ-FDQ-SNOWCV(J)
-cfk        ENDIF
-cfk#endif
 
  300  CONTINUE
 

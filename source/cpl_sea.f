@@ -50,7 +50,7 @@ C--
 C--IO h atparam.h, com_date.h, com_cpl_flags.h, com_cli_sea.h
 C--IO h com_var_sea.h, com_flx_sea.h, com_cplvar_sea.h
 C--IO h planetparam.h, com_planet.h
-C--IO s sstfr for earth temperature
+C--IO sx sstfr for earth temperature
       include "atparam.h"
       include "planetparam.h"
 
@@ -92,9 +92,6 @@ C     Ocean model climatological SST
       endif
 
 C     Adjust climatological fields over sea ice
-
-c     SST at freezing point
-      sstfr = 273.2-1.8
 
       do j=1,ngp
 
@@ -241,15 +238,18 @@ C--   Input :   IMODE = 0 : read model variables from a restart file
 C--                   = 1 : write model variables  to a restart file
 C-- 
 C--IO h atparam.h, com_cpl_flags.h, com_var_sea.h
+C--UI h planetparam.h, com_planet.h
 C--IO r SST, sea ice temperature and sea ice fraction from unit (3)
-C--IO s sstfr for earth temperature
+C--IO sx sstfr for earth temperature
 C--IO w write sst_om,  sea/ice model variables, to unit (10)
 C--IO w write sst_c, atmospheric model fields, to unit (10)
 C--IO w sice_om, sea ice fraction, tice_om, sea ice temperature to unit (10)
 C--IO w sice_am, sea ice fraction, tice_am, sea ice temperature to unit (10)
 
       include "atparam.h"
+      include "planetparam.h"
 
+      include "com_planet.h"
       include "com_cpl_flags.h"
 
       include "com_var_sea.h"
@@ -266,8 +266,6 @@ C--IO w sice_am, sea ice fraction, tice_am, sea ice temperature to unit (10)
 
 C        write sea/ice model variables from coupled runs,
 C        otherwise write fields used by atmospheric model
-
-         sstfr = 273.2-1.8
 
          if (icsea.gt.0) then
             write (10) sst_om(:) 
