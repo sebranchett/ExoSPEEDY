@@ -9,4 +9,4 @@ C--IO planet parameters and variable type declarations
       REAL        GRAVIT, REARTH, OMEGA, AKAP, RGAS, ECC, OBLIQ
       REAL        OMDEG, OBLIQ2, GRMAX, HCAPSO, HCAPIC, HCAPSE
       REAL        FRWATR, FRWTR1, FRWTR2, FRWTR3, TGRVWV, SDEP1
-      INTEGER     IDEP2
+      INTEGER     IDEP2, NPOWHD

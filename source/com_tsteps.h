@@ -35,6 +35,5 @@ C--    DELT2  = 2 * time step in seconds
 C--    ROB    = Damping factor in Robert time filter
 C--    WIL    = Parameter of Williams filter
 C--    ALPH   = Coefficient for semi-implicit computations
-C--    NPOWHD = Power of Laplacian in horizontal diffusion
 
       COMMON /RSTEPS/ DELT, DELT2, ROB, WIL, ALPH

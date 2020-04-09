@@ -23,7 +23,7 @@ C--IO sx OMEGA  = 7.292E-05
 C--IO sx GRAV   = 9.81
 C--IO sx AKAP   = 2./7.
 C--IO sx RGAS   = AKAP*1004.
-C--IO s Power of Laplacian in horizontal diffusion = NPOWHD = 4
+C--IO sx Power of Laplacian in horizontal diffusion = NPOWHD = 4
 
       include "atparam.h"
       include "atparam1.h"
@@ -52,9 +52,6 @@ C     1.3 Reference vertical profiles of temperature and humidity
 C         and horizontal diffusion constants
 
       include "cls_indyns.h"
-
-c     Power of Laplacian in horizontal diffusion
-      NPOWHD = 4
 
 C--   2. Definition of model levels  
 
