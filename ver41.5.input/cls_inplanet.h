@@ -66,6 +66,7 @@ C     FRWTR3 = Freezing point of 'water' (K) in phy_shtorh
 C     TGRVWV = Temperature used for implicit gravity wave computation
 C     TTROP  = tropos:  T = 288 degK at z = 0, constant lapse rate
 C     TSTRAT = stratos: T = 216 degK, lapse rate = 0
+C     PREF   = Reference pressure for temperature profile (hPa) at z = 0
 C     SDEP1  = First soil depth for computation of soil water availability
 C     IDEP2  = 2nd soil depth factor for computation soil water availability
 C     NPOWHD = Power of Laplacian in horizontal diffusion
@@ -77,6 +78,7 @@ C     PLEV   = Standard prseeure levels for post-proc.
       TGRVWV = 288.
       TTROP  = 288.
       TSTRAT = 216.
+      PREF   = 1013.
       SDEP1  = 70.
       IDEP2  = 3
       NPOWHD = 4

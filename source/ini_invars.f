@@ -118,7 +118,7 @@ C       Temperature at tropospheric levels
 C       2.3 Set log(ps) consistent with temperature profile
 C           p_ref = 1013 hPa at z = 0   
 
-        RLOG0=LOG(1.013)
+        RLOG0=LOG(PREF/1000.)
         DO J=1,IL
          DO I=1,IX
            SURFG(I,J)=RLOG0+RGAMR*LOG(1.-GAM2*PHIS0(I,J))
