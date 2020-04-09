@@ -7,7 +7,7 @@ C--   NS2D_D2: no. of 2-d daily-mean fields, incremented every step (fluxes)
 C--   NS3D1  : no. of 3-d time-mean model variables
 C--   NS3D2  : no. of 3-d time-mean variances and covariances
 C--   NS3D3  : no. of 3-d time-mean diabatic heating fields
-C--IO s Post-processing and output parameters (time-mean and variance fields) 
+C--IO sx Post-processing and output parameters (time-mean and variance fields)
 
       PARAMETER ( NS2D_1=18, NS2D_2=14, NS2D_D1=8, NS2D_D2=7,
      &            NS3D1=9, NS3D2=6, NS3D3=5 )

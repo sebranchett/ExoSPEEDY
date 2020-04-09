@@ -106,7 +106,7 @@ C--   Purpose : Integrate slab ocean and sea-ice models for one day
 C--IO h atparam.h, com_cplcon_sea.h, com_cplvar_sea.h
 C--IO h planetparam.h, com_planet.h
 C--IO sx SST at freezing point = 273.2-1.8
-C--IO s anom0 = 20. for non-linear damping coefficient
+C--IO sx anom0 = 20. for non-linear damping coefficient - ok SEB
 
       include "atparam.h"
       include "planetparam.h"
@@ -206,7 +206,7 @@ C--
 C--   Purpose : Definition of ocean domains
 C--	
 C--IO h atparam.h
-C--IO s lat/lon masks set dependent on earth's sea domains
+C--IO sx lat/lon masks set dependent on earth's sea domains
 
       include "atparam.h"
 

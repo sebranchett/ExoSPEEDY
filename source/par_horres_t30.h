@@ -1,4 +1,4 @@
-C--IO s input data parameters for t30 run
+C--IO sx input data parameters for t30 run
       PARAMETER (ISC=1)
 
       PARAMETER ( NTRUN=30, MTRUN=30, IX=96, IY=24 )   
