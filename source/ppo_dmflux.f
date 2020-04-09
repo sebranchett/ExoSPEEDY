@@ -12,7 +12,7 @@ C--IO h com_surfcon.h, com_physcon.h, com_physvar.h, com_radcon.h
 C--IO h com_flx_land.h, com_flx_sea.h, com_var_sea.h, com_tmean.h
 C--IO h planetparam.h, com_planet.h
 C--IO sx 273.2-1.8 - freezing point in degrees Kelvin
-C--IO s 86.400 - parameter for surface water budget ?
+C--IO sx 86.400 - seconds in a day divided by 1000 (unit conversion)
 
       include "atparam.h"
       include "atparam1.h"
@@ -120,8 +120,8 @@ c     multiply net heat fluxes by land or sea fractions
       hfluxn(:,2) = hfluxn(:,2)*(1.-fland(:))
 
 c     surface water budget (in mm/day)
-      save2d_d2(:,1) = save2d_d2(:,1) + prec(:)  *86.400
-      save2d_d2(:,2) = save2d_d2(:,2) + evap(:,3)*86.400
+      save2d_d2(:,1) = save2d_d2(:,1) + prec(:)  *SECSDY/1000.
+      save2d_d2(:,2) = save2d_d2(:,2) + evap(:,3)*SECSDY/1000.
 
 c     surface momentum budget 
       save2d_d2(:,3) = save2d_d2(:,3) - ustr(:,3)
@@ -137,9 +137,9 @@ c     surface energy budget
 C--   4.2 Store fluxes for time-mean output
 
 c     surface water budget (in mm/day)
-      save2d_2(:,1) = save2d_2(:,1) + precls(:)*86.400
-      save2d_2(:,2) = save2d_2(:,2) + precnv(:)*86.400
-      save2d_2(:,3) = save2d_2(:,3) + evap(:,3)*86.400
+      save2d_2(:,1) = save2d_2(:,1) + precls(:)*SECSDY/1000.
+      save2d_2(:,2) = save2d_2(:,2) + precnv(:)*SECSDY/1000.
+      save2d_2(:,3) = save2d_2(:,3) + evap(:,3)*SECSDY/1000.
 
 c     surface momentum budget 
       save2d_2(:,4) = save2d_2(:,4) - ustr(:,3)

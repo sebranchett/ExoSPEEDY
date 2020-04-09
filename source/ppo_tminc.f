@@ -10,17 +10,20 @@ C--IO h atparam.h, atparam1.h, par_tmean.h, com_tmean.h
 C--IO h com_physcon.h, com_physvar.h, com_cli_sea.h, com_cli_land.h
 C--IO h com_var_sea.h, com_var_land.h, com_radcon.h, com_surfcon.h
 C--IO h com_lflags.h
-C--IO h planetparam.h
-C--IO s daily-mean upper-air fields, 3, 5 and 7?
-C--IO s gam0 = 0.006/gg
+C--IO h planetparam.h, com_planet.h
+C--IO sx daily-mean upper-air fields, 3, 5 and 7? Max levels from par_verres.h
+C--IO sx gam0 = 0.006/gg - -0.006 is lapse rate for dry air at sea level (K/m)
 C--IO s mean-sea-level pressure uses 255 and 295 (degrees Kelvin?)
-C--IO s reference temperature lapse rate = wref = 0.7
+C--IO sx wref = 0.7 reference lapse rate to correct temp. exptrap - ppo_tminc.f
+C--   Read this: https://en.wikipedia.org/wiki/Barometric_formula
+C--   for 7 levels and first barometric formula
 
 C     Resolution parameters
 
       include "atparam.h"
       include "atparam1.h"
       include "planetparam.h"
+      include "com_planet.h"
 C
 C     Parameters for post-processing arrays
       include "par_tmean.h"
@@ -68,7 +71,7 @@ C     lower tropos. u, v, q :
 
       rg    = 1./gg
       rdr2  = 0.5*rd
-      gam0  = 0.006*rg
+      gam0  = -1.*BARLPS*rg
       rgam  = rd*gam0
       rrgam = 1./rgam
 
@@ -111,8 +114,6 @@ c     land and sea surface temperatures
       call ADD1F   (SAVE2D_1,ST0,ngp,n0,1)
       call MASKOUT (SST_AM,ST0,BMASK_S,ngp)
       call ADD1F   (SAVE2D_1,ST0,ngp,n0,1)
-c     ocean model SST
-c      call MASKOUT (SST_OM,ST0,BMASK_S,ngp)
 c     ocean model SST + T_ice
       call MASKOUT (SSTI_OM,ST0,BMASK_S,ngp)
       call ADD1F   (SAVE2D_1,ST0,ngp,n0,1)
@@ -170,8 +171,6 @@ c       Temperature (extrapolated below the lowest level when W0(j)<0)
 
 c       Remove extrapolation of temperature inversions 
 c       and correct extrap. values using a reference lapse rate
-
-        wref = 0.7
 
         do j=1,ngp
           if (ZOUT(j).lt.zmin) then
@@ -265,7 +264,7 @@ C       2.3.1 Add 3d upper-air fields to time-mean arrays
          enddo
         enddo
 
-C       2.3.2 Add upper-air fields fields at selected levels 
+C       2.3.2 Add upper-air fields at selected levels 
 C             to daily-means arrays
 
         if (k.eq.kmid) then
