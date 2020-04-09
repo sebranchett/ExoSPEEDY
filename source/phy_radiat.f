@@ -33,7 +33,6 @@ C     Constants + functions of sigma and latitude
 C     Radiation constants
       include "com_radcon.h"
 
-cfk      real topsr(nlat)
       real topsr(nlon,nlat)
 
       real*4  R4OUT(ngp)
@@ -59,9 +58,7 @@ C     solar radiation at the top
       call solar (tyear,rday,4.*solc,nlat,nlon,clat,slat,
      &            topsr)
 
-cfk
 cfk FSOL longitude dependent
-cfk   
       do j=1, ngp
          jlat=INT(j/nlon+1)
          j0=j-nlon*(jlat-1)     
@@ -75,7 +72,6 @@ cfk
         FLAT2=1.5*SLAT(J)**2-0.5
 
 C       solar radiation at the top
-cfk        FSOL(J0)=topsr(j)
 
 C       ozone depth in upper and lower stratosphere 
         OZUPP(J0)=0.5*EPSSW
@@ -92,7 +88,6 @@ C       Polar night cooling in the stratosphere
         STRATZ(J0)=MAX(FS0-FSOL(J0),0.)
 
         DO I=1,NLON-1
-cfk          FSOL  (I+J0)=FSOL  (J0)
           OZONE (I+J0)=OZONE (J0)
           OZUPP (I+J0)=OZUPP (J0)
           ZENIT (I+J0)=ZENIT (J0)
@@ -100,14 +95,6 @@ cfk          FSOL  (I+J0)=FSOL  (J0)
         ENDDO
 
       ENDDO
-cfk
-cfk     write FSOL
-cfk 
-cfk        open(90,file='myfile.dat',status='unknown',action='write',
-cfk     &       form='unformatted',position="append")
-cfk        R4OUT(:) = fsol(:)
-cfk        write (90) R4OUT
-Cfk
       RETURN
       END
 
@@ -200,7 +187,6 @@ c both effects together
 
       do i=1,nlon
        do j=1,nlat
-c         rkosha1=-tanfi(i)*tandl
          rkosha1=-(slat(j)/clat(j))*tandl
          rkosha1=sign(min(abs(rkosha1),1.),rkosha1)
          ha1=acos(rkosha1)
@@ -218,71 +204,12 @@ cfk          rkosz=slat(j)*sindl*(ha1 - tan(ha1))/(2.*asin(1.))
 cfk   daily variing formulae
 cfk
           rkosz =  max(cmu,0.)
-c         if (ha1 .ne. 0.) then
-c            kosz(j) = rkosz*2.*asin(1.)/ha1
-c         else
-c            kosz(j) = rkosz
-c         endif
-c         dayfr(j) = ha1/(2.*asin(1.))
          q0(i,j)=rkosz*solarc*solard
        enddo
       enddo
 
       return
       end
-
-
-
-cmbp_s
-
-cfk      subroutine solar (tyear,csol,nlat,clat,slat,
-cfk     &                  topsr)
-cfk
-C--   Average daily flux of solar radiation, from Hartmann (1994)
-cfk
-cfk      real clat(nlat), slat(nlat),
-cfk     &     topsr(nlat)
-
-C--   1. Compute declination angle and Earth-Sun distance factor
-
-cfk      pigr  = 2.*asin(1.)
-cfk      alpha = 2.*pigr*tyear
-
-cfk      ca1 = cos(alpha)
-cfk      sa1 = sin(alpha)
-cfk      ca2 = ca1*ca1-sa1*sa1
-cfk      sa2 = 2.*sa1*ca1
-cfk      ca3 = ca1*ca2-sa1*sa2
-cfk      sa3 = sa1*ca2+sa2*ca1
-
-cfk      decl = 0.006918-0.399912*ca1+0.070257*sa1
-cfk     &               -0.006758*ca2+0.000907*sa2
-cfk     &               -0.002697*ca3+0.001480*sa3
-
-cfk      fdis = 1.000110+0.034221*ca1+0.001280*sa1
-cfk     &               +0.000719*ca2+0.000077*sa2
-cfk
-cfk      cdecl = cos(decl)
-cfk      sdecl = sin(decl)
-cfk      tdecl = sdecl/cdecl
-cfk
-C--   2. Compute daily-average insolation at the atm. top
-cfk
-cfk      csolp=csol/pigr
-cfk
-cfk      do j=1,nlat
-cfk
-cfk        ch0 = min(1.,max(-1.,-tdecl*slat(j)/clat(j)))
-cfk        h0  = acos(ch0)
-cfk        sh0 = sin(h0)
-cfk
-cfk        topsr(j) = csolp*fdis*(h0*slat(j)*sdecl+sh0*clat(j)*cdecl)
-cfk
-cfk      enddo
-cfk
-C--
-cfk      return
-cfk      end
 
       SUBROUTINE CLOUD (QA,RH,PRECNV,PRECLS,IPTOP,GSE,FMASK,
      &                  ICLTOP,CLOUDC,CLSTR)
@@ -380,11 +307,6 @@ C--   3. Stratiform clouds at the top of PBL
 
       if (inew.gt.0) then
 
-c        CLSMAX  = 0.6
-c        CLSMINL = 0.15
-c        GSE_S0  = 0.25
-c        GSE_S1  = 0.40
-
         CLFACT = 1.2
         RGSE   = 1./(GSE_S1-GSE_S0)
 
@@ -465,8 +387,6 @@ C
       FBAND2 = 0.05
       FBAND1 = 1.-FBAND2
 
-c      ALBMINL=0.05
-c      ALBCLS = 0.5
 C
 C--   1.  Initialization
 
@@ -477,11 +397,9 @@ C--   1.  Initialization
       ENDDO
 
       DO J=1,NGP
-cfk-- change to ensure only ICLTOP <= NLEV used
         IF(ICLTOP(J) .LE. NLEV) THEN
           FREFL(J,ICLTOP(J))= ALBCL*CLOUDC(J)
         ENDIF
-cfk-- end change
         FREFL(J,NLEV)     = ALBCLS*CLSTR(J)
       ENDDO
 
