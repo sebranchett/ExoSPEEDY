@@ -16,3 +16,4 @@ C--IO planet parameters and variable type declarations
       INTEGER     NPLEVS
       REAL        PLEV(MAXLEV)
       REAL        ESREF, WTRAIR
+      REAL        ARMFAC, ARMC1, ARMC2, ARMT1, ARMT2

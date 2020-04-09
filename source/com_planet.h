@@ -38,7 +38,12 @@ C--:   TTROP  = tropos:  T = 288 degK at z = 0, constant lapse rate
 C--:   TSTRAT = stratos: T = 216 degK, lapse rate = 0
 C--:   PREF   = Reference pressure for temperature profile (hPa) at z = 0
 C--:   ESREF  = Reference specific humidity at surface (g/kg)
-C--:   WTRAIR = Ratio water-vapour density to dry air
+C--:   WTRAIR = Density ratio water-vapour to dry air
+C--:   ARMFAC = 6.108E-3 - August-Roche-Magnus factor humidity model
+C--:   ARMC1  = 17.269 - A-R-M constant above freezing humidity model
+C--:   ARMC2  = 21.875 - A-R-M constant below freezing humidity model
+C--:   ARMT1  = 35.86 - A-R-M temperature above freezing humidity model
+C--:   ARMT2  =  7.66 - A-R-M temperature below freezing humidity model
 C--:   SDEP1  = First soil depth for computation of soil water availability
 C--:   IDEP2  = 2nd soil depth factor for computation soil water availability
 C--:   NPOWHD = Power of Laplacian in horizontal diffusion
@@ -49,4 +54,5 @@ C--:   PLEV   = Standard prseeure levels for post-proc.
      $                OMDEG, OBLIQ2, GRMAX, HCAPSO, HCAPIC, HCAPSE,
      $                SSTFR, FRWTR1, FRWTR2, FRWTR3, TGRVWV, PLEV,
      $                TTROP, TSTRAT, PREF, ESREF, WTRAIR,
+     $                ARMFAC, ARMC1, ARMC2, ARMT1, ARMT2,
      $                SDEP1, IDEP2, NPOWHD, NPLEVS

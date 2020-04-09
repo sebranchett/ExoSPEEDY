@@ -18,14 +18,14 @@ C--   Output:  RH     : relative humidity         [if IMODE > 0]
 C--            QA     : specific humidity in g/kg [if IMODE < 0]
 C--        
 C--IO h planetparam.h, com_planet.h
-C--IO s E0=  6.108E-3 - constant for Qsat - ?
-C--IO s C1= 17.269 - constant for Qsat - ?
-C--IO s C2= 21.875 - constant for Qsat - ?
-C--IO s    622. - constant for Qsat - ?
-C--IO s      0.378 - constant for Qsat - ?
-C--IO sx T0=273.16 - temperature in degrees Kelvin
-C--IO s T1= 35.86 - temperature in degrees Kelvin
-C--IO s T2=  7.66 - temperature in degrees Kelvin
+C--IO sx E0=  6.108E-3 - August-Roche-Magnus factor ARMFAC
+C--IO sx C1= 17.269 - August-Roche-Magnus constant above freezing ARMC1
+C--IO sx C2= 21.875 - August-Roche-Magnus constant below freezing ARMC2
+C--IO sx 622. - ratio water vapor to dry air with unit correction
+C--IO sx 0.378 = 1-.622
+C--IO sx T0=273.16 - temperature in degrees Kelvin 0C
+C--IO sx T1= 35.86 - August-Roche-Magnus temperature above freezing ARMT1
+C--IO sx T2=  7.66 - August-Roche-Magnus temperature below freezing ARMT2
       include "planetparam.h"
       include "com_planet.h"
 
@@ -34,12 +34,12 @@ C
 C---  1. Compute Qsat (g/kg) from T (degK) and normalized pres. P (= p/1000_hPa)
 C        If SIG > 0, P = Ps * sigma, otherwise P = Ps(1) = const. 
 C
-      E0=  6.108E-3
-      C1= 17.269
-      C2= 21.875
+      E0= ARMFAC
+      C1= ARMC1
+      C2= ARMC2
       T0= FRWTR2
-      T1= 35.86
-      T2=  7.66
+      T1= ARMT1
+      T2= ARMT2
       
       DO 110 J=1,NGP
         IF (TA(J).GE.T0) THEN
@@ -49,13 +49,20 @@ C
         ENDIF
   110 CONTINUE
 C
+C     Eq. (41) of:
+C     Bolton, D. (1980) The Computation of Equivalent Potential
+C     Temperature. Monthly Weather Review, 108, 1046-1053.
+C     https://doi.org/10.1175/1520-0493(1980)108%3C1046:TCOEPT%3E2.0.CO;2
+C     see also: https://cran.r-project.org/web/packages/humidity/vignettes/
+C               humidity-measures.html
+      ONEMIN = 1. - WTRAIR
       IF (SIG.LE.0.0) THEN
         DO 120 J=1,NGP
-          QSAT(J)=622.*QSAT(J)/(PS(1)-0.378*QSAT(J))
+          QSAT(J)=1000*WTRAIR*QSAT(J)/(PS(1)-ONEMIN*QSAT(J))
   120   CONTINUE
       ELSE
         DO 130 J=1,NGP
-          QSAT(J)=622.*QSAT(J)/(SIG*PS(J)-0.378*QSAT(J))
+          QSAT(J)=1000*WTRAIR*QSAT(J)/(SIG*PS(J)-ONEMIN*QSAT(J))
   130   CONTINUE
       ENDIF
 C
