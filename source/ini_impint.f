@@ -21,7 +21,7 @@ c     the biharmonic diffusion, which is assumed always to be backwards
 c     implicit, are defined in IMPINT)
 C--IO h atparam.h, atparam1.h
 C--IO h com_dyncon0.h, com_dyncon1.h, com_dyncon2.h, com_hdifcon.h
-C--IO s 288. Constant for implicit gravity wave computation ?
+C--IO s 288. Temperature for implicit gravity wave computation
 
       include "atparam.h"
       include "atparam1.h"
@@ -52,7 +52,7 @@ c     reference atmosphere, function of sigma only
       RGAM = RGAS*GAMMA/(1000.*GRAVIT)
 
       DO 101 K=1,KX
-        TREF(K)=288.*MAX(0.2,FSG(K))**RGAM
+        TREF(K)=TGRVWV*MAX(0.2,FSG(K))**RGAM
         print *, '  Tref = ', TREF(K)
         TREF1(K)=RGAS*TREF(K)
         TREF2(K)=AKAP*TREF(K)

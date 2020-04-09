@@ -33,7 +33,8 @@ C--:   SSTFR  = Freezing point of 'water' (K) in cpl_sea(_model).f, ppo_dmflux
 C--:   FRWTR1 = Freezing point of 'water' (K) in ini_inbcon.f
 C--:   FRWTR2 = Freezing point of 'water' (K) in phy_convmf.f, phy_lscond.f
 C--:   FRWTR3 = Freezing point of 'water' (K) in phy_shtorh
+C--:   TGRVWV = Temperature used for implicit gravity wave computation
 
       COMMON /PLNTPH/ GRAVIT, REARTH, OMEGA, AKAP, RGAS, ECC, OBLIQ,
      $                OMDEG, OBLIQ2, GRMAX, HCAPSO, HCAPIC, HCAPSE,
-     $                SSTFR, FRWTR1, FRWTR2, FRWTR3
+     $                SSTFR, FRWTR1, FRWTR2, FRWTR3, TGRVWV
