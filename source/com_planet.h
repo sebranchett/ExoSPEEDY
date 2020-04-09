@@ -37,8 +37,10 @@ C--:   TGRVWV = Temperature used for implicit gravity wave computation
 C--:   SDEP1  = First soil depth for computation of soil water availability
 C--:   IDEP2  = 2nd soil depth factor for computation soil water availability
 C--:   NPOWHD = Power of Laplacian in horizontal diffusion
+C--:   NPLEVS = Number of standard prseeure levels for post-proc.
+C--:   PLEV   = Standard prseeure levels for post-proc.
 
       COMMON /PLNTPH/ GRAVIT, REARTH, OMEGA, AKAP, RGAS, ECC, OBLIQ,
      $                OMDEG, OBLIQ2, GRMAX, HCAPSO, HCAPIC, HCAPSE,
-     $                SSTFR, FRWTR1, FRWTR2, FRWTR3, TGRVWV,
-     $                SDEP1, IDEP2, NPOWHD
+     $                SSTFR, FRWTR1, FRWTR2, FRWTR3, TGRVWV, PLEV,
+     $                SDEP1, IDEP2, NPOWHD, NPLEVS

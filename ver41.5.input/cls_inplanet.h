@@ -67,6 +67,8 @@ C     TGRVWV = Temperature used for implicit gravity wave computation
 C     SDEP1  = First soil depth for computation of soil water availability
 C     IDEP2  = 2nd soil depth factor for computation soil water availability
 C     NPOWHD = Power of Laplacian in horizontal diffusion
+C     NPLEVS = Number of standard prseeure levels for post-proc.
+C     PLEV   = Standard prseeure levels for post-proc.
       SSTFR  = 273.2-1.8
       FRWTR1 = 273.
       FRWTR2 = 273.16
@@ -74,3 +76,7 @@ C     NPOWHD = Power of Laplacian in horizontal diffusion
       SDEP1  = 70.
       IDEP2  = 3
       NPOWHD = 4
+      NPLEVS = 14
+      DATA PLEV/ 0.925, 0.850, 0.775, 0.700, 0.600, 0.500, 0.400,
+     *           0.300, 0.250, 0.200, 0.150, 0.100, 0.050, 0.030,
+     *           0.0,   0.0,   0.0,   0.0,   0.0,   0.0/

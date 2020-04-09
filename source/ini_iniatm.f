@@ -136,17 +136,15 @@ C--
 C--   FUNCTION PRLEV (SIGLEV)
 C--   Purpose : select the closest standard pressure level for post-proc.
 C--   Input :   SIGLEV = sigma level
-C--IO s PLEV = standard pressure level for post-proc.
-
-      REAL PLEV(14)
-
-      DATA PLEV/ 0.925, 0.850, 0.775, 0.700, 0.600, 0.500, 0.400,  
-     *           0.300, 0.250, 0.200, 0.150, 0.100, 0.050, 0.030/
+C--IO h planetparam.h, com_planet.h
+C--IO sx PLEV = standard pressure level for post-proc.
+      include "planetparam.h"
+      include "com_planet.h"
 
       PRLEV = 1.
       DIF = 1.-SIGLEV
 
-      DO K=1,14
+      DO K=1,NPLEVS
         ADIF = ABS(PLEV(K)-SIGLEV)
         IF (ADIF.LE.DIF) THEN
           DIF = ADIF
