@@ -10,7 +10,7 @@ C--IO h atparam.h, com_tsteps.h, com_cpl_flags.h
 C--IO h com_surfcon.h, com_cli_land.h, com_cli_sea.h
 C--IO h com_planet.h
 C--IO sx 12 months in a year
-C--IO s sdep1 = 70. and idep2 = 3, soil depths?
+C--IO sx sdep1 = 70. and idep2 = 3, soil depths
 C--IO sx 273., temperature of freezing water? FRWTR1
 C--IO r read topographical fields from unit 20 - orography
 C--IO r read topographical fields from unit 20 - land-sea mask
@@ -169,8 +169,6 @@ c     read vegetation fraction (in %)
         enddo
       enddo
 
-      sdep1 = 70.
-      idep2 = 3
       sdep2 = idep2*sdep1
 
       swwil2= sdep2*swwil

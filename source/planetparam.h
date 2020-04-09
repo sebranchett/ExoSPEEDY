@@ -8,4 +8,5 @@ C--IO planet parameters and variable type declarations
       CHARACTER*4 LBLMON(MAXMON)
       REAL        GRAVIT, REARTH, OMEGA, AKAP, RGAS, ECC, OBLIQ
       REAL        OMDEG, OBLIQ2, GRMAX, HCAPSO, HCAPIC, HCAPSE
-      REAL        FRWATR, FRWTR1, FRWTR2, FRWTR3, TGRVWV
+      REAL        FRWATR, FRWTR1, FRWTR2, FRWTR3, TGRVWV, SDEP1
+      INTEGER     IDEP2

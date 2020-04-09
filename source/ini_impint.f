@@ -21,7 +21,7 @@ c     the biharmonic diffusion, which is assumed always to be backwards
 c     implicit, are defined in IMPINT)
 C--IO h atparam.h, atparam1.h
 C--IO h com_dyncon0.h, com_dyncon1.h, com_dyncon2.h, com_hdifcon.h
-C--IO s 288. Temperature for implicit gravity wave computation
+C--IO sx 288. Temperature for implicit gravity wave computation
 
       include "atparam.h"
       include "atparam1.h"
