@@ -34,6 +34,8 @@ C--:   FRWTR1 = Freezing point of 'water' (K) in ini_inbcon.f
 C--:   FRWTR2 = Freezing point of 'water' (K) in phy_convmf.f, phy_lscond.f
 C--:   FRWTR3 = Freezing point of 'water' (K) in phy_shtorh
 C--:   TGRVWV = Temperature used for implicit gravity wave computation
+C--:   TTROP  = tropos:  T = 288 degK at z = 0, constant lapse rate
+C--:   TSTRAT = stratos: T = 216 degK, lapse rate = 0
 C--:   SDEP1  = First soil depth for computation of soil water availability
 C--:   IDEP2  = 2nd soil depth factor for computation soil water availability
 C--:   NPOWHD = Power of Laplacian in horizontal diffusion
@@ -43,4 +45,5 @@ C--:   PLEV   = Standard prseeure levels for post-proc.
       COMMON /PLNTPH/ GRAVIT, REARTH, OMEGA, AKAP, RGAS, ECC, OBLIQ,
      $                OMDEG, OBLIQ2, GRMAX, HCAPSO, HCAPIC, HCAPSE,
      $                SSTFR, FRWTR1, FRWTR2, FRWTR3, TGRVWV, PLEV,
+     $                TTROP, TSTRAT,
      $                SDEP1, IDEP2, NPOWHD, NPLEVS

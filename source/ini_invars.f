@@ -14,8 +14,8 @@ C--IO h atparam.h, atparam1.h, com_date.h
 C--IO h com_tsteps.h, com_surfcon.h, com_dyncon0.h
 C--IO h com_dyncon1.h, com_dynvar.h
 C--IO h planetparam.h, com_planet.h
-C--IO s tropos:  T = 288 degK at z = 0, constant lapse rate TREF = 288.
-C--IO s stratos: T = 216 degK, lapse rate = 0 TTOP = 216.
+C--IO sx tropos:  T = 288 degK at z = 0, constant lapse rate TTROP = 288.
+C--IO sx stratos: T = 216 degK, lapse rate = 0 TSTRAT = 216.
 C--IO s p_ref = 1013 hPa at z = 0   
 C--IO s tropospheric spec. humidity in g/kg Qref = RHref * Qsat(288K, 1013hPa)
 C--IO s ESREF=17. and QREF=REFRH2*0.622*ESREF, reference at surface
@@ -85,11 +85,11 @@ C       2.2 Set reference temperature :
 C           tropos:  T = 288 degK at z = 0, constant lapse rate
 C           stratos: T = 216 degK, lapse rate = 0
 
-        TREF  = 288.
-        TTOP  = 216.
-        GAM2  = GAM1/TREF
-        RGAM  = RGAS*GAM1
-        RGAMR = 1./RGAM
+        TTROP  = 288.
+        TSTRAT = 216.
+        GAM2   = GAM1/TTROP
+        RGAM   = RGAS*GAM1
+        RGAMR  = 1./RGAM
 
 C       Surface and stratospheric air temperature
 
@@ -101,9 +101,9 @@ C       Surface and stratospheric air temperature
          ENDDO
         ENDDO
 
-        T(1,1,1,1)=CCON*TTOP
-        T(1,1,2,1)=CCON*TTOP
-        SURFS(1,1)=CCON*TREF-GAM1*PHIS(1,1)
+        T(1,1,1,1)=CCON*TSTRAT 
+        T(1,1,2,1)=CCON*TSTRAT 
+        SURFS(1,1)=CCON*TTROP-GAM1*PHIS(1,1)
 
 C       Temperature at tropospheric levels
         DO K=3,KX
