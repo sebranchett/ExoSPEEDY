@@ -41,14 +41,17 @@ C--            Q0     = near-surface sp. humidity [g/kg](2-dim)
 C--
 C--IO h atparam.h, atparam1.h
 C--IO h com_physcon.h, com_sflcon.h, com_radcon.h
-C--IO s 288. - temperature in degrees Kelvin
+C--IO h planetparam.h, com_planet.h
+C--IO sx 288. - temperature in degrees Kelvin - TTROP
 C     Resolution parameters
 
       include "atparam.h"
       include "atparam1.h"
+      include "planetparam.h"
 
 C     Physical constants + functions of sigma and latitude
 
+      include "com_planet.h"
       include "com_physcon.h"
 
 C     Surface flux constants
@@ -107,7 +110,7 @@ C     1.2 Temperature
 
       GTEMP0 = 1.-FTEMP0
       RCP = 1./CP
-      RDPHI0 =-1./(RD*288.*SIGL(NLEV))
+      RDPHI0 =-1./(RD*TTROP*SIGL(NLEV))
       NL1=NLEV-1
 
       DO J=1,NGP

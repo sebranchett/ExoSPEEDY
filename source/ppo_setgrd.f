@@ -9,7 +9,7 @@ C--         : norun = run identifier
 C--
 C--IO h com_date.h, com_tsteps.h
 C--IO h planetparam.h, com_lflags.h
-C--IO s .grd file unit numbers 11(attm), 13(atva), 15(atdf) and 17(daytm)
+C--IO sx .grd file unit numbers 11(attm), 13(atva), 15(atdf) and 17(daytm)
 
       include "planetparam.h"
       include "com_date.h"
