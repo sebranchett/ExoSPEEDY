@@ -15,3 +15,4 @@ C--IO planet parameters and variable type declarations
       PARAMETER  (MAXLEV=20)
       INTEGER     NPLEVS
       REAL        PLEV(MAXLEV)
+      REAL        ESREF, WTRAIR

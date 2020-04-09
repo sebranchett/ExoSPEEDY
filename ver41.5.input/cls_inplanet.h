@@ -72,6 +72,8 @@ C     IDEP2  = 2nd soil depth factor for computation soil water availability
 C     NPOWHD = Power of Laplacian in horizontal diffusion
 C     NPLEVS = Number of standard prseeure levels for post-proc.
 C     PLEV   = Standard prseeure levels for post-proc.
+C     ESREF  = Reference specific humidity at surface (g/kg)
+C     WTRAIR = Ratio water-vapour density to dry air
       SSTFR  = 273.2-1.8
       FRWTR1 = 273.
       FRWTR2 = 273.16
@@ -86,3 +88,5 @@ C     PLEV   = Standard prseeure levels for post-proc.
       DATA PLEV/ 0.925, 0.850, 0.775, 0.700, 0.600, 0.500, 0.400,
      *           0.300, 0.250, 0.200, 0.150, 0.100, 0.050, 0.030,
      *           0.0,   0.0,   0.0,   0.0,   0.0,   0.0/
+      ESREF  = 17.
+      WTRAIR = .622

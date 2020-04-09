@@ -18,7 +18,8 @@ C--IO sx tropos:  T = 288 degK at z = 0, constant lapse rate TTROP = 288.
 C--IO sx stratos: T = 216 degK, lapse rate = 0 TSTRAT = 216.
 C--IO sx p_ref = 1013 hPa at z = 0   
 C--IO sx tropospheric spec. humidity in g/kg Qref = RHref * Qsat(288K, 1013hPa)
-C--IO s ESREF=17. and QREF=REFRH2*0.622*ESREF, reference at surface
+C--IO sx ESREF = Reference specific humidity of 17. g/kg at surface?
+C--IO sx water-vapour density = .622 that of dry air at same press. and temp.?
       include "atparam.h"
       include "atparam1.h"
       include "planetparam.h"
@@ -129,8 +130,7 @@ C           p_ref = 1013 hPa at z = 0
 C       2.4 Set tropospheric spec. humidity in g/kg
 C           Qref = RHref * Qsat(288K, 1013hPa)
 
-        ESREF=17.
-        QREF=REFRH1*0.622*ESREF
+        QREF=REFRH1*WTRAIR*ESREF
         QEXP=HSCALE/HSHUM
         
 C       Spec. humidity at the surface 

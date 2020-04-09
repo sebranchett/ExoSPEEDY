@@ -37,6 +37,8 @@ C--:   TGRVWV = Temperature used for implicit gravity wave computation
 C--:   TTROP  = tropos:  T = 288 degK at z = 0, constant lapse rate
 C--:   TSTRAT = stratos: T = 216 degK, lapse rate = 0
 C--:   PREF   = Reference pressure for temperature profile (hPa) at z = 0
+C--:   ESREF  = Reference specific humidity at surface (g/kg)
+C--:   WTRAIR = Ratio water-vapour density to dry air
 C--:   SDEP1  = First soil depth for computation of soil water availability
 C--:   IDEP2  = 2nd soil depth factor for computation soil water availability
 C--:   NPOWHD = Power of Laplacian in horizontal diffusion
@@ -46,5 +48,5 @@ C--:   PLEV   = Standard prseeure levels for post-proc.
       COMMON /PLNTPH/ GRAVIT, REARTH, OMEGA, AKAP, RGAS, ECC, OBLIQ,
      $                OMDEG, OBLIQ2, GRMAX, HCAPSO, HCAPIC, HCAPSE,
      $                SSTFR, FRWTR1, FRWTR2, FRWTR3, TGRVWV, PLEV,
-     $                TTROP, TSTRAT, PREF,
+     $                TTROP, TSTRAT, PREF, ESREF, WTRAIR,
      $                SDEP1, IDEP2, NPOWHD, NPLEVS
