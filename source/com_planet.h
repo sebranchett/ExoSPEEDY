@@ -51,10 +51,12 @@ C--:   NPLEVS = Number of standard prseeure levels for post-proc.
 C--:   PLEV   = Standard prseeure levels for post-proc.
 C--:   BARLPS = Lapse rate for dry air at sea level (K/m)
 C--:   WREF   = Ref. lapse rate to correct temp. exptrapolation - ppo_tminc.f
+C--:   MINST  = Minimum temperature used to calculate mean-sea-level pressure
+C--:   MAXST  = Maximum temperature used to calculate mean-sea-level pressure
 
       COMMON /PLNTPH/ GRAVIT, REARTH, OMEGA, AKAP, RGAS, ECC, OBLIQ,
      $                OMDEG, OBLIQ2, GRMAX, HCAPSO, HCAPIC, HCAPSE,
      $                SSTFR, FRWTR1, FRWTR2, FRWTR3, TGRVWV, PLEV,
      $                TTROP, TSTRAT, PREF, ESREF, WTRAIR,
      $                ARMFAC, ARMC1, ARMC2, ARMT1, ARMT2, BARLPS, WREF,
-     $                SDEP1, IDEP2, NPOWHD, NPLEVS
+     $                MINST, MAXST, SDEP1, IDEP2, NPOWHD, NPLEVS

@@ -13,7 +13,7 @@ C--IO h com_lflags.h
 C--IO h planetparam.h, com_planet.h
 C--IO sx daily-mean upper-air fields, 3, 5 and 7? Max levels from par_verres.h
 C--IO sx gam0 = 0.006/gg - -0.006 is lapse rate for dry air at sea level (K/m)
-C--IO s mean-sea-level pressure uses 255 and 295 (degrees Kelvin?)
+C--IO sx mean-sea-level pressure uses 255 and 295 (degrees Kelvin?)
 C--IO sx wref = 0.7 reference lapse rate to correct temp. exptrap - ppo_tminc.f
 C--   Read this: https://en.wikipedia.org/wiki/Barometric_formula
 C--   for 7 levels and first barometric formula
@@ -87,7 +87,7 @@ C     1.1 Compute additional surface fields
 
 c     mean-sea-level pressure
       do j=1,ngp
-        tsg=0.5*(T0(j)+max(255.,min(295.,T0(j))))
+        tsg=0.5*(T0(j)+max(MINST,min(MAXST,T0(j))))
         PMSL(j)=PSG(j)*(1.+gam0*PHISG(j)/tsg)**rrgam
       enddo
 
