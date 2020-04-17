@@ -19,8 +19,9 @@ C--:  /PLNTPH/: Physical parameters associated with a planet
 C--:   GRAVIT = Acceleration due to gravity (m per s^2)
 C--:   REARTH = Radius of the planet (m)
 C--:   OMEGA  = Pressure vertical velocity (Pa/s)
-C--:   AKAP   = SEB Physical constant required by the dynamical core
-C--:   RGAS   = SEB Physical constant required by the dynamical core
+C--:   AKAP   = Poisson constant for dry air at constant pressure
+C--             (ratio of gas constant to specific heat)
+C--:   RGAS   = Dry gas constant of the atmosphere (J K^-1 kg^-1)
 C--:   ECC    = Eccentricity (radians)
 C--:   OBLIQ  = Obliquity (degrees)
 C--:   OMDEG  = Angle between Vernal Equinox and Perihelion (degrees)
