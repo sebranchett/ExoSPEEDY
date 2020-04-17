@@ -106,7 +106,7 @@ C--   Purpose : Integrate slab ocean and sea-ice models for one day
 C--IO h atparam.h, com_cplcon_sea.h, com_cplvar_sea.h
 C--IO h planetparam.h, com_planet.h
 C--IO sx SST at freezing point = 273.2-1.8
-C--IO sx anom0 = 20. for non-linear damping coefficient - ok SEB
+C--IO sx anom0 = 20. for non-linear damping coefficient
 
       include "atparam.h"
       include "planetparam.h"
@@ -183,7 +183,6 @@ C     Anomaly w.r.t final-time climatological temp.
       tanom(:,:) = tice0(:,:) - ticecl1(:,:)
 
 C     Definition of non-linear damping coefficient
-      anom0     = 20. 
       cdis(:,:) = cdice(:,:)*(anom0/(anom0+abs(tanom(:,:))))
 c     cdis(:,:) = cdice(:,:)
 
