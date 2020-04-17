@@ -238,7 +238,7 @@ C--   Input :   IMODE = 0 : read model variables from a restart file
 C--                   = 1 : write model variables  to a restart file
 C-- 
 C--IO h atparam.h, com_cpl_flags.h, com_var_sea.h
-C--UI h planetparam.h, com_planet.h
+C--IO h planetparam.h, com_planet.h
 C--IO r SST, sea ice temperature and sea ice fraction from unit (3)
 C--IO sx sstfr for earth temperature
 C--IO w write sst_om,  sea/ice model variables, to unit (10)
