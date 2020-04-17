@@ -17,7 +17,7 @@ C--IO h atparam.h, atparam1.h, com_physcon.h, com_radcon.h
 C--IO sx 365 days in a year
 C--IO sx year phase ALPHA with winter solstice 22dec.h00 as 0
 C--IO sx 23.45 - earth's obliquity, but less accurate
-C--IO s ozone depth in upper and lower stratosphere
+C--IO s ozone depth in upper and lower stratosphere approx. 50/50
 C     Resolution parameters
 C
       include "atparam.h"
@@ -45,8 +45,6 @@ c      DALPHA=ASIN(0.5)
       COZ1= 1.0*MAX(0.,COS(ALPHA-DALPHA))
       COZ2= 1.8
 C
-      AZEN=1.0
-      NZEN=2
 
       RZEN=-COS(ALPHA)*OBLIQ2*ASIN(1.)/90.
       CZEN=COS(RZEN)
@@ -65,7 +63,6 @@ cfk FSOL longitude dependent
          FSOL(j)=topsr(j0,jlat)
       enddo
 
-
       DO J=1,NLAT
 
         J0=1+NLON*(J-1)
@@ -78,7 +75,7 @@ C       ozone depth in upper and lower stratosphere
         OZONE(J0)=0.4*EPSSW*(1.0+COZ1*SLAT(J)+COZ2*FLAT2)
 
 C       zenith angle correction to (downward) absorptivity 
-        ZENIT(J0)=1.+AZEN*(1.-(CLAT(J)*CZEN+SLAT(J)*SZEN))**NZEN
+        ZENIT(J0)=1.+(1.-(CLAT(J)*CZEN+SLAT(J)*SZEN))**2
 
 C       ozone absorption in upper and lower stratosphere 
         OZUPP(J0)=FSOL(J0)*OZUPP(J0)*ZENIT(J0)
@@ -156,23 +153,30 @@ c the true longitude ala, using Berger's formulae.
 c Longitude ala loops from 0 (Vernal Equinox) to 359, ro is earth-sun
 c distance relative to the major axis, del is declination.
 c
+c see point 2) on page 2365
       ala0=0.
       beta=(1.-ecc**2.)**0.5
       fac1=(0.5*ecc+0.125*ecc**3.)*(1.+beta)*sin(ala0-omweb)
       fac2=0.25*ecc**2.*(0.5+beta)*sin(2.*(ala0-omweb))
       fac3=0.125*ecc**3.*(1./3.+beta)*sin(3.*(ala0-omweb))
       alam0=ala0-2.*(fac1-fac2+fac3)
+c ^      
 
+c see point 3) on page 2365
       l=tyear*DAYRAD-NVE
 
       if (l.lt.0) l=l+DAYRAD
-      alam=alam0+l*1.0*2.*asin(1.)/180.
+      alam=alam0+l*2.*asin(1.)/180.
 
       fac1=(2.*ecc-0.25*ecc**3.)*sin(alam-omweb)
       fac2=1.25*ecc**2.*sin(2.*(alam-omweb))
       fac3=(13./12.)*ecc**3.*sin(3.*(alam-omweb))
       ala=alam+fac1+fac2+fac3
+c ^      
+
+c see page 2367
       ro=(1.-ecc**2.)/(1.+ecc*cos(ala-omweb))
+c ^      
       deltal=asin(sin(obl)*sin(ala))
 
       sindl=sin(deltal)
@@ -229,15 +233,18 @@ C--   Output:  ICLTOP = cloud top level (all clouds)            (2-dim)
 C--            CLOUDC = total cloud cover                       (2-dim)
 C--            CLSTR  = stratiform cloud cover                  (2-dim)
 C--IO h atparam.h, atparam1.h, com_physcon.h, com_radcon.h
+C--IO h planetparam.h, com_planet.h
 C--IO s CLFACT = 1.2 Stratiform clouds at the top of PBL
 C--IO s CLSMAX  = 0.3 Stratiform clouds at the top of PBL
 C--IO s CLSMINL = 0.1 Stratiform clouds at the top of PBL
-C--IO s 86.4 - related to cloud cover ?
+C--IO sx 86.4 - seconds in a day divided by 1000 (unit conversion)
 
 C     Resolution parameters
 C
       include "atparam.h"
       include "atparam1.h"
+      include "planetparam.h"
+      include "com_planet.h"
 C
 C     Constants + functions of sigma and latitude
 C
@@ -290,7 +297,7 @@ C           the level of maximum relative humidity.
 
       DO J=1,NGP
         CL1 = MIN(1.,CLOUDC(J)*RRCL)
-        PR1 = MIN(PMAXCL,86.4*(PRECNV(J)+PRECLS(J)))
+        PR1 = MIN(PMAXCL,(PRECNV(J)+PRECLS(J))*SECSDY/1000)
         CLOUDC(J) = MIN(1.,WPCL*SQRT(PR1)+CL1*CL1)
         ICLTOP(J) = MIN(IPTOP(J),ICLTOP(J))
       ENDDO
@@ -845,8 +852,8 @@ C--   Purpose: compute energy fractions in LW bands
 C--            as a function of temperature
 C--   Initialized common blocks: RADFIX
 C--IO h atparam.h, atparam1.h, com_radcon.h
-C--IO s JTEMP between 200 and 320 - Kelvin?
-C--IO s parameters to determine FBAND, energy fractions in LW bands
+C--IO s JTEMP between 100 and 400 - Kelvin
+C--IO s model parameters to determine FBAND, energy fractions in 4 LW bands
 
 C     Resolution parameters
 
