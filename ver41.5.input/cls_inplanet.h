@@ -37,9 +37,10 @@ C     Radius of planet
       REARTH = 6.371E+6
 C     pressure vertical velocity [Pa/s]
       OMEGA  = 7.292E-05
-C     SEB Physical constant required by the dynamical core
+C     Poisson constant for dry air at constant pressure
+C     (ratio of gas constant to specific heat)
       AKAP   = 2./7.
-C     SEB Physical constant required by the dynamical core
+C     Dry gas constant of the atmosphere (J K^-1 kg^-1)      
       RGAS   = AKAP*1004.
 C     Eccentricity (radians)
       ECC    = 0.016724
