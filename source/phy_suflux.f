@@ -179,16 +179,6 @@ C     2.2 Stability correction = f[pot.temp.(sfc)-pot.temp.(air)]
       DO J=1,NGP
 
 C       potential temp. difference (land+sea average)
-cfk        DTH0 = TSEA(J)-T2(J,2)
-cfk        DTH0 = DTH0+FMASK(J)*((TSKIN(J)-T2(J,1))-DTH0)
-
-cfk        IF (DTH0.GT.0.0) THEN
-cfk           DTHL=MIN(DTHETA,DTH0)
-cfk        ELSE
-cfk           DTHL=MAX(-DTHETA,ASTAB*DTH0)
-cfk        ENDIF
-
-cfk        DENVVS(J,1)=DENVVS(J,0)*(1.+DTHL*RDTH)
 
         IF (TSKIN(J).GT.T2(J,1)) THEN
            DTHL=MIN(DTHETA,TSKIN(J)-T2(J,1))
@@ -348,9 +338,7 @@ cfk      ENDDO
 
 C     4.2 Wind stress
 
-cfk      KS = 0
       KS=2
-cfk      IF (LSCDRAG) KS = 1
       IF (LSCDRAG) KS = 2
 
       DO J=1,NGP
@@ -366,7 +354,6 @@ C     Start of sea-sfc. heat fluxes computation
 
 C     4.3 Sensible heat flux 
 
-cfk      KS = 1
       KS=2
       CHSCP = CHS*CP
 
