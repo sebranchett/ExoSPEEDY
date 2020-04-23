@@ -13,21 +13,30 @@ C--            ZENIT  = function of solar zenith angle
 C--   Input:   TYEAR  = time as fraction of year (0-1, 0 = 1jan.h00)
 C--   Updated common blocks: RADZON
 C--
+C--IO h atparam.h, atparam1.h, com_physcon.h, com_radcon.h
+C--IO sx 365 days in a year
+C--IO sx year phase ALPHA with winter solstice 22dec.h00 as 0
+C--IO sx 23.45 - earth's obliquity, but less accurate
+C--IO s ozone depth in upper and lower stratosphere approx. 50/50
 C     Resolution parameters
 C
       include "atparam.h"
       include "atparam1.h"
+C
+C     Planetary constants
+      include "planetparam.h"
+      include "com_planet.h"
 C
 C     Constants + functions of sigma and latitude
       include "com_physcon.h"
 
 C     Radiation constants
       include "com_radcon.h"
-			
+
 c **FS** fix solar radiation for equinox with tyearfixed
 
       real topsr(nlat),tyearfixed
-			
+
       tyearfixed=0.25-10./360.
 
 C     ALPHA = year phase ( 0 - 2pi, 0 = winter solstice = 22dec.h00 )
@@ -41,7 +50,7 @@ C
       AZEN=1.0
       NZEN=2
 
-      RZEN=-COS(ALPHA)*23.45*ASIN(1.)/90.
+      RZEN=-COS(ALPHA)*OBLIQ2*ASIN(1.)/90.
       CZEN=COS(RZEN)
       SZEN=SIN(RZEN)
 
@@ -152,11 +161,19 @@ C--            FMASK  = fractional land-sea mask                (2-dim)
 C--   Output:  ICLTOP = cloud top level (all clouds)            (2-dim)
 C--            CLOUDC = total cloud cover                       (2-dim)
 C--            CLSTR  = stratiform cloud cover                  (2-dim)
+C--IO h atparam.h, atparam1.h, com_physcon.h, com_radcon.h
+C--IO h planetparam.h, com_planet.h
+C--IO s CLFACT = 1.2 Stratiform clouds at the top of PBL
+C--IO s CLSMAX  = 0.3 Stratiform clouds at the top of PBL
+C--IO s CLSMINL = 0.1 Stratiform clouds at the top of PBL
+C--IO sx 86.4 - seconds in a day divided by 1000 (unit conversion)
 
 C     Resolution parameters
 C
       include "atparam.h"
       include "atparam1.h"
+      include "planetparam.h"
+      include "com_planet.h"
 C
 C     Constants + functions of sigma and latitude
 C
@@ -209,7 +226,7 @@ C           the level of maximum relative humidity.
 
       DO J=1,NGP
         CL1 = MIN(1.,CLOUDC(J)*RRCL)
-        PR1 = MIN(PMAXCL,86.4*(PRECNV(J)+PRECLS(J)))
+        PR1 = MIN(PMAXCL,(PRECNV(J)+PRECLS(J))*SECSDY/1000)
         CLOUDC(J) = MIN(1.,WPCL*SQRT(PR1)+CL1*CL1)
         ICLTOP(J) = MIN(IPTOP(J),ICLTOP(J))
       ENDDO
@@ -225,11 +242,6 @@ C--   3. Stratiform clouds at the top of PBL
       inew = 1
 
       if (inew.gt.0) then
-
-c        CLSMAX  = 0.6
-c        CLSMINL = 0.15
-c        GSE_S0  = 0.25
-c        GSE_S1  = 0.40
 
         CLFACT = 1.2
         RGSE   = 1./(GSE_S1-GSE_S0)
@@ -282,6 +294,7 @@ C--            FSFC   = net (downw.) flux of sw rad. at the surface  (2-dim)
 C--            FTOP   = net (downw.) flux of sw rad. at the atm. top (2-dim)
 C--            DFABS  = flux of sw rad. absorbed by each atm. layer  (3-dim)
 C--
+C--IO h atparam.h, atparam1.h, com_physcon.h, com_radcon.h
 C     Resolution parameters
 C
       include "atparam.h"
@@ -310,8 +323,6 @@ C
       FBAND2 = 0.05
       FBAND1 = 1.-FBAND2
 
-c      ALBMINL=0.05
-c      ALBCLS = 0.5
 C
 C--   1.  Initialization
 
@@ -322,11 +333,9 @@ C--   1.  Initialization
       ENDDO
 
       DO J=1,NGP
-cfk-- change to ensure only ICLTOP <= NLEV used
         IF(ICLTOP(J) .LE. NLEV) THEN
           FREFL(J,ICLTOP(J))= ALBCL*CLOUDC(J)
         ENDIF
-cfk-- end change
         FREFL(J,NLEV)     = ALBCLS*CLSTR(J)
       ENDDO
 
@@ -420,7 +429,7 @@ C     3.3  Absorption and reflection in the troposphere
 
 C
 C---  4. Shortwave upward flux 
-	
+
 C     4.1  Absorption and reflection at the surface
 
       DO J=1,NGP
@@ -428,7 +437,7 @@ C     4.1  Absorption and reflection at the surface
         FLUX(J,1) = FLUX(J,1)*ALBSFC(J)
         FSFC(J)   = FSFCD(J)-FLUX(J,1)
       ENDDO
-	
+
 C     4.2  Absorption of upward flux
 
       DO K=NLEV,1,-1
@@ -532,6 +541,7 @@ C--            FSFC   = net upw. flux of lw rad. at the sfc. [if IMODE=0,1]
 C--            FTOP   = outgoing flux of lw rad. at the top  [if IMODE=0,1]
 C--            DFABS  = flux of lw rad. absorbed by each atm. layer (3-dim)
 C--
+C--IO h atparam.h, atparam1.h, com_physcon.h, com_radcon.h
 C     Resolution parameters
 C
       include "atparam.h"
@@ -562,7 +572,7 @@ C
       IF (IMODE.EQ.1) GO TO 410
 
 C---  1. Blackbody emission from atmospheric levels.
-C        The linearized gradient of the blakbody emission is computed
+C        The linearized gradient of the blackbody emission is computed
 C        from temperatures at layer boundaries, which are interpolated 
 C        assuming a linear dependence of T on log_sigma.
 C        Above the first (top) level, the atmosphere is assumed isothermal.
@@ -629,7 +639,7 @@ C---  3. Emission ad absorption of longwave downward flux.
 C        For downward emission, a correction term depending on the      
 C        local temperature gradient and on the layer transmissivity is  
 C        added to the average (full-level) emission of each layer. 
-	
+
 C     3.1  Stratosphere
 
       K=1
@@ -685,7 +695,7 @@ C---  4. Emission ad absorption of longwave upward flux.
 C        For upward emission, a correction term depending on the      
 C        local temperature gradient and on the layer transmissivity is  
 C        subtracted from the average (full-level) emission of each layer. 
-	
+
 C     4.1  Surface
 
 C     Black-body (or grey-body) emission 
@@ -708,7 +718,7 @@ C     Entry point for upward-only mode (IMODE=1)
      &              +REFSFC*FLUX(J,JB)
        ENDDO
       ENDDO
-	
+
 C     4.2  Troposphere
 
 C     Correction for "black" band
@@ -727,7 +737,7 @@ C     Correction for "black" band
         ENDDO
        ENDDO
       ENDDO
-	
+
 C     4.3  Stratosphere
 
       K=1
@@ -771,6 +781,9 @@ C--
 C--   Purpose: compute energy fractions in LW bands
 C--            as a function of temperature
 C--   Initialized common blocks: RADFIX
+C--IO h atparam.h, atparam1.h, com_radcon.h
+C--IO s JTEMP between 100 and 400 - Kelvin
+C--IO s model parameters to determine FBAND, energy fractions in 4 LW bands
 
 C     Resolution parameters
 

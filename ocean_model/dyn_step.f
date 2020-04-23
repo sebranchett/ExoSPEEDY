@@ -23,9 +23,15 @@ C--   WIL  = Williams filter coefficient
 C-- 
 C--   Modified common blocks : DYNSP1, DYNSP2
 C--
+C--IO h atparam.h, atparam1.h
+C--IO h planetparam.h, com_planet.h
+C--IO h com_dyncon0.h, com_hdifcon.h, com_dynvar.h
+C--IO sx 3600 seconds in an hour?
       include "atparam.h"
       include "atparam1.h"
+      include "planetparam.h"
 
+      include "com_planet.h"
       include "com_dyncon0.h"
       include "com_hdifcon.h"
 
@@ -72,20 +78,11 @@ C     3.1 Diffusion of wind and temperature
       CALL HORDIF (KX,VOR,VORDT,DMP, DMP1)
       CALL HORDIF (KX,DIV,DIVDT,DMPD,DMP1D)
 
-c      DO K=1,KX
-c        DO M=1,MX
-c          DO N=1,NX 
-c            CTMP(M,N,K)=T(M,N,K,1)
-c     &                 +TCORH(M,N)*TCORV(K)
-c          ENDDO
-c        ENDDO
-c      ENDDO
-
       CALL HORDIF (KX,CTMP,TDT,DMP,DMP1)
 
 C     3.2 Stratospheric diffusion and zonal wind damping
 
-      SDRAG=1./(TDRS*3600.)
+      SDRAG=1./(TDRS*REAL(SECSHR))
       DO N=1,NX
         VORDT(1,N,1)=VORDT(1,N,1)-SDRAG*VOR(1,N,1,1)
         DIVDT(1,N,1)=DIVDT(1,N,1)-SDRAG*DIV(1,N,1,1)
@@ -153,6 +150,7 @@ C--   Purpose : Add horizontal diffusion tendency of FIELD
 C--             to spectral tendency FDT at NLEV levels
 C--             using damping coefficients DMP and DMP1
 C--
+C--IO h atparam.h
       include "atparam.h"
 
       COMPLEX FIELD(MXNX,NLEV), FDT(MXNX,NLEV)
@@ -173,6 +171,7 @@ C--   Aux. subr. TIMINT (J1,DT,EPS,WIL,NLEV,FIELD,FDT)
 C--   Purpose : Perform time integration of FIELD at NLEV levels
 C--             using tendency FDT
 C--
+C--IO h atparam.h
       include "atparam.h"
 
       COMPLEX FIELD(MXNX,NLEV,2), FDT(MXNX,NLEV), FNEW(MXNX)
@@ -191,11 +190,11 @@ C the actual leap frog with the robert filter
           FNEW (M)     = FIELD(M,K,1)+DT*FDT(M,K)
 
           FIELD(M,K,1) = FIELD(M,K,J1) +  WIL*EPS*(FIELD(M,K,1)-
-     &			 2*FIELD(M,K,J1)+FNEW(M))
+     &                   2*FIELD(M,K,J1)+FNEW(M))
 
 C and here comes Williams' innovation to the filter
           FIELD(M,K,2) = FNEW(M)-(1-WIL)*EPS*(FIELD(M,K,1)-
-     &			 2*FIELD(M,K,J1)+FNEW(M))
+     &                   2*FIELD(M,K,J1)+FNEW(M))
 
         ENDDO
       ENDDO
@@ -213,13 +212,16 @@ C--            DIV    = divergence
 C--            VORDT  = time derivative of VOR
 C--            DIVDT  = time derivative of DIV
 C--
+C--IO h atparam.h, atparam1.h
+C--IO h planetparam.h, com_planet.h
+C--IO sx Eddy Kinetic energy growth rate max GRMAX = 0.2/(86400.*2.)
       include "atparam.h"
       include "atparam1.h"
+      include "planetparam.h"
+      include "com_planet.h"
 
       COMPLEX VOR(MX,NX,KX), VORDT(MX,NX,KX), 
      &        DIV(MX,NX,KX), DIVDT(MX,NX,KX), TEMP(MX,NX)
-
-      GRMAX=0.2/(86400.*2.)
 
       CDAMP=0.
 

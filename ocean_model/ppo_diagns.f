@@ -6,6 +6,8 @@ C--   Purpose: print global means of eddy kinetic energy and temperature
 C--   Input : JJ    = time level index (1 or 2)
 C--           ISTEP = time step index
 C--
+C--IO h atparam.h, atparam1.h, com_tsteps.h, com_dynvar.h
+C--IO w use TMOUT to write time-means and variances to units 11, 13 and 15
       include "atparam.h"
       include "atparam1.h"
 

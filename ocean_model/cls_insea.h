@@ -1,18 +1,21 @@
 
+C--IO sx ocean mixed layer depth, sea-ice depth
+C--IO sx dissipation time for sea-surface and sea-ice temp. anomalies
+C--IO sx Heat flux coefficient at sea/ice interface
+C--IO sx Minimum fraction of sea for the definition of anomalies
+C--IO sx Geographical domain
 C     ocean mixed layer depth: d + (d0-d)*(cos_lat)^3
       depth_ml = 40.               ! High-latitude depth
       dept0_ml = 40.               ! Minimum depth (tropics)
 
 C     sea-ice depth : d + (d0-d)*(cos_lat)^2
-c      depth_ice = 1.8
       depth_ice = 2.5              ! High-latitude depth
       dept0_ice = 1.5              ! Minimum depth 
 
-C     Diffusion time (days) for sea-surface temp. anomalies
+C     Dissipation time (days) for sea-surface temp. anomalies
       tdsst  = 30.
 
 C     Dissipation time (days) for sea-ice temp. anomalies
-c      tdice = 20.
       tdice = 30.
 
 C     Heat flux coefficient at sea/ice interface [(W/m^2)/deg]

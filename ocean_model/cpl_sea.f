@@ -4,8 +4,11 @@ C--
 C--   SUBROUTINE INI_SEA (istart)
 C-- 
 C--   Input : istart = restart flag ( 0 = no, 1 = yes)
+C--IO h atparam.h, com_cpl_flags.h, com_cli_sea.h, com_var_sea.h
+C--IO h planetparam.h
 
       include "atparam.h"
+      include "planetparam.h"
 
       include "com_cpl_flags.h"
 
@@ -55,8 +58,14 @@ c        sice_om(:)=0d0
 C--
 C--   SUBROUTINE ATM2SEA (jday)
 C-- 
+C--IO h atparam.h, com_date.h, com_cpl_flags.h, com_cli_sea.h
+C--IO h com_var_sea.h, com_flx_sea.h, com_cplvar_sea.h
+C--IO h planetparam.h, com_planet.h
+C--IO sx sstfr for earth temperature
       include "atparam.h"
+      include "planetparam.h"
 
+      include "com_planet.h"
       include "com_date.h"
       include "com_cpl_flags.h"
 
@@ -79,7 +88,6 @@ C--      to actual date
 C     Adjust climatological fields over sea ice
 
 c     SST at freezing point
-      sstfr = 273.2-1.8
 
       if (jday.le.0) RETURN
 
@@ -92,8 +100,8 @@ C--   2. Set input variables for mixed-layer/ocean model
         VSEA_INPUT(:,3) = 0d0
         VSEA_INPUT(:,4) = hflux_s(:)
         VSEA_INPUT(:,5) = 0d0
-        VSEA_INPUT(:,6) = 283d0
-        VSEA_INPUT(:,7) = 273d0
+        VSEA_INPUT(:,6) = FRWTR1 + 10.
+        VSEA_INPUT(:,7) = FRWTR1
         VSEA_INPUT(:,8) = 0d0
 
       endif
@@ -108,6 +116,7 @@ C--   3. Call message-passing routines to send data (if needed)
 C--
 C--   SUBROUTINE SEA2ATM (jday)
 C-- 
+C--IO h atparam.h, com_cpl_flags.h, com_var_sea.h, com_cplvar_sea.h
       include "atparam.h"
 
       include "com_cpl_flags.h"
@@ -160,10 +169,20 @@ C--
 C--   Purpose : read/write sea variables from/to a restart file
 C--   Input :   IMODE = 0 : read model variables from a restart file
 C--                   = 1 : write model variables  to a restart file
-
 C-- 
-      include "atparam.h"
+C--IO h atparam.h, com_cpl_flags.h, com_var_sea.h
+C--IO h planetparam.h, com_planet.h
+C--IO r SST, sea ice temperature and sea ice fraction from unit (3)
+C--IO sx sstfr for earth temperature
+C--IO w write sst_om,  sea/ice model variables, to unit (10)
+C--IO w write sst_c, atmospheric model fields, to unit (10)
+C--IO w sice_om, sea ice fraction, tice_om, sea ice temperature to unit (10)
+C--IO w sice_am, sea ice fraction, tice_am, sea ice temperature to unit (10)
 
+      include "atparam.h"
+      include "planetparam.h"
+
+      include "com_planet.h"
       include "com_cpl_flags.h"
 
       include "com_var_sea.h"
@@ -180,8 +199,6 @@ C--
 
 C        write sea/ice model variables from coupled runs,
 C        otherwise write fields used by atmospheric model
-
-         sstfr = 273.2-1.8
 
          if (icsea.gt.0) then
             write (10) sst_om(:) 
@@ -209,8 +226,12 @@ C--
 C--   SUBROUTINE OBS_SSTA 
 C--
 C--   Purpose : update observed SST anomaly array
- 
+C--IO h atparam.h, com_cli_sea.h
+C--IO r read observed SST anomoly array from unit (30)
+C--IO h planetparam.h
+
       include "atparam.h"
+      include "planetparam.h"
 
       include "com_cli_sea.h"
 

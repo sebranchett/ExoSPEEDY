@@ -10,9 +10,21 @@ C--                    = 1 : restart file
 C--   Initialized common blocks : DATE1, DYNSP1, DYNSP2 (PHIS only),
 C--                               SFCANOM, SFCFLUX
 C--
+C--IO h atparam.h, atparam1.h, com_date.h
+C--IO h com_tsteps.h, com_surfcon.h, com_dyncon0.h
+C--IO h com_dyncon1.h, com_dynvar.h
+C--IO h planetparam.h, com_planet.h
+C--IO sx tropos:  T = 288 degK at z = 0, constant lapse rate TTROP = 288.
+C--IO sx stratos: T = 216 degK, lapse rate = 0 TSTRAT = 216.
+C--IO sx p_ref = 1013 hPa at z = 0   
+C--IO sx tropospheric spec. humidity in g/kg Qref = RHref * Qsat(288K, 1013hPa)
+C--IO sx ESREF = Reference specific humidity of 17. g/kg at surface?
+C--IO sx water-vapour density = .622 that of dry air at same press. and temp.?
       include "atparam.h"
       include "atparam1.h"
+      include "planetparam.h"
 
+      include "com_planet.h"
       include "com_date.h"
       include "com_tsteps.h"
 
@@ -27,7 +39,7 @@ C--
       COMPLEX ZERO, CCON, SURFS(MX,NX)
       REAL  SURFG(IX,IL)
 
-      GAM1 = GAMMA/(1000.*GRAV)
+      GAM1 = GAMMA/(1000.*GRAVIT)
       ZERO = (0.,0.)
       CCON = (1.,0.)*SQRT(2.)
 
@@ -74,25 +86,23 @@ C       2.2 Set reference temperature :
 C           tropos:  T = 288 degK at z = 0, constant lapse rate
 C           stratos: T = 216 degK, lapse rate = 0
 
-        TREF  = 288.
-        TTOP  = 216.
-        GAM2  = GAM1/TREF
-        RGAM  = RGAS*GAM1
-        RGAMR = 1./RGAM
+        GAM2   = GAM1/TTROP
+        RGAM   = RGAS*GAM1
+        RGAMR  = 1./RGAM
 
 C       Surface and stratospheric air temperature
 
         DO N=1,NX
          DO M=1,MX
            T(M,N,1,1)=ZERO
-	       T(M,N,2,1)=ZERO
+	   T(M,N,2,1)=ZERO
            SURFS(M,N)=-GAM1*PHIS(M,N)
          ENDDO
         ENDDO
 
-        T(1,1,1,1)=CCON*TTOP
-        T(1,1,2,1)=CCON*TTOP
-        SURFS(1,1)=CCON*TREF-GAM1*PHIS(1,1)
+        T(1,1,1,1)=CCON*TSTRAT 
+        T(1,1,2,1)=CCON*TSTRAT 
+        SURFS(1,1)=CCON*TTROP-GAM1*PHIS(1,1)
 
 C       Temperature at tropospheric levels
         DO K=3,KX
@@ -108,7 +118,7 @@ C       Temperature at tropospheric levels
 C       2.3 Set log(ps) consistent with temperature profile
 C           p_ref = 1013 hPa at z = 0   
 
-        RLOG0=LOG(1.013)
+        RLOG0=LOG(PREF/1000.)
         DO J=1,IL
          DO I=1,IX
            SURFG(I,J)=RLOG0+RGAMR*LOG(1.-GAM2*PHIS0(I,J))
@@ -121,8 +131,7 @@ C           p_ref = 1013 hPa at z = 0
 C       2.4 Set tropospheric spec. humidity in g/kg
 C           Qref = RHref * Qsat(288K, 1013hPa)
 
-        ESREF=17.
-        QREF=REFRH1*0.622*ESREF
+        QREF=REFRH1*WTRAIR*ESREF
         QEXP=HSCALE/HSHUM
         
 C       Spec. humidity at the surface 

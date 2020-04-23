@@ -6,9 +6,30 @@ C--
 C--   Purpose : Read topography and climatological boundary conditions 
 C--   Input :   grav0  = gravity accel.
 C--             radlat = grid latitudes in radiants
- 									
-      include "atparam.h"
+C--IO h atparam.h, com_tsteps.h, com_cpl_flags.h
+C--IO h com_surfcon.h, com_cli_land.h, com_cli_sea.h
+C--IO h com_planet.h
+C--IO sx 12 months in a year
+C--IO sx sdep1 = 70. and idep2 = 3, soil depths
+C--IO sx 273., temperature of freezing water? FRWTR1
+C--IO r read topographical fields from unit 20 - orography
+C--IO r read topographical fields from unit 20 - land-sea mask
+C--IO r read topographical fields from unit 20 - albedo
+C--IO r read land-surface temp. from unit 23
+C--IO r read snow depth from unit 24
+C--IO r read vegetation fraction from unit 25
+C--IO r read soil moisture from unit 26
+C--IO r read 'SST' (sea surface temperature?) from unit 21
+C--IO r read sea ice fraction from unit 22
+C--IO r read SST anomalies initial and prec./following months from unit 30
+C--IO r read Annual-mean heat flux into sea-surface from unit 31
+C--IO r read ocean model SST bias from unit 32 - commented out
+C--IO w write correction for model-to-actual topography to unit 18
 
+      include "atparam.h"
+      include "planetparam.h"
+
+      include "com_planet.h"
       include "com_tsteps.h" 
       include "com_cpl_flags.h"
  
@@ -88,7 +109,6 @@ C--   2.2 Annual-mean surface albedo
       read (20) ((r4inp(i,j),i=1,ix),j=il,1,-1)
       do j = 1,il
         do i = 1,ix
-          alb0(i,j) = 0.01*r4inp(i,j)
           alb0(i,j) = 0.3
         enddo
       enddo

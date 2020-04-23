@@ -18,11 +18,16 @@ C--                            TTEND  : temp. tendency (gp)
 C--                            QTEND  : spec. hum. tendency (gp)
 C--   Modified common blocks:  PHYGR1, PHYGR2, PHYGR3, PHYTEN, FLUXES
 C--
+C--IO h atparam.h, atparam1.h, com_physcon.h, com_physvar.h
+C--IO h com_surfcon.h, com_cli_sea.h, com_cli_land.h, com_var_sea.h
+C--IO h com_var_land.h, com_lflags.h, com_cpl_flags.h, com_date.h
+C--IO h planetparam.h
 
 C     Resolution parameters
 
       include "atparam.h"
       include "atparam1.h"
+      include "planetparam.h"
 
 C     Constants + functions of sigma and latitude
       include "com_physcon.h"
@@ -42,6 +47,10 @@ C     Surface fields (daily averages)
 C     Logical and coupling flags
       include "com_lflags.h"
       include "com_cpl_flags.h"
+
+C     date 
+      include "com_date.h"
+
 
       COMPLEX VOR1(MX,NX,NLEV), DIV1(MX,NX,NLEV), T1(MX,NX,NLEV),
      &          Q1(MX,NX,NLEV), PHI1(MX,NX,NLEV), PSL1(MX,NX),
@@ -94,7 +103,7 @@ C     1.2 Compute thermodynamic variables
       DO K=1,NLEV
        DO J=1,NGP
 c       remove when QNEG is implemented
-	    qg1(j,k)=max(qg1(j,k),0.)
+        qg1(j,k)=max(qg1(j,k),0.)
         SE(J,K)=CP*TG1(J,K)+PHIG1(J,K)
        ENDDO
       ENDDO
@@ -187,12 +196,12 @@ C     3.3. Compute surface fluxes and land skin temperature
          print *, 'mean(STL_AM) =', sum(STL_AM(:))/ngp
          print *, 'mean(SST_AM) =', sum(SST_AM(:))/ngp
       endif
-      
+
       CALL SUFLUX (PSG,UG1,VG1,TG1,QG1,RH,PHIG1,
      &             PHIS0,SSTI_OM,SSRD,SLRD,
      &             USTR,VSTR,SHF,EVAP,SLRU,HFLUXN,
      &             TS,TSKIN,U0,V0,T0,Q0)
-
+     
 C     3.4 Compute upward longwave fluxes, convert them to tendencies 
 C         and add shortwave tendencies
 

@@ -38,13 +38,19 @@ C--            V0     = near-surface v-wind             (2-dim)
 C--            T0     = near-surface air temperature    (2-dim)
 C--            Q0     = near-surface sp. humidity [g/kg](2-dim)
 C--
+C--IO h atparam.h, atparam1.h
+C--IO h com_physcon.h, com_sflcon.h, com_radcon.h
+C--IO h planetparam.h, com_planet.h
+C--IO sx 288. - temperature in degrees Kelvin - TTROP
 C     Resolution parameters
 
       include "atparam.h"
       include "atparam1.h"
+      include "planetparam.h"
 
 C     Physical constants + functions of sigma and latitude
 
+      include "com_planet.h"
       include "com_physcon.h"
 
 C     Surface flux constants
@@ -61,7 +67,7 @@ C     Surface flux constants
       REAL USTR(NGP,3), VSTR(NGP,3), SHF(NGP,3), EVAP(NGP,3),
      &     SLRU(NGP,3), HFLUXN(NGP,2), TSFC(NGP), TSKIN(NGP),
      &     U0(NGP), V0(NGP), T0(NGP), Q0(NGP)
-									
+
       REAL T1(NGP,2), T2(NGP,2), Q1(NGP,2), QSAT0(NGP,2), 
      &     DENVVS(NGP,0:2), DSLR(NGP), DTSKIN(NGP), CLAMB(NGP)
 
@@ -98,7 +104,7 @@ C     1.2 Temperature
 
       GTEMP0 = 1.-FTEMP0
       RCP = 1./CP
-      RDPHI0 =-1./(RD*288.*SIGL(NLEV))
+      RDPHI0 =-1./(RD*TTROP*SIGL(NLEV))
       NL1=NLEV-1
 
       DO J=1,NGP
@@ -185,9 +191,7 @@ C     2.2 Stability correction = f[pot.temp.(sfc)-pot.temp.(air)]
 
 C     4.2 Wind stress
 
-cfk      KS = 0
       KS=2
-cfk      IF (LSCDRAG) KS = 1
       IF (LSCDRAG) KS = 2
 
       DO J=1,NGP
@@ -201,7 +205,6 @@ C     Start of sea-sfc. heat fluxes computation
 
 C     4.3 Sensible heat flux 
 
-cfk      KS = 1
       KS=2
       CHSCP = CHS*CP
 
@@ -261,6 +264,7 @@ C--
 C--   Purpose: compute orographic factor for land surface drag
 C--   Input:   PHI0   = surface geopotential            (2-dim)
 C--            Initialized common blocks: SFLFIX
+C--IO h atparam.h, atparam1.h, com_physcon.h, com_sflcon.h
 
 C     Resolution parameters
 C

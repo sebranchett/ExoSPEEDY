@@ -1,5 +1,16 @@
 C--
 C--   Constants for physical parametrization routines:
+C--IO sx Constants for physical parametrization routines:
+C--IO sx Soil moisture and snow, convection, large-scale condensation
+C--IO sx radiation, surface fluxes, vertical diffusion and sh. conv.
+
+C--   Planet physical constants (common PHYCON)
+
+      P0 = 1.e+5
+      RD = 287.
+      CP = 1004.
+      ALHC = 2501.0
+      SBC = 5.67e-8
 
 C--   Soil moisture and snow parameters (common SOILMP):
 
@@ -29,7 +40,6 @@ C--   Constants for radiation (common RADCON):
 
       ALBSEA = 0.07
       ALBICE = 0.60
-C      ALBICE = 0.75
       ALBSN  = 0.60
 
       RHCL1  =  0.30
@@ -39,20 +49,14 @@ C      ALBICE = 0.75
       PMAXCL = 10.0
 
       CLSMAX  = 0.60
-c      CLSMAX  = 0.50
       CLSMINL = 0.15
       GSE_S0  = 0.25
       GSE_S1  = 0.40
 
-c      ALBCL  =  0.43
-c      ALBCLS =  0.50
-c      ALBCL  =  0.47
-c      ALBCLS =  0.53
       ALBCL  =  0.40
       ALBCLS =  0.48
       
       EPSSW  =  0.020
-c      EPSSW  =  0.025
       EPSLW  =  0.05
       EMISFC =  0.98
 
@@ -66,7 +70,6 @@ c      EPSSW  =  0.025
 
       ABLWIN =  0.3
       ABLCO2 =  3.0
-c     ABLCO2 =  5.0
       ABLWV1 =  0.7
       ABLWV2 = 50.0
 
@@ -80,11 +83,9 @@ C--   Constants for surface fluxes (common SFLCON):
       FHUM0  = 0.
 
       CDL = 2.4e-3
-c      CDS = 0.8e-3
       CDS = 1.0e-3
       CHL = 1.2e-3
       CHS = 0.9e-3
-c      CHS = 1.0e-3
 
       VGUST  = 5.
       CTDAY  = 1.0e-2
