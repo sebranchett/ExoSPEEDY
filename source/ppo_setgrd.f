@@ -1,7 +1,7 @@
 
       SUBROUTINE SETGRD (ind,norun)
 C--
-C--   SUBROUTINE SETGRD (ind)
+C--   SUBROUTINE SETGRD (ind,norun)
 C--   Purpose : open and close output files (.grd)
 C--
 C--   Input : ind = 0 for initialization, 1 otherwise
