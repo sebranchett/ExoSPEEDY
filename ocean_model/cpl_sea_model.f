@@ -7,11 +7,26 @@ C--
 C--   Purpose : Initialization of sea model
 C--   Initialized common blocks: SEA_MC
 C--	
+C--IO h atparam.h, atparam1.h, com_cplcon_sea.h, cls_insea.h, com_hdifcon.h
+C--IO h cls_indyns.h, planetparam.h, com_planet.h
+C--IO sx depth_ml for high-latitutde depth, dept0_ml for minimum depth
+C--IO sx depth_ice for high-latitude depth, dept0_ice for minimum depth
+C--IO sx tdsst for sea-surface dissipation, tdice for sea-ice dissipation
+C--IO sx beta for heat flux coefficient
+C--IO sx l_globe for global domain logical
+C--IO sx l_northe, l_natlan, l_npacif for regional domain logicals
+C--IO sx l_tropic, l_indian for regional domain logicals
+C--IO sx heat capacity of mixed-l. = 4.18e+6 used for hcaps
+C--IO sx heat capacity of sea-ice = 1.93e+6 used for hcapi
+C--IO sx 86400 for reciprocal heat capacities = seconds in a day?
+
       include "atparam.h"
       include "atparam1.h"
+      include "planetparam.h"
+      include "com_planet.h"
       include "com_hdifcon.h"
       include "com_cplcon_sea.h"
-     
+
 C     Input variables
 
       real fmask_s(nlon,nlat)            ! sea mask (fraction of sea)
@@ -26,49 +41,16 @@ C     Auxiliary variables
 
       real hcaps(nlat)                      ! heat capacity of mixed-l.
       real hcapi(nlat)                      ! heat capacity of sea-ice
-      
+
       include "cls_indyns.h"
 
 C--  
 C--   1. Set geographical domain, heat capacities and dissipation times
 C--      for sea (mixed layer) and sea-ice 
-
 C     Model parameters (default values)
 C     time step in seconds
 
-      dts=24d0*3600d0
-      
-C     ocean mixed layer depth: d + (d0-d)*(cos_lat)^3
-      depth_ml = 40.               ! High-latitude depth
-      dept0_ml = 40.               ! Minimum depth (tropics)
-
-C     sea-ice depth : d + (d0-d)*(cos_lat)^2
-      depth_ice = 1.5              ! High-latitude depth
-      dept0_ice = 1.5              ! Minimum depth 
-
-C     Diffusion time (days) for sea-surface temp.
-      tdsst  = 10.
-
-C     Dissipation time (days) for sea-ice temp. anomalies
-      tdice = 30.
-
-C     Heat flux coefficient at sea/ice interface [(W/m^2)/deg]
-      beta = 1.
-
-C     Minimum fraction of sea for the definition of anomalies
-      fseamin = 1./3.
-
-C     Geographical domain
-C     note : more than one regional domain may be set .true.
-
-      l_globe  =  .true.         ! global domain
-      l_northe = .false.         ! Northern hem. oceans (lat > 20N)
-      l_natlan = .false.         ! N. Atlantic (lat 20-80N, lon 100W-45E)
-      l_npacif = .false.         ! N. Pacific  (lat 20-80N, lon 100E-100W)
-      l_tropic = .false.         ! Tropics (lat 30S-30N)
-      l_indian = .false.         ! Indian Ocean (lat 30S-30N, lon 30-120E)
-
-C     Reset model parameters
+      dts = REAL(SECSDY)
 
       include "cls_insea.h"
 
@@ -78,8 +60,8 @@ C     Heat capacities per m^2 (depth*heat_cap/m^3)
       do j=1,nlat
         coslat   = cos(crad*rlat(j))
         rlatdeg(j) = rlat(j)
-        hcaps(j) = 4.18e+6*(depth_ml +(dept0_ml -depth_ml) *coslat**3)
-        hcapi(j) = 1.93e+6*(depth_ice+(dept0_ice-depth_ice)*coslat**2)
+        hcaps(j) = HCAPSE*(depth_ml +(dept0_ml -depth_ml) *coslat**3)
+        hcapi(j) = HCAPIC*(depth_ice+(dept0_ice-depth_ice)*coslat**2)
       enddo
 C--
 C--   3. Compute constant parameters and fields
@@ -98,19 +80,6 @@ cfk        if (l_arctic) call SEA_DOMAIN ('arctic',rlat,dmask)
         if (l_indian) call SEA_DOMAIN ('indian',rlat,dmask)
       endif
 
-C     Smooth latitudinal boundaries and blank out land points
-
-c      do j=2,nlat-1
-c         rhcaps(:,j) = 0.25*(dmask(:,j-1)+2*dmask(:,j)+dmask(:,j+1))
-c      enddo
-c      dmask(:,2:nlat-1) = rhcaps(:,2:nlat-1)
-
-c      do j=1,nlat
-c        do i=1,nlon
-c           if (fmask_s(i,j).lt.fseamin) dmask(i,j) = 0
-c        enddo
-c      enddo
-
 C     Set heat capacity and dissipation time over selected domain
 
       do j=1,nlat
@@ -120,7 +89,7 @@ C     Set heat capacity and dissipation time over selected domain
 
       cdsea(:,:) = dmask(:,:)*tdsst/(1.+dmask(:,:)*tdsst)
       cdice(:,:) = dmask(:,:)*tdice/(1.+dmask(:,:)*tdice)
-      
+
       dmpsea(:,:)=dmps(:,:)*THDS/(24d0*tdsst)
 
       return
@@ -131,12 +100,17 @@ C--
 C--   SUBROUTINE SEA_MODEL
 C--
 C--   Purpose : Integrate slab ocean and sea-ice models for one day
+C--IO h atparam.h, com_cplcon_sea.h, com_cplvar_sea.h
+C--IO h planetparam.h, com_planet.h
+C--IO sx SST at freezing point = 273.2-1.8
+C--IO sx anom0 = 20. for non-linear damping coefficient
 
       include "atparam.h"
-
+      include "planetparam.h"
 
 c      real vsea_input(nlon,nlat,8), vsea_output(nlon,nlat,3)
 
+      include "com_planet.h"
       include "com_cplcon_sea.h"
 
       include "com_cplvar_sea.h"
@@ -179,23 +153,21 @@ C     Auxiliary variables
       real tanom(nlon,nlat)   ! sfc. temperature anomaly
       real  cdis(nlon,nlat)   ! dissipation ceofficient
 
-      sstfr = 273.2-1.8       ! SST at freezing point
-
 c      beta = 1.               ! heat flux coef. at sea-ice bottom
 C--
 C--   1. Ocean mixed layer
 
 C     Net heat flux
       hflux(:,:) = hfsea(:,:)
-      
+
       sstd(:,:) = rhcaps(:,:)*hflux(:,:)
 
       call HORDIFSEA(sst0,sstd)
 
-C     Time evoloution of temp. anomaly 
+C     Time evoloution of temp. anomaly
 
       sst1(:,:) = sst0 + sstd(:,:)*dts
-      
+
       crad=asin(1.)/90.
       sum=0d0
       asum=0d0
@@ -204,7 +176,7 @@ C     Time evoloution of temp. anomaly
         sum=sum+sst1(1,j)*coslat
         asum=asum+coslat
       enddo
-      
+
       write(*,*) 'mean ocean T ',sum/asum - 273.15,asum,sum
 
 C--
@@ -212,38 +184,38 @@ C--   2. Sea-ice slab model
 
 
 C     Full ice temperature at final time
-      tice1(:,:) = 273.15 
+      tice1(:,:) = 273.15
 
 C     Persistence of sea ice fraction
       sice1(:,:) = 0d0
 
       return
       end
-      
+
       SUBROUTINE HORDIFSEA (FIELD,FIELDT)
 C--
 C--   Aux. subr. HORDIF (NLEV,FIELD,FDT,DMP,DMP1)
-C--   Purpose : Add horizontal diffusion tendency of FIELD 
+C--   Purpose : Add horizontal diffusion tendency of FIELD
 C--             to grid tendency FIELDT
 C--             using damping coefficients DMPSEA
 C--
       include "atparam.h"
       include "com_cplcon_sea.h"
-      
+
       COMPLEX FIELDS(MX,NX), FIELDTS(MX,NX)
 
       REAL FIELD (IX,IL), FIELDT (IX,IL)
-      
+
       INTEGER M,N
-      
-      
+
+
       CALL SPEC (FIELDT,FIELDTS)
       CALL SPEC (FIELD,FIELDS)
-      
+
       FIELDTS=(FIELDTS-DMPSEA*FIELDS)/(1+DMPSEA*DTS)
 
       CALL GRID   (FIELDTS, FIELDT,  1)
-      
+
 
       RETURN
       END
@@ -254,6 +226,9 @@ C--   SUBROUTINE SEA_DOMAIN (cdomain,rlat,dmask)
 C--
 C--   Purpose : Definition of ocean domains
 C--	
+C--IO h atparam.h
+C--IO sx lat/lon masks set dependent on earth's sea domains
+
       include "atparam.h"
 
 C     Input variables
