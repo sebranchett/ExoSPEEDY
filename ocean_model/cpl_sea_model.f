@@ -177,14 +177,14 @@ C     Time evoloution of temp. anomaly
         asum=asum+coslat
       enddo
 
-      write(*,*) 'mean ocean T ',sum/asum - 273.15,asum,sum
+      write(*,*) 'mean ocean T ',sum/asum - FRWTR3,asum,sum
 
 C--
 C--   2. Sea-ice slab model
 
 
 C     Full ice temperature at final time
-      tice1(:,:) = 273.15
+      tice1(:,:) = FRWTR3
 
 C     Persistence of sea ice fraction
       sice1(:,:) = 0d0
