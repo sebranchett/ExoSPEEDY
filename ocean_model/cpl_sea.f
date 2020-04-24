@@ -5,11 +5,12 @@ C--   SUBROUTINE INI_SEA (istart)
 C-- 
 C--   Input : istart = restart flag ( 0 = no, 1 = yes)
 C--IO h atparam.h, com_cpl_flags.h, com_cli_sea.h, com_var_sea.h
-C--IO h planetparam.h
+C--IO h planetparam.h com_planet.h
 
       include "atparam.h"
       include "planetparam.h"
 
+      include "com_planet.h"
       include "com_cpl_flags.h"
 
       include "com_cli_sea.h"
@@ -35,16 +36,11 @@ C--      in case of no restart or no coupling
         do j=1,nlat
           do i=1,nlon
             k=k+1
-            sst_om(k)  = 255d0 + 56*cos(deglat_s(j)/180*3.14)**2 + 20*sin(3*i*2*3.14/real(nlon)) ! SST 
-c            sst_om(k) = sstg(i,j)+270
-c            write(*,*) sst_om(k)
-            tice_om(k) = 273.15     ! sea ice temperature
+            sst_om(k)  = MINST + 56*cos(deglat_s(j)/180*3.14)**2 + 20*sin(3*i*2*3.14/real(nlon)) ! SST 
+            tice_om(k) = FRWTR3  ! sea ice temperature
             sice_om(k) = 0d0     ! sea ice fraction
           enddo
         enddo
-c        sst_om(:) = 273d0
-c        tice_om(:)= sst_om(:)
-c        sice_om(:)=0d0
         
       endif
       

@@ -63,7 +63,7 @@ C     SSTFR  = Sea surface freezing temperature (K)
 C              in cpl_sea(_model).f, ppo_dmflux
 C     FRWTR1 = Freezing point of 'water' (K) in ini_inbcon.f
 C     FRWTR2 = Freezing point of 'water' (K) in phy_convmf.f, phy_lscond.f
-C     FRWTR3 = Freezing point of 'water' (K) in phy_shtorh
+C     FRWTR3 = Freezing point of 'water' (K) in phy_shtorh ocean model
 C     TGRVWV = Temperature used for implicit gravity wave computation
 C     TTROP  = tropos:  T = 288 degK at z = 0, constant lapse rate
 C     TSTRAT = stratos: T = 216 degK, lapse rate = 0
@@ -88,6 +88,7 @@ C     ANOM0  = Non-linear damping coefficient for anomolies
       SSTFR  = 273.2-1.8
       FRWTR1 = 273.
       FRWTR2 = 273.16
+      FRWTR3 = 273.15
       TGRVWV = 288.
       TTROP  = 288.
       TSTRAT = 216.
