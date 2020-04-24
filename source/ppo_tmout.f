@@ -35,7 +35,7 @@ C     Physical constants
       include "com_physcon.h"
 
 C     Logical flags
-            include "com_lflags.h"
+      include "com_lflags.h"
 
 C     Fields used to compute omega, psi and chi
       complex VORSP(mx,nx), DIVSP(mx,nx), PSISP(mx,nx), CHISP(mx,nx)
@@ -111,7 +111,7 @@ C--   3. Write time-mean output file including 3-d and 2-d fields
           write (11) R4OUT
           if (LTXTO) then
             write (91,1000) R4OUT
-           endif
+          endif
         enddo
       enddo
 
