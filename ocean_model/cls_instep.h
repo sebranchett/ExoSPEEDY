@@ -35,5 +35,5 @@ C--   Logical flags (common LFLAG1)
 
       LPPRES = .true.
       LCO2 = .false.
-
+      LTXTO = .true.
 

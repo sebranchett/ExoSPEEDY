@@ -34,6 +34,9 @@ C     Time stepping constants
 C     Physical constants
       include "com_physcon.h"
 
+C     Logical flags
+      include "com_lflags.h"
+
 C     Fields used to compute omega, psi and chi
       complex VORSP(mx,nx), DIVSP(mx,nx), PSISP(mx,nx), CHISP(mx,nx)
       equivalence (PSISP,CHISP)
@@ -98,20 +101,26 @@ C--   3. Write time-mean output file including 3-d and 2-d fields
         do k=kx,1,-1
           R4OUT(:) = SAVE3D(:,k,n)
           write (11) R4OUT
-          write (19,FMT='(4608(E15.5,x))') R4OUT
+          if (LTXTO) then
+            write (91,1000) R4OUT
+          endif
         enddo
       enddo
 
       do n=1,ns2d_1
         R4OUT(:) = SAVE2D_1(:,n)
         write (11) R4OUT
-        write (19,FMT='(4608(E15.5,x))') R4OUT
+        if (LTXTO) then
+          write (91,1000) R4OUT
+        endif
       enddo
   
       do n=1,ns2d_2
         R4OUT(:) = SAVE2D_2(:,n)
         write (11) R4OUT
-        write (19,FMT='(4608(E15.5,x))') R4OUT
+        if (LTXTO) then
+          write (91,1000) R4OUT
+        endif
       enddo
 
 C     ----------------------------------------------------------------
@@ -137,6 +146,9 @@ C--   5. Write 2-nd order moments
           do k=kx,1,-1
             R4OUT(:) = SAVE3D(:,k,n)
             write (13) R4OUT
+            if (LTXTO) then
+              write (93,1000) R4OUT
+            endif
           enddo
         enddo
 
@@ -152,6 +164,9 @@ C--   6. Write diabatic forcing fields (in degK/day)
           do k=kx,1,-1
             R4OUT(:) = SAVE3D(:,k,n)*REAL(SECSDY)
             write (15) R4OUT
+            if (LTXTO) then
+              write (95,1000) R4OUT
+            endif
           enddo
         enddo
 
@@ -175,6 +190,7 @@ C--   7. Reset arrays to zero for the next time-mean
 
 C--
       if (iitest.eq.1) print *, 'end of TMOUT'
+ 1000 FORMAT(8E10.3)
 
       RETURN
       END
