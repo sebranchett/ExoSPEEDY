@@ -47,6 +47,8 @@ The water specific model for sea temperature is defined in cpl\_sea.f and cpl\_s
 
 For the ocean model, solar radiation is fixed for the equinox in phy\_radiat.f.
 
+The scripts in the 'tools' directory assume an earth calendar and have not been adapted.
+
 ## How the main script works
 
 The main script to run an experiment is speedy\_ver41.5/run/run\_exp.s.
