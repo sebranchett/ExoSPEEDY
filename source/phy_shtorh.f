@@ -37,7 +37,7 @@ C
       E0= ARMFAC
       C1= ARMC1
       C2= ARMC2
-      T0= FRWTR3
+      T0= FRWTR2
       T1= ARMT1
       T2= ARMT2
       
