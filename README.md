@@ -29,7 +29,7 @@ To use this model, copy the content of the ‘ocean_modle’ folder to the ‘up
 These ocean model changes may be used freely and are provided ‘as is’, without warranty of any kind.
 
 ## Comments in the code
-The first step in adapting the code for exoplanets is to identify the flow of earth parameters.
+The first step in adapting the code for exoplanets was to identify the flow of earth parameters.
 To this purpose, each subroutine is annotated with comment lines starting with the string 'C--IO x' where x is one of:
 - r - reads from a file
 - w - writes to a file
@@ -37,11 +37,11 @@ To this purpose, each subroutine is annotated with comment lines starting with t
 - s - sets a value in a .f or .h file
 
 ## Notes for use with exoplanets
-Planet specific parameters that were embedded in the original software can be found in cpl\_inplanet.h. Other relevant parameters have not been moved from their original cls\_in\*.h file.
+Planet specific parameters that were embedded in the original software, can be found in cpl\_inplanet.h. Other relevant parameters have not been moved from their original cls\_in\*.h file.
 
 Daily mean upper air levels are fixed in ppo\_tminc.f.
 
-The ozone absorption model, polar night cooling in the stratosphere model, stratiform cloud model and energy fractions in LW bands model (assumes 100 to 400K) are defined in, in phy\_radiat.f.
+The ozone absorption model, polar night cooling in the stratosphere model, stratiform cloud model and energy fractions in LW bands model (assumes 100 to 400K) are defined in phy\_radiat.f.
 
 The water specific model for sea temperature is defined in cpl\_sea.f and cpl\_sea\_model.f
 
