@@ -56,6 +56,7 @@ It works by copying input, .f, .h, .s and makefiles from various locations to a 
 
 **action** | **file** | **from** | **to**
 --- | --- | --- | ---
+user can edit in situ: | ver41.5.input/cls\_inplanet.h |  | 
 user can edit in situ: | ver41.5.input/cls\_instep.h |  | 
 user can edit in situ: | ver41.5.input/cls\_indyns.h |  | 
 user can edit in situ: | ver41.5.input/cls\_inphys.h |  | 

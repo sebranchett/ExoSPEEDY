@@ -35,6 +35,12 @@ CD=$UT/output/exp_$3
 
 # Edit input files if needed and store them with exp code
 
+echo "Do you want to modify the planet parameters (y/n)?"
+read MODIFY
+if [ $MODIFY = 'y' ] ; then
+  $EDITOR $UT/ver41.5.input/cls_inplanet.h $SA/doc_inplanet.txt
+fi
+
 echo "Do you want to modify the time-stepping parameters (y/n)?"
 read MODIFY
 if [ $MODIFY = 'y' ] ; then
