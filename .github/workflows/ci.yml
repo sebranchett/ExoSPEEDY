@@ -1,12 +1,10 @@
 name: CI_ExoSPEEDY
 # adapted from:
-# https://github.com/fortran-lang/stdlib/blob/c6b81196d495884558e653aae064f4d8781c0a96/.github/workflows/main.yml
+# https://github.com/fortran-lang/stdlib/blob/master/.github/workflows/CI.yml
 
 on: [push, pull_request]
 
 env:
-  CI: "ON"
-  CTEST_TIME_TIMEOUT: "5"  # some failures hang forever
   HOMEBREW_NO_ANALYTICS: "ON" # Make Homebrew installation a little quicker
   HOMEBREW_NO_AUTO_UPDATE: "ON"
   HOMEBREW_NO_BOTTLE_SOURCE_FALLBACK: "ON"
@@ -24,7 +22,7 @@ jobs:
 
     steps:
     - name: checkout code
-      uses: actions/checkout@v1
+      uses: actions/checkout@v2
 
     - name: Set up GFortran for Linux
       if: contains( matrix.os, 'ubuntu' )
@@ -50,11 +48,13 @@ jobs:
       shell: bash
       working-directory: run
       run: |
-        bash run_exp.s t30 201 0 < modify.txt
+        bash run_exp.s t30 101 0 < modify.txt
         ls ../output
 
     - name: compare output
       shell: bash
       working-directory: run
       run: |
-        bash compare.s
+        sort -gr -k1 ../output/exp_100/attm100_1979.txt | head -5
+        sort -gr -k1 ../output/exp_101/attm101_1979.txt | head -5
+        #SEB bash compare.s
