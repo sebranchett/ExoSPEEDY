@@ -144,6 +144,8 @@ C--IO sx PLEV = standard pressure level for post-proc.
       PRLEV = 1.
       DIF = 1.-SIGLEV
 
+      IF (NPLEVS .GT. MAXLEV) STOP
+     *  'No. pressue levels is greater than maximum specified'
       DO K=1,NPLEVS
         ADIF = ABS(PLEV(K)-SIGLEV)
         IF (ADIF.LE.DIF) THEN
