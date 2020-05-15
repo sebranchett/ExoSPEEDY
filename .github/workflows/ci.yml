@@ -17,8 +17,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest]
-        #SEB os: [windows-latest, ubuntu-latest, macos-latest]
+        os: [windows-latest, ubuntu-latest, macos-latest]
 
     steps:
     - name: checkout code
@@ -27,7 +26,7 @@ jobs:
     - name: Set up GFortran for Linux
       if: contains( matrix.os, 'ubuntu' )
       run: |
-        sudo apt-get update
+        # sudo apt-get update
         sudo apt-get install -y gfortran
         echo "::set-env name=COMOTT1:: -O3 -fdefault-real-8 -fconvert=big-endian -frecord-marker=4 -finit-local-zero -fdefault-integer-8"
         #SEB try this? sudo add-apt-repository ppa:ubuntu-toolchain-r/test
@@ -55,6 +54,5 @@ jobs:
       shell: bash
       working-directory: run
       run: |
-        sort -gr -k1 ../output/exp_100/attm100_1979.txt | head -5
-        sort -gr -k1 ../output/exp_101/attm101_1979.txt | head -5
-        #SEB bash compare.s
+        bash sample_results.s
+        bash compare.s
