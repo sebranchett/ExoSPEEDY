@@ -28,20 +28,20 @@ jobs:
       run: |
         # sudo apt-get update
         sudo apt-get install -y gfortran
-        echo "::set-env name=COMOTT1:: -O3 -fdefault-real-8 -fconvert=big-endian -frecord-marker=4 -finit-local-zero -fdefault-integer-8"
+#        echo "::set-env name=COMOTT1:: -O3 -fdefault-real-8 -fconvert=big-endian -frecord-marker=4 -finit-local-zero -fdefault-integer-8"
         #SEB try this? sudo add-apt-repository ppa:ubuntu-toolchain-r/test
 
     - name: Set up GFortran macOS
       if: contains( matrix.os, 'macos')
       run: |
         brew install gcc || brew upgrade gcc || true
-        echo "::set-env name=COMOTT1:: -O3 -fdefault-real-16 -fconvert=big-endian -frecord-marker=4 -finit-local-zero -fdefault-integer-8"
+#       echo "::set-env name=COMOTT1:: -O3 -fdefault-real-16 -fconvert=big-endian -frecord-marker=4 -finit-local-zero -fdefault-integer-8"
 
     - name: Set up GFortran for windows
       if: contains( matrix.os, 'windows')
       shell: bash
       run: |
-        echo "::set-env name=COMOTT1:: -O3 -fdefault-real-16 -fconvert=big-endian -frecord-marker=4 -finit-local-zero -fdefault-integer-8"
+#       echo "::set-env name=COMOTT1:: -O3 -fdefault-real-16 -fconvert=big-endian -frecord-marker=4 -finit-local-zero -fdefault-integer-8"
 
     - name: build and run
       shell: bash
