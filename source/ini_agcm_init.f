@@ -54,6 +54,13 @@ C--IO sx 12 months in a year
       include "cls_inplanet.h"
       include "cls_instep.h"
 
+      totday = 0
+      do i = 1, MONTHS
+         totday = totday + DAYSMN(i)
+      enddo
+      if (totday.ne.DAYSYR) stop
+     * 'Days in months do not add up to days in year'
+
       if (inidate.gt.0) then
 
          iyear0 = inidate/100
