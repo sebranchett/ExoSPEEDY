@@ -50,7 +50,7 @@ C
       AZEN=1.0
       NZEN=2
 
-      RZEN=-COS(ALPHA)*OBLIQ2*ASIN(1.)/90.
+      RZEN=-COS(ALPHA)*OBLIQ*ASIN(1.)/90.
       CZEN=COS(RZEN)
       SZEN=SIN(RZEN)
 

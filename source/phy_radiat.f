@@ -46,7 +46,7 @@ c      DALPHA=ASIN(0.5)
       COZ2= 1.8
 C
 
-      RZEN=-COS(ALPHA)*OBLIQ2*ASIN(1.)/90.
+      RZEN=-COS(ALPHA)*OBLIQ*ASIN(1.)/90.
       CZEN=COS(RZEN)
       SZEN=SIN(RZEN)
 

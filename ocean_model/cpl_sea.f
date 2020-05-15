@@ -37,7 +37,7 @@ C--      in case of no restart or no coupling
           do i=1,nlon
             k=k+1
             sst_om(k)  = MINST + 56*cos(deglat_s(j)/180*3.14)**2 + 20*sin(3*i*2*3.14/real(nlon)) ! SST 
-            tice_om(k) = FRWTR3  ! sea ice temperature
+            tice_om(k) = FRWTR   ! sea ice temperature
             sice_om(k) = 0d0     ! sea ice fraction
           enddo
         enddo
@@ -96,8 +96,8 @@ C--   2. Set input variables for mixed-layer/ocean model
         VSEA_INPUT(:,3) = 0d0
         VSEA_INPUT(:,4) = hflux_s(:)
         VSEA_INPUT(:,5) = 0d0
-        VSEA_INPUT(:,6) = FRWTR1 + 10.
-        VSEA_INPUT(:,7) = FRWTR1
+        VSEA_INPUT(:,6) = FRWTR + 10.
+        VSEA_INPUT(:,7) = FRWTR
         VSEA_INPUT(:,8) = 0d0
 
       endif

@@ -25,15 +25,12 @@ C--:   RGAS   = Dry gas constant of the atmosphere (J K^-1 kg^-1)
 C--:   ECC    = Eccentricity (radians)
 C--:   OBLIQ  = Obliquity (degrees)
 C--:   OMDEG  = Angle between Vernal Equinox and Perihelion (degrees)
-C--:   OBLIQ2 = Less accurate Obliquity (degrees)
 C--:   GRMAX  = Eddy Kinetic energy growth rate maximum
 C--:   HCAPSO = Heat capacity of soil per m^2
 C--:   HCAPIC = Heat capacity of ice per m^2
 C--:   HCAPSE = Heat capacity of sea (mixed layer) per m^2
 C--:   SSTFR  = Freezing point of 'water' (K) in cpl_sea(_model).f, ppo_dmflux
-C--:   FRWTR1 = Freezing point of 'water' (K) in ini_inbcon.f
-C--:   FRWTR2 = Freezing point of 'water' (K) in phy_convmf.f, phy_lscond.f
-C--:   FRWTR3 = Freezing point of 'water' (K) in phy_shtorh ocean model
+C--:   FRWTR  = Freezing point of 'water' (K)
 C--:   TGRVWV = Temperature used for implicit gravity wave computation
 C--:   TTROP  = tropos:  T = 288 degK at z = 0, constant lapse rate
 C--:   TSTRAT = stratos: T = 216 degK, lapse rate = 0
@@ -57,8 +54,8 @@ C--:   MAXST  = Maximum temperature used to calculate mean-sea-level pressure
 C--:   ANOM0  = Non-linear damping coefficient for anomolies
 
       COMMON /PLNTPH/ GRAVIT, REARTH, OMEGA, AKAP, RGAS, ECC, OBLIQ,
-     $                OMDEG, OBLIQ2, GRMAX, HCAPSO, HCAPIC, HCAPSE,
-     $                SSTFR, FRWTR1, FRWTR2, FRWTR3, TGRVWV, PLEV,
+     $                OMDEG, GRMAX, HCAPSO, HCAPIC, HCAPSE,
+     $                SSTFR, FRWTR, TGRVWV, PLEV,
      $                TTROP, TSTRAT, PREF, ESREF, WTRAIR,
      $                ARMFAC, ARMC1, ARMC2, ARMT1, ARMT2, BARLPS, WREF,
      $                MINST, MAXST, ANOM0, SDEP1, IDEP2, NPOWHD, NPLEVS

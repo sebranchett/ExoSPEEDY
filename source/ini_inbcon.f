@@ -11,7 +11,7 @@ C--IO h com_surfcon.h, com_cli_land.h, com_cli_sea.h
 C--IO h com_planet.h
 C--IO sx 12 months in a year
 C--IO sx sdep1 = 70. and idep2 = 3, soil depths
-C--IO sx 273., temperature of freezing water? FRWTR1
+C--IO sx 273., temperature of freezing water? FRWTR
 C--IO r read topographical fields from unit 20 - orography
 C--IO r read topographical fields from unit 20 - land-sea mask
 C--IO r read topographical fields from unit 20 - albedo
@@ -120,7 +120,7 @@ C--   2.3 Land-surface temp.
 
       if (iitest.eq.1) print*,' checking land-surface temp.'
 
-      CALL FORCHK (bmask_l,stlmnth,ix*il,months,0.,400.,FRWTR1)
+      CALL FORCHK (bmask_l,stlmnth,ix*il,months,0.,400.,FRWTR)
 
 C     Correction for model-to-actual topography
       do it = 1,months
@@ -236,7 +236,7 @@ C--   3.2 SST
 
       if (iitest.ge.1) print*,' checking sst'
 
-      CALL FORCHK (bmask_s,sstmnth,ix*il,months,100.,400.,FRWTR1)
+      CALL FORCHK (bmask_s,sstmnth,ix*il,months,100.,400.,FRWTR)
 
 c     3.2 Sea ice fraction
 
@@ -363,7 +363,7 @@ cfk              sstommnth(i,j,it) = sstmnth(i,j,it)+r4inp(i,j)
 
         if (iitest.ge.1) print*,' checking ocean model SST'
 
-        CALL FORCHK (bmask_s,sstommnth,ix*il,months,100.,400.,FRWTR1)
+        CALL FORCHK (bmask_s,sstommnth,ix*il,months,100.,400.,FRWTR)
 
       endif
 C--

@@ -33,7 +33,6 @@ C--   Physical parameters associated with a planet (common PLNTPH)
       ECC    = 0.016724
       OBLIQ  = 23.446
       OMDEG  = 282.04
-      OBLIQ2 = 23.45
       GRMAX  = 0.2/(86400.*2.)
 
 C--   Soil and sea parameters for the planet
@@ -42,9 +41,7 @@ C--   Soil and sea parameters for the planet
       HCAPIC = 1.93e+6
       HCAPSE = 4.18e+6
       SSTFR  = 273.2-1.8
-      FRWTR1 = 273.
-      FRWTR2 = 273.16
-      FRWTR3 = 273.15
+      FRWTR  = 273.15
       TGRVWV = 288.
       TTROP  = 288.
       TSTRAT = 216.
