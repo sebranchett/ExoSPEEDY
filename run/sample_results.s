@@ -8,7 +8,7 @@ for IN_FILE in ../output/exp_101/atdf101_1979.txt \
                ../output/exp_101/attm101_1979.txt \
                ../output/exp_101/atva101_1979.txt
 do
- echo $IN_FILE >> $OUT_FILE
+ echo '--------' >> $OUT_FILE
 
  # find length of the results file and the middle
  LENGTH=$(wc -l $IN_FILE | awk '{print $1}')
@@ -23,5 +23,5 @@ done
 
 # capture the final results in the .lis output file
 IN_FILE=../output/exp_101/atgcm101.lis 
-echo $IN_FILE >> $OUT_FILE
+echo '--------' >> $OUT_FILE
 tail -8 $IN_FILE >> $OUT_FILE

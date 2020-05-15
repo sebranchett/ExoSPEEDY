@@ -1,3 +1,3 @@
 #!/bin/sh
 
-diff checked_output.txt test_output.txt
+diff -w checked_output.txt test_output.txt
