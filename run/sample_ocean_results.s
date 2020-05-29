@@ -15,13 +15,7 @@ do
  let "MIDDLE = $LENGTH / 2"
  wc -l $IN_FILE | awk '{print $1}' >> $OUT_FILE
 
- # capture the start, the middle and the end
+ # capture the start and the middle
  head -5 $IN_FILE >> $OUT_FILE
  head -$MIDDLE $IN_FILE | tail -5 >> $OUT_FILE
- tail -5 $IN_FILE >> $OUT_FILE
 done
-
-# capture the final results in the .lis output file
-IN_FILE=../output/exp_201/atgcm201.lis 
-echo '--------' >> $OUT_FILE
-tail -8 $IN_FILE >> $OUT_FILE
