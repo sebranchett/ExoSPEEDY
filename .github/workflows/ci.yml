@@ -46,3 +46,12 @@ jobs:
       run: |
         bash sample_results.s
         bash compare.s
+
+    - name: test ocean model
+      shell: bash
+      working-directory: run
+      run: |
+        cp ../ocean_model/* ../update
+        bash run_exp.s t30 201 0 < modify.txt
+        bash sample_ocean_results.s
+        bash compare_ocean.s
