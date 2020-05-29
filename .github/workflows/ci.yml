@@ -39,7 +39,6 @@ jobs:
       working-directory: run
       run: |
         bash run_exp.s t30 101 0 < modify.txt
-        ls ../output
 
     - name: compare output
       shell: bash
