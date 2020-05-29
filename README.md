@@ -39,6 +39,8 @@ To this purpose, each subroutine is annotated with comment lines starting with t
 ## Notes for use with exoplanets
 Planet specific parameters that were embedded in the original software, can be found in cpl\_inplanet.h. Other relevant parameters have not been moved from their original cls\_in\*.h file.
 
+The input files required for a calculation are linked by the script ver41.5.input/inpfiles.s.
+
 Daily mean upper air levels are fixed in ppo\_tminc.f.
 
 The ozone absorption model, polar night cooling in the stratosphere model, stratiform cloud model and energy fractions in LW bands model (assumes 100 to 400K) are defined in phy\_radiat.f.
